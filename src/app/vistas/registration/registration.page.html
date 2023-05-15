@@ -1,0 +1,25 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <p></p>
+
+    <!-- Icono -->
+    <div class="fadeIn first">
+      <img src="assets/logo.png" id="icon" alt="User Icon" />
+    </div>
+    <h2 class="a"></h2>
+    <!-- Formulario de registro -->
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm.value)">
+      <input type="text" id="nombre" class="fadeIn second" placeholder="nombre..." formControlName="nombre">
+      <input type="text" id="apellido" class="fadeIn second" placeholder="apellido..." formControlName="apellido">
+      <input type="text" id="correo" class="fadeIn second" placeholder="correo..." formControlName="correo">
+      <input type="password" id="pass" class="fadeIn third" placeholder="contraseña..." formControlName="password">
+      <input type="submit" class="fadeIn fourth" value="Registrarse">
+    </form>
+
+    <!-- Recuperar contraseña -->
+    <div id="formFooter">
+      <a class="underlineHover" href="recuperar-contraseña">Recuperar su contraseña</a>
+    </div>
+  </div>
+</div>
+
