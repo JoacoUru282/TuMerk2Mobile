@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { LoginResponse } from 'src/app/modelos/dataTypes/loginResponse.interface';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
   
 })
 export class LoginPage  implements OnInit {
-  constructor(private api: ApiService, private alertController: AlertController, private dataService: DataService) { }
+  constructor(private api: ApiService, private alertController: AlertController, private dataService: DataService, private message: MessageUtil) { }
 
   visibility: boolean = true;
   loginForm = new FormGroup({
@@ -41,7 +42,7 @@ export class LoginPage  implements OnInit {
       this.emailFormControl.value == null ||
       this.passwordFormControl.value == ''
     ){
-      this.showAlert('Has dejado campos vacios');
+      this.message.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if(this.isEmailOk(this.emailFormControl.value)){
         let data: DtLogin = {
@@ -51,7 +52,7 @@ export class LoginPage  implements OnInit {
         this.api.login(data).subscribe({
           next:async (response: LoginResponse) => {
             this.dataService.setData('jwt', response.accessToken);
-            this.showAlert('Iniciaste sesion correctamente');
+            this.message.showDialog('Error', 'Iniciaste sesion correctamente');
             //para obtener el jwt
             //const jwt = await this.dataService.getData('jwt');
           },
@@ -60,7 +61,7 @@ export class LoginPage  implements OnInit {
           }
         })
       }else{
-        this.showAlert('El email esta mal escrito');
+        this.message.showDialog('Error', 'El email esta mal escrito');
       }
     }
   }

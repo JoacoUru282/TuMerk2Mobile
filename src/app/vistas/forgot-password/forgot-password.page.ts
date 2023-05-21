@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Platform, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 
 @Component({
   selector: 'app-forgot-password',
@@ -16,45 +18,28 @@ export class ForgotPasswordPage implements OnInit {
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private api: ApiService, private alertController: AlertController) { }
+  constructor(private api: ApiService, private alertController: AlertController, private messages: MessageUtil) { }
 
   ngOnInit(): void {}
 
- /* onResetPassword(form: any){
-    
-    console.log(form.usuario, form.password);
-    this.api.resetPassword(form).subscribe(data =>{
-        console.log(data);
-      });
-  }*/
-
   public async resetPassword(){
     if(this.emailFormControl.value == '' || this.emailFormControl.value == null){
-      this.showAlert('Has dejado campos vacios');
+      this.messages.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if(this.esEmailValido(this.emailFormControl.value)){
         this.api.resetPassword(this.emailFormControl.value.toString()).subscribe({
           next: (response) => {
-            this.showAlert('El mail se ha enviado correctamente');
+            this.messages.showDialog('Bien!', 'El mail se ha enviado correctamente');
           },
-          error: (err) => {
-            this.showAlert(err.error);
+          error: (err: BackEndError) => {
+            this.messages.showDialog('Error', 'Error');
           }
         })
       }else {
-        this.showAlert('El mail esta mal escrito');
+        this.messages.showDialog('Error', 'El mail esta mal escrito');
       }
     }
   }
-
-  showAlert(msg: string) {
-		let alert = this.alertController.create({
-			message: msg,
-			header: 'Error',
-			buttons: ['OK']
-		});
-		alert.then((alert) => alert.present());
-	}
 
   esEmailValido(email: string): boolean{
     let mailValido = false;
