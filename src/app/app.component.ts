@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppComponent  {
 	public appPages = [
 		{ title: 'Login', url: '/login', icon: 'log-in' },
-		{ title: 'Registrarse', url: '/registrarse', icon: 'document-text' },
+		{ title: 'Register', url: '/register', icon: 'document-text' },
 	];
 
 	constructor() { }

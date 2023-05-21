@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
-import { environment } from '../../../environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 
 
 const TOKEN_KEY = 'access_token';
@@ -14,9 +15,10 @@ const TOKEN_KEY = 'access_token';
 	providedIn: 'root'
 })
 export class ApiService {
-	url = environment.url;
 	user = null;
 	authenticationState = new BehaviorSubject(false);
+
+	apiURL: string = `${environment.BACKEND_API_URL}`;
 
 	constructor(
 		private http: HttpClient,
@@ -47,24 +49,20 @@ export class ApiService {
 	}
 
 	register(credentials: any) {
-		return this.http.post(`${this.url}/api/register`, credentials).pipe(
+		return this.http.post(`${this.apiURL}/auth/registro`, credentials).pipe(
 			catchError((e) => {
-				this.showAlert(e.error.msg);
+				console.log("soy el error" + e);
 				throw new Error(e);
 			})
 		);
 	}
 
-	login(credentials: any) {
-		let e:string;
-		return this.http.post(`${this.url}/api/login`, credentials).pipe(
+	login(credentials: DtLogin) {
+		return this.http.post(`${this.apiURL}/auth/login`, credentials).pipe(
 			tap((res) => {
-				this.storage.set(TOKEN_KEY, res['token']);
-				this.user = this.helper.decodeToken(res['token']);
 				this.authenticationState.next(true);
 			}),
 			catchError((e) => {
-				console.log("soy el error" + e);
 				this.showAlert(e.error.msg);
 				throw new Error(e);
 			})
@@ -72,12 +70,11 @@ export class ApiService {
 	}
 
 	// esta funcion TODAVIA NO ESTA IMPLEMENTADA!!
-	resetPassword(credentials: any) {
-		return this.http.post(`${this.url}/api/restartPassword`, credentials).pipe(
+	resetPassword(email: string) {
+		console.log(email);
+		return this.http.post(`${this.apiURL}/auth/contrasenia/recuperacion`, email).pipe(
 			tap((res) => {
-				this.storage.set(TOKEN_KEY, res['token']);
-				this.user = this.helper.decodeToken(res['token']);
-				this.authenticationState.next(true);
+
 			}),
 			catchError((e) => {
 				this.showAlert(e.error.msg);
@@ -95,7 +92,7 @@ export class ApiService {
 	// esta funcion representa las posibilidades del usuario una vez que inicio sesión
 	// posteriormente sera eliminada
 	getSpecialData() {
-		return this.http.get(`${this.url}/api/special`).pipe(
+		return this.http.get(`${this.apiURL}/special`).pipe(
 			catchError((e) => {
 				let status = e.status;
 				if (status === 401) {

@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'recuperar-contraseña',
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
+  }
+
 ];
 
 @NgModule({
