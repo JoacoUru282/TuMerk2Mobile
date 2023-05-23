@@ -23,7 +23,7 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit(): void {}
 
   public async resetPassword(){
-    if(this.emailFormControl.value == '' || this.emailFormControl.value == null){
+    if(this.emailFormControl.value === '' || this.emailFormControl.value === null){
       this.messages.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if(this.esEmailValido(this.emailFormControl.value)){

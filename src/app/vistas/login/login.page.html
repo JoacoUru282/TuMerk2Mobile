@@ -10,11 +10,11 @@
     </div>
     <h2 class="a"></h2>
     <!-- Formulario de inicio de sesión -->
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form (ngSubmit)="login()">
       <input type="text" id="login" class="fadeIn second" placeholder="Ingrese su correo" formControlName="usuario" [formControl]="emailFormControl">
       <ion-item> 
         <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingrese su contraseña" formControlName="Contraseña" [formControl]="passwordFormControl">
-        <ion-icon name="eye-outline" (click)="toggleVisibility()"></ion-icon>
+        <ion-icon name="eye-outline" class="ion-color-black" (click)="toggleVisibility()"></ion-icon>
       </ion-item>
       <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
     </form>

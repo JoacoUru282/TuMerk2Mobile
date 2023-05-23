@@ -33,12 +33,12 @@ export class RegistrationPage implements OnInit {
 
   public async onRegister(){
     if(
-      this.emailFormControl.value == '' ||
-      this.emailFormControl.value == null ||
-      this.passwordFormControl.value == '' ||
-      this.nameFormControl.value == '' ||
-      this.apellidoFormControl.value == '' ||
-      this.cedulaFormControl.value == ''
+      this.emailFormControl.value === '' ||
+      this.emailFormControl.value === null ||
+      this.passwordFormControl.value === '' ||
+      this.nameFormControl.value === '' ||
+      this.apellidoFormControl.value === '' ||
+      this.cedulaFormControl.value === ''
     ){
       this.showAlert('Has dejado campos vacios');
     }else{

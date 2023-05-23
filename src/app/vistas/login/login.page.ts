@@ -7,6 +7,9 @@ import { DataService } from 'src/app/servicios/api/data.service';
 import { LoginResponse } from 'src/app/modelos/dataTypes/loginResponse.interface';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Token } from 'src/app/modelos/dataTypes/Token.interface';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,7 @@ import { MessageUtil } from 'src/app/servicios/api/message-util.service';
   
 })
 export class LoginPage  implements OnInit {
-  constructor(private api: ApiService, private alertController: AlertController, private dataService: DataService, private message: MessageUtil) { }
+  constructor(private api: ApiService, private alertController: AlertController, private dataService: DataService, private message: MessageUtil, private router: Router, private helper: JwtHelperService) { }
 
   visibility: boolean = true;
   loginForm = new FormGroup({
@@ -38,9 +41,9 @@ export class LoginPage  implements OnInit {
 
  public login(){
     if(
-      this.emailFormControl.value == '' ||
-      this.emailFormControl.value == null ||
-      this.passwordFormControl.value == ''
+      this.emailFormControl.value === '' ||
+      this.emailFormControl.value === null ||
+      this.passwordFormControl.value === ''
     ){
       this.message.showDialog('Error', 'Has dejado campos vacios');
     }else{
@@ -52,7 +55,14 @@ export class LoginPage  implements OnInit {
         this.api.login(data).subscribe({
           next:async (response: LoginResponse) => {
             this.dataService.setData('jwt', response.accessToken);
-            this.message.showDialog('Error', 'Iniciaste sesion correctamente');
+            const tokenCode: Token | null = this.helper.decodeToken(response.accessToken!);
+            const obtenerRol = tokenCode?.scopes?.filter(scope => scope.includes("ROLE_")).map(scope => scope.replace("ROLE_", ""))[0];
+            if(obtenerRol === "COMPRADOR"){
+              this.message.showDialog('', 'Iniciaste sesion correctamente');
+              this.router.navigate(['local-list']);
+            }else{
+              this.message.showDialog('Error', 'No sos usuario comprador');
+            }
             //para obtener el jwt
             //const jwt = await this.dataService.getData('jwt');
           },

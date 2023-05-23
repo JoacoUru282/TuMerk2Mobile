@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./vistas/home/home.module').then( m => m.HomePageModule)
-  },
+  
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -22,7 +19,18 @@ const routes: Routes = [
   {
     path: 'recuperar-contraseña',
     loadChildren: () => import('./vistas/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'local-list',
+    loadChildren: () => import('./vistas/local-list/local-list.module').then( m => m.LocalListPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./vistas/home/home.module').then( m => m.HomePageModule)
   }
+
+
+
 
 ];
 

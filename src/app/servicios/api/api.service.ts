@@ -63,24 +63,13 @@ export class ApiService {
 				this.authenticationState.next(true);
 			}),
 			catchError((e) => {
-				this.showAlert(e.error.msg);
 				throw new Error(e);
 			})
 		);
 	}
 
-	// esta funcion TODAVIA NO ESTA IMPLEMENTADA!!
 	resetPassword(email: string) {
-		console.log(email);
-		return this.http.post(`${this.apiURL}/auth/contrasenia/recuperacion`, email).pipe(
-			tap((res) => {
-
-			}),
-			catchError((e) => {
-				this.showAlert(e.error.msg);
-				throw new Error(e);
-			})
-		);
+		return this.http.post(`${this.apiURL}/auth/contrasenia/recuperacion`, email);
 	}
 
 	logout() {
