@@ -4,9 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { tap, catchError } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
+import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 
 
 const TOKEN_KEY = 'access_token';
@@ -69,7 +70,7 @@ export class ApiService {
 	}
 
 	resetPassword(email: string) {
-		return this.http.post(`${this.apiURL}/auth/contrasenia/recuperacion`, email);
+		return this.http.post(`${this.apiURL}/auth/contrasenia/recuperar?email=${email}`, '');
 	}
 
 	logout() {
@@ -104,5 +105,9 @@ export class ApiService {
 			buttons: ['OK']
 		});
 		alert.then((alert) => alert.present());
+	}
+
+	misLocales(abierto: Boolean): Observable <Local[]>{
+		return this.http.get<Local[]>(`${this.apiURL}/locales?abierto=${abierto}`);
 	}
 }

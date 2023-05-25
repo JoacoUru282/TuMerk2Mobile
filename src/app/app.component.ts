@@ -17,6 +17,7 @@ export class AppComponent  {
 	public appPages = [
 		{ title: 'Login', url: '/login', icon: 'log-in' },
 		{ title: 'Register', url: '/register', icon: 'document-text' },
+		
 	];
 
 	constructor() { }

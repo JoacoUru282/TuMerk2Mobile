@@ -1,22 +1,30 @@
-<ion-header>
+<ion-app>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Menú</ion-title>
+    <ion-split-pane contentId="main-content">
+      <ion-menu side="start" contentId="main-content">
+        <ion-accordion-group>
+          <ion-accordion>
+            <ion-item slot="header">
+  
+            </ion-item>
+            <div slot="content">
+              <ion-item>Categorias</ion-item>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+  
+        <ion-accordion-group>
+          <ion-accordion>
+            <ion-item slot="header">Sesion</ion-item>
+            <ion-list slot="content">
+              <ion-item>Cerrar Sesion</ion-item>
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-menu>
+    </ion-split-pane>  
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-item >
-      <ion-icon name="log-out-outline" slot="start"></ion-icon>
-      <ion-label>Cerrar sesión</ion-label>
-    </ion-item>
-    <ion-item >
-      <ion-icon name="grid-outline" slot="start"></ion-icon>
-      <ion-label>Categorías</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
+  
+</ion-app>
+    
 

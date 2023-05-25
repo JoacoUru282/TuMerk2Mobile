@@ -3,13 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 import { AlertController } from '@ionic/angular';
-import { DataService } from 'src/app/servicios/api/data.service';
 import { LoginResponse } from 'src/app/modelos/dataTypes/loginResponse.interface';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Token } from 'src/app/modelos/dataTypes/Token.interface';
+import { JwtService } from 'src/app/servicios/api/jwt-service.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +16,12 @@ import { Token } from 'src/app/modelos/dataTypes/Token.interface';
   
 })
 export class LoginPage  implements OnInit {
-  constructor(private api: ApiService, private alertController: AlertController, private dataService: DataService, private message: MessageUtil, private router: Router, private helper: JwtHelperService) { }
+  constructor(
+    private api: ApiService, 
+    private alertController: AlertController, 
+    private message: MessageUtil, 
+    private router: Router, 
+    private jwtService: JwtService) { }
 
   visibility: boolean = true;
   loginForm = new FormGroup({
@@ -54,17 +57,14 @@ export class LoginPage  implements OnInit {
         };
         this.api.login(data).subscribe({
           next:async (response: LoginResponse) => {
-            this.dataService.setData('jwt', response.accessToken);
-            const tokenCode: Token | null = this.helper.decodeToken(response.accessToken!);
-            const obtenerRol = tokenCode?.scopes?.filter(scope => scope.includes("ROLE_")).map(scope => scope.replace("ROLE_", ""))[0];
-            if(obtenerRol === "COMPRADOR"){
+            this.jwtService.guardarAccessTokenEnSesion(response.accessToken!);
+            const rol = await this.jwtService.obtenerRol();
+            if(rol === "COMPRADOR"){
               this.message.showDialog('', 'Iniciaste sesion correctamente');
               this.router.navigate(['local-list']);
             }else{
               this.message.showDialog('Error', 'No sos usuario comprador');
             }
-            //para obtener el jwt
-            //const jwt = await this.dataService.getData('jwt');
           },
           error: (err: BackEndError) => {
             this.showAlert(err.mensaje);

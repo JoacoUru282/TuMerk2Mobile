@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/servicios/api/api.service';
+import { Local } from 'src/app/modelos/dataTypes/Local.interface';
+import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { DataService } from 'src/app/servicios/api/data.service';
+
 
 @Component({
   selector: 'app-local-list',
@@ -7,25 +13,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalListPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private api: ApiService,
+    private message: MessageUtil,
+    private dataService: DataService
+    ) { }
 
-  locales: any[] = [
-    { nombre: 'Local 1' },
-    { nombre: 'Local 2' },
-    { nombre: 'Local 3' }
-  ];
+  locales: Local[] = [];
 
   ngOnInit() {
+    this.getLocales();
   }
 
-  onLocalClick(local: any) {
-    // Acciones a realizar cuando se hace clic en un local
-    console.log('Local seleccionado:', local);
+  onLocalClick(local: Local) {
+    this.dataService.setData('nroLocal', local.nro);
   }
 
   onFormSubmit() {
     // Acciones a realizar al enviar el formulario
     console.log('Formulario enviado');
+  }
+
+  public getLocales(){
+    this.api.misLocales(true).subscribe({
+      next: (response: Local[]) => {
+        this.locales = response;
+      },
+      error: (err: BackEndError) => {
+        this.message.showDialog('Error', 'Error')
+      }
+    })
   }
 
 }
