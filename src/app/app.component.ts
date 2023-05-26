@@ -15,10 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent  {
 	public appPages = [
-		{ title: 'Login', url: '/login', icon: 'log-in' },
-		{ title: 'Register', url: '/register', icon: 'document-text' },
+		/*{ title: 'Login', url: '/login', icon: 'log-in' },
+		{ title: 'Register', url: '/register', icon: 'document-text' },*/
+		{ title: 'Categorias', url: '/home', icon: 'log-in' },
+		
 		
 	];
+	public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+	constructor() {
+	}
 
-	constructor() { }
+	
 }
