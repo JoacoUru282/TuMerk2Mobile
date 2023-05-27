@@ -4,6 +4,7 @@ import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { DataService } from 'src/app/servicios/api/data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LocalListPage implements OnInit {
   constructor(
     private api: ApiService,
     private message: MessageUtil,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
     ) { }
 
   locales: Local[] = [];
@@ -27,6 +29,7 @@ export class LocalListPage implements OnInit {
 
   onLocalClick(local: Local) {
     this.dataService.setData('nroLocal', local.nro);
+    this.router.navigate(['home']);
   }
 
   onFormSubmit() {

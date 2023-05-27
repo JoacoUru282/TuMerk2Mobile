@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 import { Local } from 'src/app/modelos/dataTypes/Local.interface';
-
+import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 
 const TOKEN_KEY = 'access_token';
 
@@ -79,6 +79,14 @@ export class ApiService {
 		});
 	}
 
+	misLocales(abierto: Boolean): Observable <Local[]>{
+		return this.http.get<Local[]>(`${this.apiURL}/locales?abierto=${abierto}`);
+	}
+
+	categoriasLocal(publico: boolean){
+		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=${publico}`);
+	}
+
 	// esta funcion representa las posibilidades del usuario una vez que inicio sesión
 	// posteriormente sera eliminada
 	getSpecialData() {
@@ -107,7 +115,5 @@ export class ApiService {
 		alert.then((alert) => alert.present());
 	}
 
-	misLocales(abierto: Boolean): Observable <Local[]>{
-		return this.http.get<Local[]>(`${this.apiURL}/locales?abierto=${abierto}`);
-	}
+	
 }

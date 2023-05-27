@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/servicios/api/api.service';
 import { DtRegistro } from 'src/app/modelos/dataTypes/DtRegistro';
 import { AlertController } from '@ionic/angular';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,7 @@ import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 })
 export class RegistrationPage implements OnInit {
 
-  constructor(private api: ApiService, private alertController: AlertController) { }
+  constructor(private api: ApiService, private alertController: AlertController, private router: Router) { }
   MIN_NAME_LENGHT = 8;
   visibility: boolean = true;
 
@@ -52,7 +53,8 @@ export class RegistrationPage implements OnInit {
         };
         this.api.register(data).subscribe({
           next: () => {
-            this.showAlert('Te has registrado correctamente')
+            this.showAlert('Te has registrado correctamente');
+            this.router.navigate(['login']);
           },
           error: (err: BackEndError) => {
             this.showAlert(err.mensaje);

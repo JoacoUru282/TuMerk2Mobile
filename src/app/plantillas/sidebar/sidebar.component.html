@@ -1,0 +1,31 @@
+<ion-split-pane contentId="main-content" class="sidebar">
+  <ion-menu contentId="main-content" type="overlay">
+
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>Menu</ion-list-header>
+
+        <ion-list>
+          <ion-accordion-group>
+            <ion-button (click)="toggleCategories()">Categorias</ion-button>
+              <ion-list *ngIf="showCategories">
+                <ion-accordion *ngFor="let categoria of categorias">
+                  <ion-item slot="header" id="categoria.id" (click)="verProductos(categoria)"> {{categoria.nombre}}</ion-item>
+              </ion-accordion>
+            </ion-list>
+          </ion-accordion-group>
+        </ion-list>
+
+        <ion-list id="labels-list">
+          <ion-button>Alta domicilio</ion-button> 
+        </ion-list>
+
+        <ion-list id="labels-list">
+          <ion-button (click)="logout()">Cerrar sesión</ion-button> 
+        </ion-list>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

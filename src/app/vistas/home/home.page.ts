@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from 'src/app/plantillas/sidebar/sidebar.component';
 
 
 @Component({

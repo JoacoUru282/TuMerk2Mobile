@@ -16,7 +16,6 @@ import { Storage, IonicStorageModule }  from '@ionic/storage-angular';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 export function jwtOptionsFactory(storage: Storage) {
 	return {
 		tokenGetter: () => {
