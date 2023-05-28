@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
+import { ListaProductoI } from 'src/app/modelos/dataTypes/listaProducto.interface';
 
 const TOKEN_KEY = 'access_token';
 
@@ -47,6 +48,14 @@ export class ApiService {
 				}
 			}
 		});
+	}
+
+	getProductosLocal(idLocal: number,id:number): Observable <ListaProductoI[]>{
+		return this.http.get<ListaProductoI[]>(`${this.apiURL}/locales/${idLocal}/productos`);
+	}
+
+	getProductoLocal(idLocal: number,id:number): Observable <ListaProductoI>{
+		return this.http.get<ListaProductoI>(`${this.apiURL}/locales/${idLocal}/productos/${id}`);
 	}
 
 	register(credentials: any) {
