@@ -10,21 +10,20 @@ export class DataService {
     this.init();
   }
 
-  private _storage: Storage | null = null;
-
   async init() {
-    this._storage = await this.storage.create(); 
+    await this.storage.create(); 
   }
-
-  getData(key: string): any {
-    return this._storage?.get(key).then(value => value);
+    
+  public async getData(key: string): Promise<any> {
+    const data = await this.storage?.get(key);
+    return data;
   }
 
   setData(key: string, value: any) {
-    this._storage?.set(key, value);
+    this.storage?.set(key, value);
   }
 
   removeData(key: string) {
-    this._storage?.remove(key);
+    this.storage?.remove(key);
   }
 }

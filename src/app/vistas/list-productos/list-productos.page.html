@@ -1,0 +1,28 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid class="container">
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCategoria">
+        <ion-card>
+          <div class="product-container">
+            <ion-avatar>
+              <img src="data:image/png;base64,{{producto!.imagen}}" alt="Image" class="imagen">
+            </ion-avatar>
+            <div class="product-info">
+              <p class="nombreProducto"><strong>{{ producto.nombre }}</strong></p>
+              <p class="precioProducto">${{ producto.precio }}</p>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

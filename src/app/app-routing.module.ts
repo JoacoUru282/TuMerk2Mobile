@@ -27,7 +27,17 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./vistas/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'alta-domicilio',
+    loadChildren: () => import('./vistas/alta-domicilio/alta-domicilio.module').then( m => m.AltaDomicilioPageModule)
+  },  {
+    path: 'list-productos',
+    loadChildren: () => import('./vistas/list-productos/list-productos.module').then( m => m.ListProductosPageModule)
   }
+
+
+
 
 
 

@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { SidebarComponent } from 'src/app/plantillas/sidebar/sidebar.component';
-
 @NgModule({
   imports: [
     CommonModule,

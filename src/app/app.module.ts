@@ -31,6 +31,8 @@ export function jwtOptionsFactory(storage: Storage) {
 		BrowserModule,
 		IonicModule.forRoot(),
 		AppRoutingModule,
+		ReactiveFormsModule,
+		FormsModule,
 		HttpClientModule,
 		HttpClientXsrfModule.withOptions({
 		cookieName: 'XSRF-TOKEN',

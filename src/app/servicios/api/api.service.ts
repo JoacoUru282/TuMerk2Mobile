@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
+import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
+import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
 
 const TOKEN_KEY = 'access_token';
 
@@ -87,24 +89,39 @@ export class ApiService {
 		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=${publico}`);
 	}
 
-	// esta funcion representa las posibilidades del usuario una vez que inicio sesión
-	// posteriormente sera eliminada
-	getSpecialData() {
-		return this.http.get(`${this.apiURL}/special`).pipe(
-			catchError((e) => {
-				let status = e.status;
-				if (status === 401) {
-					this.showAlert('You are not authorized for this!');
-					this.logout();
-				}
-				throw new Error(e);
-			})
-		);
+	//Te trae todos los productos
+	obtenerProductos() {
+		return this.http.get<DtGetProducto[]>(`${this.apiURL}/productos`);
+	}
+	
+	//Te trae un producto de UN local en especifico
+	obtenerProductoDeLocal(localId:number, productoId: number){
+		return this.http.get<DtGetProducto>(`${this.apiURL}/locales/${localId}/productos/${productoId}`)
 	}
 
-	isAuthenticated() {
-		return this.authenticationState.value;
+	//Te trae un producto en especifico
+	obtenerProducto(productoId: number){
+		return this.http.get<DtGetProducto>(`${this.apiURL}/productos/${productoId}`)
 	}
+
+	//Obtenes todos los productos de un local especifico
+	obtenerProductosLocal(idLocal: number): Observable <DtGetProducto[]>{
+		console.log(`${this.apiURL}/locales/${idLocal}/productos`);
+		return this.http.get<DtGetProducto[]>(`${this.apiURL}/locales/${idLocal}/productos`);
+	}
+
+	//Obtenes los productos de un local segun la categoria
+	obtenerProductosDeCategoria(idLocal:number, idCategoria: number){
+		return this.http.get<DtGetProducto[]>(`${this.apiURL}/locales/${idLocal}/productos?idCategoria=${idCategoria}`);
+	}
+
+	obtenerCategorias(publico: boolean) {
+		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?${publico}`);
+	}
+
+	altaDomicilio(dtAltaDomicilio: DtAltaDomicilio, idUsuario: any) {
+        return this.http.post(`${this.apiURL}/usuarios/${idUsuario}/direcciones`, dtAltaDomicilio);
+    }
 
 	showAlert(msg: string) {
 		let alert = this.alertController.create({
