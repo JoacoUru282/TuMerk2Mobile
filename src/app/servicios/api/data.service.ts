@@ -14,9 +14,13 @@ export class DataService {
     await this.storage.create(); 
   }
     
-  public async getData(key: string): Promise<any> {
-    const data = await this.storage?.get(key);
-    return data;
+  // public async getData(key: string): Promise<any> {
+  //   const data = await this.storage?.get(key);
+  //   return data;
+  // }
+
+  getData(key: string): Promise<any> {
+    return this.storage?.get(key).then(value => value);
   }
 
   setData(key: string, value: any) {

@@ -18,7 +18,7 @@ export class AltaDomicilioPage implements OnInit {
   registrationForm!: FormGroup;
 
   constructor(private jwtService: JwtService, private api: ApiService, private message: MessageUtil) { }
-  
+
   ngOnInit() {
     this.registrationForm = new FormGroup({
       calle: new FormControl('', [Validators.required, Validators.minLength(this.MIN_LENGTH)]),
@@ -29,12 +29,12 @@ export class AltaDomicilioPage implements OnInit {
   }
 
 
-  async getIdUsuario() {
+  getIdUsuario() {
     const idUsuario = this.jwtService.obtenerUsuarioId();
-    return await idUsuario;
+    return idUsuario;
   }
 
-  async darAlta() {
+  darAlta() {
     if (this.registrationForm.valid) {
       const dtAltaDomicilio: DtAltaDomicilio = {
         calle: this.registrationForm.value.calle,
@@ -43,7 +43,7 @@ export class AltaDomicilioPage implements OnInit {
         esquina: this.registrationForm.value.esquina,
       };
 
-      const idUsuario = await this.getIdUsuario();
+      const idUsuario = this.getIdUsuario();
 
       console.log(dtAltaDomicilio);
 

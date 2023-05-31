@@ -48,8 +48,8 @@ export class SidebarComponent implements OnInit {
       this.api.obtenerProductosDeCategoria(Number(this.localId), idCategoria).subscribe({
         next: (response) => {
           this.productos = response;
+          location.reload();
           this.dataService.setData('productosCategoria', this.productos);
-          //console.log(">>>>>>>>>>", response);
         }
       });
     });
@@ -66,6 +66,6 @@ export class SidebarComponent implements OnInit {
   }
 
   goAltaDomicilio(){
-    this.router.navigate(['alta-domicilio']);
+    this.router.navigate(['/alta-domicilio']);
   }
 }
