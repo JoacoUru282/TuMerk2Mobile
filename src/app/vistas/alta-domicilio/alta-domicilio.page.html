@@ -1,55 +1,41 @@
-<section class="container-center">
-  <ion-card class="auth-card">
-    <h1 class="titulo">Agrega tu domicilio</h1>
-    <hr />
-    <form formGroup="registrationForm">
-      <div class="row">
-        <div class="column">
-          <ion-item class="campo">
-            <ion-label position="floating">Calle</ion-label>
-            <ion-input
-              
-              type="text"
-              placeholder="Ingrese la calle"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item class="campo">
-            <ion-label position="floating">Esquina</ion-label>
-            <ion-input
-              
-              type="text"
-              placeholder="Ingrese la esquina"
-              required
-            ></ion-input>
-          </ion-item>
-        </div>
-        <div class="column">
-          <ion-item class="campo">
-            <ion-label position="floating">Número de puerta</ion-label>
-            <ion-input
-              
-              type="number"
-              pattern="[0-9]*"
-              placeholder="Ingrese número de puerta"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item class="campo">
-            <ion-label position="floating">Apartamento</ion-label>
-            <ion-input
-              
-              type="number"
-              pattern="[0-9]*"
-              placeholder="Ingrese apartamento"
-            ></ion-input>
-          </ion-item>
-        </div>
-      </div>
-    </form>
-    <div class="auth-form-button">
-      <ion-button expand="full" color="primary" (click)="darAlta()">Agregar domicilio</ion-button>
-    </div>
-  </ion-card>
-</section>
+<ion-header [translucent]="false">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true">
+  <section class="container-center">
+      <h1 class="titulo">Agrega tu domicilio</h1>
+      <hr />
+      <form >
+        <div class="row">
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label position="floating">Calle</ion-label>
+              <ion-input formControlName="Calle" type="text" placeholder="Ingrese la calle" required [formControl]="calleFormControl"></ion-input>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label position="floating">Esquina</ion-label>
+              <ion-input formControlName="Esquina" type="text" placeholder="Ingrese la esquina" required [formControl]="esquinaFormControl"></ion-input>
+            </ion-item>
+          </div>
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label position="floating">Número de puerta</ion-label>
+              <ion-input formControlName="Puerta" type="number" pattern="[0-9]*" placeholder="Ingrese número de puerta" required [formControl]="numeroFormControl"></ion-input>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label position="floating">Apartamento</ion-label>
+              <ion-input formControlName="Apartamento" type="number" pattern="[0-9]*" placeholder="Ingrese numero de apartamento" [formControl]="apartamentoFormControl"></ion-input>
+            </ion-item>
+          </div>
+        </div>
+      </form>
+      <div>
+        <ion-button expand="full" color="primary" (click)="darAlta()">Agregar domicilio</ion-button>
+      </div>
+      <div>
+        <ion-button expand="full" color="primary" (click)="goHome()">Volver al home</ion-button>
+      </div>
+  </section>
+</ion-content>

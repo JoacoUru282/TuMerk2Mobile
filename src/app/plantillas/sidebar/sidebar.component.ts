@@ -66,6 +66,6 @@ export class SidebarComponent implements OnInit {
   }
 
   goAltaDomicilio(){
-    this.router.navigate(['/alta-domicilio']);
+    this.router.navigate(['alta-domicilio']);
   }
 }
