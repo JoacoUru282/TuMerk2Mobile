@@ -6,19 +6,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button #cart>
+      <div class="cart-lenght"></div>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid class="container">
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCategoria">
-        <ion-card>
+      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCategoria" >
+        <ion-card class="card">
           <div class="product-container">
             <ion-avatar>
               <img src="data:image/png;base64,{{producto!.imagen}}" alt="Image" class="imagen">
             </ion-avatar>
-            <div class="product-info">
-              <p class="nombreProducto"><strong>{{ producto.nombre }}</strong></p>
-              <p class="precioProducto">${{ producto.precio }}</p>
-            </div>
+            <ion-col size="6">
+              <div class="product-info">
+                <p class="nombreProducto"><strong>{{ producto.nombre }}</strong></p>
+                <p class="precioProducto">${{ producto.precio }}</p>
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-text-right">
+              <ion-button fill="clear">
+                <ion-icon name="add"></ion-icon>
+              </ion-button>
+            </ion-col>
           </div>
         </ion-card>
       </ion-col>

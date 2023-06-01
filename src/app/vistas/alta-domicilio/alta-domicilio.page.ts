@@ -25,12 +25,7 @@ export class AltaDomicilioPage implements OnInit {
   constructor(private jwtService: JwtService, private api: ApiService, private message: MessageUtil, private router: Router) { }
 
   ngOnInit() {
-    // this.registrationForm = new FormGroup({
-    //   calle: new FormControl('', [Validators.required, Validators.minLength(this.MIN_LENGTH)]),
-    //   numero: new FormControl('', [Validators.required, Validators.minLength(this.MIN_LENGTH)]),
-    //   apartamento: new FormControl('', [Validators.minLength(this.MIN_LENGTH)]),
-    //   esquina: new FormControl('', [Validators.required, Validators.minLength(this.MIN_LENGTH)]),
-    // });
+  
   }
 
 

@@ -57,4 +57,27 @@ ion-header {
     height: 60px;
     margin-left: 5px;
   }
+
+  .card{
+    margin-top: 40px;
+  }
+
+  ion-fab-button{
+    height: 70px;
+    width: 70px;
+  }
+
+  .cart-icon{
+    font-size: 50px;
+  }
+
+  .cart-lenght{
+    position: absolute;
+    top: 18px;
+    left: 25px;
+    font-weight: 600;
+    font-size: 1em;
+    min-width: 25px;
+    z-index: 10;
+  }
     
