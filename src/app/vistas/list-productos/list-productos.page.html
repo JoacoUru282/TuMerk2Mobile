@@ -19,7 +19,8 @@
             <ion-col size="6">
               <div class="product-info">
                 <p class="nombreProducto"><strong>{{ producto.nombre }}</strong></p>
-                <p class="precioProducto">${{ producto.precio }}</p>
+                <p class="precioProducto" *ngIf="!producto.promocion">${{ producto.precio }}</p>
+                <p class="precionFinal" *ngIf="producto.promocion"><s>${{ producto.precio }}</s> ${{calcularPreciofinal(producto.precio,producto.promocion.descuento)}}</p>
               </div>
             </ion-col>
             <ion-col size="4" class="ion-text-right">

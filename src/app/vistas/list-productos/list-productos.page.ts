@@ -46,32 +46,12 @@ export class ListProductosPage implements OnInit {
     this.productosCategoria = await this.storage?.get('productosCategoria');
   }
 
+  calcularPreciofinal(precio: number, descuento: number){
+    return precio * (1 - (descuento / 100));
+  }
+
   getCategoria() {
     return this.dataService.getData('idCategoria');
-  }
-
-  getProductosLocal(idLocal: number){
-    this.api.obtenerProductosLocal(idLocal).subscribe({
-      next: (response) => {
-        this.productos = response;
-      }
-    });
-  }
-
-  obtenerProductoDeCategoria(local: number, categoria: number) {
-    this.api.obtenerProductosDeCategoria(local, categoria).subscribe({
-      next: (response) => {
-        this.productos = response;
-      }
-    });
-  }
-
-  obtenerProductos() {
-    this.api.obtenerProductos().subscribe({
-      next: (response) => {
-        this.productos = response
-      }
-    });
   }
   
   calculateTotalPages() {
@@ -90,31 +70,31 @@ export class ListProductosPage implements OnInit {
     });
   }
 
-  getProductos(): DtGetProducto[] {
-    const startIndex = this.currentPage * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    let productosMostrados: DtGetProducto[];
+  // getProductos(): DtGetProducto[] {
+  //   const startIndex = this.currentPage * this.pageSize;
+  //   const endIndex = startIndex + this.pageSize;
+  //   let productosMostrados: DtGetProducto[];
 
-    this.productos.forEach(element => {
-      if (element.precio > this.valMax)
-        this.valMax = element.precio
-    });
+  //   this.productos.forEach(element => {
+  //     if (element.precio > this.valMax)
+  //       this.valMax = element.precio
+  //   });
     
-    if (this.filtroNombre || this.filtroMin || this.filtroMax ) {
-      const filtroLowerCase = this.filtroNombre.toLowerCase();
+  //   if (this.filtroNombre || this.filtroMin || this.filtroMax ) {
+  //     const filtroLowerCase = this.filtroNombre.toLowerCase();
 
-      productosMostrados = this.productos.filter(productos =>
-        productos.nombre.toLowerCase().includes(filtroLowerCase) && 
-        productos.precio <= this.filtroMax! && 
-        productos.precio >= this.filtroMin!
-      );
+  //     productosMostrados = this.productos.filter(productos =>
+  //       productos.nombre.toLowerCase().includes(filtroLowerCase) && 
+  //       productos.precio <= this.filtroMax! && 
+  //       productos.precio >= this.filtroMin!
+  //     );
 
-    } else {
-      productosMostrados = this.productos;
-    }
+  //   } else {
+  //     productosMostrados = this.productos;
+  //   }
 
-    return productosMostrados.slice(startIndex, endIndex);
-  }
+  //   return productosMostrados.slice(startIndex, endIndex);
+  // }
 
   async inicializarProductoCarrito(){
     const valorStorage = await this.storage.get('productosCarrito') || [];
@@ -135,10 +115,14 @@ export class ListProductosPage implements OnInit {
        }
     }
     if (!existe){
+      let precioFinalProducto: number = producto.precio;
+      if (producto.promocion !== null) {
+          precioFinalProducto = this.calcularPreciofinal(producto.precio,producto.promocion.descuento);
+      } 
         let variable: DtProductoStorage = {
         id: producto.id,
         nombre: producto.nombre,
-        precio: producto.precio,
+        precio: precioFinalProducto,
         cantidadSeleccionada: 1
         };
         this.productosCarrito.push(variable);
