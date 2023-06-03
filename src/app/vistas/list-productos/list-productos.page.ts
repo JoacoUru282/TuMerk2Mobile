@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { ApiService } from 'src/app/servicios/api/api.service';
-import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { Storage } from '@ionic/storage-angular';
-import { SidebarComponent } from 'src/app/plantillas/sidebar/sidebar.component';
-
+import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-productos',
@@ -15,7 +13,7 @@ import { SidebarComponent } from 'src/app/plantillas/sidebar/sidebar.component';
 })
 export class ListProductosPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router) { }
 
   productos: DtGetProducto[] = [];
   pageSize = 20;
@@ -29,11 +27,13 @@ export class ListProductosPage implements OnInit {
   idCategoria?: string;
   localId?: Number;
   productosCategoria: any;
+  productosCarrito: DtProductoStorage[];
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getProductoCategoria();
     this.calculateTotalPages();
     this.getNombreCategoría(Number(this.getCategoria()));
+    this.inicializarProductoCarrito();
   }
 
   getLocal() {
@@ -116,6 +116,38 @@ export class ListProductosPage implements OnInit {
     return productosMostrados.slice(startIndex, endIndex);
   }
 
+  async inicializarProductoCarrito(){
+    const valorStorage = await this.storage.get('productosCarrito') || [];
+    if(!valorStorage){
+      await this.storage.set('productosCarrito', []);
+    }else{
+      this.productosCarrito = valorStorage;
+    }
+  }
 
-  
+  async agregarProductoCarrito(producto: DtGetProducto){
+    let existe = false;
+    for(let i = 0; i< this.productosCarrito.length; i++){
+     if(this.productosCarrito[i].id === producto.id){
+         this.productosCarrito[i].cantidadSeleccionada ++;
+         existe = true;
+         break;
+       }
+    }
+    if (!existe){
+        let variable: DtProductoStorage = {
+        id: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precio,
+        cantidadSeleccionada: 1
+        };
+        this.productosCarrito.push(variable);
+     }
+     this.storage.set('productosCarrito', this.productosCarrito);
+   }
+
+   goVerCarrito(){
+    this.router.navigate(['ver-carrito']);
+   }
+
 }

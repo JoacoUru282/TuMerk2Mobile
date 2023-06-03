@@ -5,6 +5,7 @@ import { DtRegistro } from 'src/app/modelos/dataTypes/DtRegistro';
 import { AlertController } from '@ionic/angular';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { Router } from '@angular/router';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationPage implements OnInit {
 
-  constructor(private api: ApiService, private alertController: AlertController, private router: Router) { }
+  constructor(private api: ApiService, private alertController: AlertController, private router: Router, private message: MessageUtil) { }
   MIN_NAME_LENGHT = 8;
   visibility: boolean = true;
 
@@ -41,7 +42,7 @@ export class RegistrationPage implements OnInit {
       this.apellidoFormControl.value === '' ||
       this.cedulaFormControl.value === ''
     ){
-      this.showAlert('Has dejado campos vacios');
+      this.message.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if (this.esEmailValido(this.emailFormControl.value)) {
         let data: DtRegistro = {
@@ -53,7 +54,7 @@ export class RegistrationPage implements OnInit {
         };
         this.api.register(data).subscribe({
           next: () => {
-            this.showAlert('Te has registrado correctamente');
+            this.message.showDialog('Bien!', 'Te has registrado correctamente');
             this.router.navigate(['login']);
           },
           error: (err: BackEndError) => {
@@ -62,7 +63,7 @@ export class RegistrationPage implements OnInit {
         });
       }
       else{
-        this.showAlert("El email esta mal escrito");
+        this.message.showDialog('Error', 'El email esta mal escrito');
       }
     }
   }

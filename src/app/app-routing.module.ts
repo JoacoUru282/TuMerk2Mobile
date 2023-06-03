@@ -34,6 +34,10 @@ const routes: Routes = [
   },  {
     path: 'list-productos',
     loadChildren: () => import('./vistas/list-productos/list-productos.module').then( m => m.ListProductosPageModule)
+  },
+  {
+    path: 'ver-carrito',
+    loadChildren: () => import('./vistas/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
   }
 
 

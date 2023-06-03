@@ -1,6 +1,8 @@
 import { Component, Inject  } from '@angular/core';
-import { DtProductoCantidad } from '../dataTypes/DtProductoCantidad.interface';
+import { DtProductoCantidad } from '../../modelos/dataTypes/DtProductoCantidad.interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Storage } from '@ionic/storage-angular';
+import { DataService } from 'src/app/servicios/api/data.service';
 
 @Component({
   selector: 'app-agregar-quitar-producto',
@@ -9,7 +11,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AgregarQuitarProductoComponent {
 
-  constructor(public dialogRef: MatDialogRef<AgregarQuitarProductoComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<AgregarQuitarProductoComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private storage: Storage, private dataService: DataService) { }
 
   cantidadProductos: number = 0;
   productoCantidad: DtProductoCantidad[] = [];
@@ -25,7 +27,7 @@ export class AgregarQuitarProductoComponent {
     }
   }
 
-  asignarProductos() {
+  async asignarProductos() {
     const productoCantidad: DtProductoCantidad = {
       id: this.data.id,
       nombre: this.data.nombre,
@@ -42,8 +44,7 @@ export class AgregarQuitarProductoComponent {
 
     productoCantidad.subTotal = this.cantidadProductos * precio;
 
-    const productosGuardados = JSON.parse(localStorage.getItem('productosCantidad') || '[]') || [];
-
+    const productosGuardados = await this.storage.set('productosCantidad', productoCantidad) || [];
     const index = productosGuardados.findIndex((p: DtProductoCantidad) => p.id === productoCantidad.id);
 
     if (index !== -1) {
@@ -54,8 +55,7 @@ export class AgregarQuitarProductoComponent {
       productosGuardados.push(productoCantidad);
     }
 
-    localStorage.setItem('productosCantidad', JSON.stringify(productosGuardados));
-
+    await this.data.get('productosCantidad');
     this.dialogRef.close(productosGuardados);
   }
 

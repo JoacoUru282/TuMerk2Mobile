@@ -17,12 +17,25 @@ export class DtAltaProducto {
  /** Esquema ProductoDTO */
   export interface DtGetProducto {
     id: number
-    nombre: "string"
-    descripcion: "string"
+    nombre: string
+    descripcion: string
     precio: number
     imagen: string
     idCategoria: number
     cantidadStock:  number
+    promocion: DtPromocion
+ }
+
+ export interface DtPromocion{
+  id: number
+  descuento: number
+ }
+
+ export interface DtProductoStorage{
+  id: number;
+  nombre: string;
+  precio: number;
+  cantidadSeleccionada: number;
  }
  
  /** Esquema StockAltaDTO*/
@@ -36,4 +49,6 @@ export class DtAltaProducto {
      this.idPromocion = idPromocion;
      this.cantidad = cantidad;
    }
+
+
  }
