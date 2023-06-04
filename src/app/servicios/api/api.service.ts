@@ -123,6 +123,10 @@ export class ApiService {
         return this.http.post(`${this.apiURL}/usuarios/${idUsuario}/direcciones`, dtAltaDomicilio);
     }
 
+	obtenerDirecciones(usuarioId: any) {
+		return this.http.get<any>(`${this.apiURL}/usuarios/${usuarioId}`);
+	}
+
 	showAlert(msg: string) {
 		let alert = this.alertController.create({
 			message: msg,

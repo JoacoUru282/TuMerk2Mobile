@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-list>
+      <ion-radio-group>
+        <ion-item (click)="seleccionarRetiroLocal()">
+          <ion-label>Retiro en local</ion-label>
+          <ion-radio value="retiro"></ion-radio>
+        </ion-item>
+    
+        <ion-item (click)="seleccionarEnvioDomicilio()">
+          <ion-label>Envío a domicilio</ion-label>
+          <ion-radio value="envio"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    
+    <ion-item *ngIf="envioDomicilio === true">
+      <ion-label>Seleccione la dirección de envío</ion-label>
+      <ion-select [(ngModel)]="direccion" [disabled]="retiroEnLocal">
+        <ion-select-option *ngFor="let dir of direccionCompleta">{{dir.direccionCompleta}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+  </div>
+</ion-content>

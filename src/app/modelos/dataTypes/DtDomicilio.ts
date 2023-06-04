@@ -9,5 +9,10 @@ export class DtAltaDomicilio {
       this.numero = numero;
       this.apartamento = apartamento;
       this.esquina = esquina;
-    }
-  }
+    } 
+}
+
+  export interface DtDireccionCompleta {
+    id: number;
+    direccionCompleta: string;
+}

@@ -3,7 +3,10 @@ import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
-import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
+import { Router } from '@angular/router';
+import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { JwtService } from 'src/app/servicios/api/jwt-service.service';
 
 @Component({
   selector: 'app-ver-carrito',
@@ -12,12 +15,20 @@ import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 })
 export class VerCarritoPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private message: MessageUtil, private jwtService: JwtService) { }
 
   productosCarrito: DtProductoStorage[];
+  precioTotal: number = 0;
+  direccionCompleta: DtDireccionCompleta [] = [];
+  listaDirecciones: boolean = false;
 
   ngOnInit() {
     this.inicializarProductoCarrito();
+    //this.calcularTotal();
+  }
+
+  goToHomeCategory(){
+    this.router.navigate(['home']);
   }
 
   async inicializarProductoCarrito(){
@@ -41,9 +52,9 @@ export class VerCarritoPage implements OnInit {
       }
     }
      this.storage.set('productosCarrito', this.productosCarrito);
-   }
+  }
 
-   async agregarProductoCarrito(idProducto: number){
+  async agregarProductoCarrito(idProducto: number){
     for(let i = 0; i< this.productosCarrito.length; i++){
      if(this.productosCarrito[i].id === idProducto){
          this.productosCarrito[i].cantidadSeleccionada ++;
@@ -52,4 +63,29 @@ export class VerCarritoPage implements OnInit {
     }
     this.storage.set('productosCarrito', this.productosCarrito);
   }
+  
+  async calcularTotal(){
+    if(this.productosCarrito !== null){
+      for(let i = 0; i< this.productosCarrito.length; i++){
+        this.precioTotal = this.precioTotal = this.productosCarrito[i].precio;
+      }
+    }
+  }
+
+  async getDirecciones(){
+    const idUsuario = await this.getIdUsuario();
+    await this.router.navigate(['ver-compra']).then(() => {
+    this.api.obtenerDirecciones(idUsuario).subscribe({
+      next: (response) => {
+        this.direccionCompleta = response.direcciones;
+        this.dataService.setData('direcciones', this.direccionCompleta);
+      }
+      });
+    })
+  }
+
+  async getIdUsuario() {
+    return await this.jwtService.obtenerUsuarioId();
+  }
+
 }

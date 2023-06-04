@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'ver-carrito',
     loadChildren: () => import('./vistas/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
+  },
+  {
+    path: 'ver-compra',
+    loadChildren: () => import('./vistas/ver-compra/ver-compra.module').then( m => m.VerCompraPageModule)
   }
 
 
