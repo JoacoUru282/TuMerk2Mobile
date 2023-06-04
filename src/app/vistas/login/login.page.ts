@@ -57,10 +57,10 @@ export class LoginPage  implements OnInit {
         };
         this.api.login(data).subscribe({
           next:async (response: LoginResponse) => {
-            this.jwtService.guardarAccessTokenEnSesion(response.accessToken!);
+            await this.jwtService.guardarAccessTokenEnSesion(response.accessToken!);
             const rol = await this.jwtService.obtenerRol();
             if(rol === "COMPRADOR"){
-              this.message.showDialog('', 'Iniciaste sesion correctamente');
+              this.message.showDialog('', 'Bienvenido!!');
               this.router.navigate(['local-list']);
             }else{
               this.message.showDialog('Error', 'No sos usuario comprador');
@@ -84,6 +84,7 @@ export class LoginPage  implements OnInit {
 		});
 		alert.then((alert) => alert.present());
 	}
+  
 
   isEmailOk(email: string): boolean{
     let mailOk = false;
@@ -100,3 +101,7 @@ export class LoginPage  implements OnInit {
   }
 
 }
+function wait(arg0: number) {
+  throw new Error('Function not implemented.');
+}
+

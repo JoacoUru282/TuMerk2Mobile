@@ -300,4 +300,13 @@ html {
   #icon {
     width:60%;
   }
+
+
+  .custom-alert .alert-wrapper {
+    background-color: #ff0000; /* Cambia el color de fondo a rojo */
+  }
+  
+  .custom-alert .alert-button-group .alert-button {
+    color: #ffffff; /* Cambia el color del texto de los botones a blanco */
+  }
   

@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-list-productos',
   templateUrl: './list-productos.page.html',
@@ -133,5 +135,10 @@ export class ListProductosPage implements OnInit {
    goVerCarrito(){
     this.router.navigate(['ver-carrito']);
    }
+
+  async onProductoClick(producto: DtGetProducto){
+    this.dataService.setData('inspeccionarProducto', producto );
+    this.router.navigate(['inspeccionar-producto']);
+  }
 
 }

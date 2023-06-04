@@ -31,7 +31,8 @@ const routes: Routes = [
   {
     path: 'alta-domicilio',
     loadChildren: () => import('./vistas/alta-domicilio/alta-domicilio.module').then( m => m.AltaDomicilioPageModule)
-  },  {
+  },
+  {
     path: 'list-productos',
     loadChildren: () => import('./vistas/list-productos/list-productos.module').then( m => m.ListProductosPageModule)
   },
@@ -40,16 +41,15 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
   },
   {
+
     path: 'ver-compra',
     loadChildren: () => import('./vistas/ver-compra/ver-compra.module').then( m => m.VerCompraPageModule)
+  },
+  {
+    path: 'inspeccionar-producto',
+    loadChildren: () => import('./vistas/inspeccionar-producto/inspeccionar-producto.module').then( m => m.InspeccionarProductoPageModule)
+
   }
-
-
-
-
-
-
-
 ];
 
 @NgModule({

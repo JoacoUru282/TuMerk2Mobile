@@ -13,7 +13,7 @@
       <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCategoria" >
         <ion-card class="card">
           <div class="product-container">
-            <ion-avatar>
+            <ion-avatar (click)="onProductoClick(producto)">
               <img src="data:image/png;base64,{{producto!.imagen}}" alt="Image" class="imagen">
             </ion-avatar>
             <ion-col size="6">
@@ -25,7 +25,7 @@
             </ion-col>
             <ion-col size="4" class="ion-text-right">
               <ion-button fill="clear" (click)="agregarProductoCarrito(producto)">
-                <ion-icon name="add"></ion-icon>
+                <ion-icon name="add" size="large"></ion-icon>
               </ion-button>
             </ion-col>
           </div>
@@ -42,3 +42,5 @@
     </ion-fab>
   </div>
 </ion-content>
+
+

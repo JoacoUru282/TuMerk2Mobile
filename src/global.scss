@@ -24,3 +24,18 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.custom-alert .alert-wrapper {
+    background-color: #3dc2ff; /* Cambia el color de fondo a rojo */
+  }
+  
+  .custom-alert .alert-button-group .alert-button {
+    color: #ffffff; /* Cambia el color del texto de los botones a blanco */
+  }
+
+  .custom-alert .alert-message {
+    color: rgb(8, 50, 164); /* Cambia el color del texto a rojo */
+    font-size: 22px; /* Cambia el tamaño de fuente a 16px */
+    font-weight: bold; /* Cambia el peso de fuente a negrita */
+    text-align: center;
+  }
