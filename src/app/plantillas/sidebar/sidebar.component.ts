@@ -5,6 +5,9 @@ import { DataService } from 'src/app/servicios/api/data.service';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
+import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,12 +16,14 @@ import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService) { }
 
   categorias: DtCategoria[] = [];
   showCategories: boolean = false;
   productos: DtGetProducto[] = [];
   localId?: Number;
+  user: DtGetUsuario;
+  direccionCompleta: DtDireccionCompleta [] = [];
 
   ngOnInit(): void {
     this.obtenerCategorias(true);
@@ -65,7 +70,34 @@ export class SidebarComponent implements OnInit {
     return this.dataService.getData('idCategoria');
   }
 
-  goAltaDomicilio(){
-    this.router.navigate(['alta-domicilio']);
+  async getUserInfo(){
+    const idUsuario = await this.getIdUsuario();
+    this.api.obtenerInfousuario(idUsuario).subscribe(data =>{
+      console.log(data);
+      this.user = data;
+      this.dataService.setData('infoUsuario', this.user);
+      this.router.navigate(['mi-perfil']);
+    })
+  }
+
+  async getIdUsuario() {
+    return await this.jwtService.obtenerUsuarioId();
+  }
+
+  async getDirecciones(){
+    const idUsuario = await this.getIdUsuario();
+    await this.router.navigate(['mi-perfil']).then(() => {
+    this.api.obtenerDirecciones(idUsuario).subscribe({
+      next: (response) => {
+        this.direccionCompleta = response.direcciones;
+        this.dataService.setData('direcciones', this.direccionCompleta);
+      }
+      });
+    })
+  }
+
+  async goMiPerfil(){
+    this.getUserInfo();
+    this.getDirecciones();
   }
 }

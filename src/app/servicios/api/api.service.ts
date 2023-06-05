@@ -11,6 +11,8 @@ import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
+import { DtGetUsuario, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 
 const TOKEN_KEY = 'access_token';
 
@@ -125,6 +127,15 @@ export class ApiService {
 
 	obtenerDirecciones(usuarioId: any) {
 		return this.http.get<any>(`${this.apiURL}/usuarios/${usuarioId}`);
+	}
+
+	obtenerInfousuario(usuarioId: any){
+		return this.http.get<any>(`${this.apiURL}/usuarios/${usuarioId}`);
+	}
+	  
+	
+	modificarUsuario(usuarioId: any, dtModificarUsuario: DtModificarUsuario) {
+		return this.http.put(`${this.apiURL}/usuarios/${usuarioId}`,dtModificarUsuario)
 	}
 
 	showAlert(msg: string) {

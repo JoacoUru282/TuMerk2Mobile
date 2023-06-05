@@ -5,6 +5,10 @@
       <ion-list id="inbox-list">
         <ion-list-header>Menu</ion-list-header>
 
+        <ion-list id="labels-list">
+          <ion-button (click)="goMiPerfil()"><ion-icon name="person-circle-outline" slot="start"></ion-icon> Mi Perfil </ion-button>
+        </ion-list>
+
         <ion-list>
           <ion-accordion-group>
             <ion-button (click)="toggleCategories()">Categorias</ion-button>
@@ -14,10 +18,6 @@
               </ion-accordion>
             </ion-list>
           </ion-accordion-group>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-button (click)="goAltaDomicilio()">Alta domicilio</ion-button> 
         </ion-list>
 
         <ion-list id="labels-list">

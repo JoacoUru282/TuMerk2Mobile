@@ -48,8 +48,15 @@ const routes: Routes = [
   {
     path: 'inspeccionar-producto',
     loadChildren: () => import('./vistas/inspeccionar-producto/inspeccionar-producto.module').then( m => m.InspeccionarProductoPageModule)
-
+  },
+  {
+    path: 'mi-perfil',
+    loadChildren: () => import('./vistas/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
   }
+    
+  
+
+  
 ];
 
 @NgModule({

@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="centered-container">
+    <h1 class="shadowed-heading">MI PERFIL</h1>
+  </div>
+
+  <ion-grid class="container">
+      <form>
+        <div class="row">
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label>Nombre: {{usuario.nombre}} </ion-label>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label>Apellido: {{usuario.apellido}}</ion-label>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label>Cedula: {{usuario.cedula}}</ion-label>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label>Email: {{usuario.email}}</ion-label>
+            </ion-item>
+          </div>
+        </div>
+      </form>
+  </ion-grid>
+
+  <div>
+    <ion-button color="primary" class="btnEdit"><ion-icon name="create"></ion-icon>Editar</ion-button>
+  </div>
+
+  <div class="centered-container">
+    <h2 class="shadowed-heading">Mis Direcciones</h2>
+  </div>
+
+  <ion-grid class="container">
+    <form>
+      <div class="row">
+        <div class="column">
+          <ion-item class="campo" *ngFor="let dir of direccionCompleta">
+            <ion-label>- {{dir.direccionCompleta}}</ion-label>
+            <ion-button fill="clear" class="botonQuitar" (click)="quitarDireccion(dir.id)">
+              <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>
+      </div>
+    </form>
+  </ion-grid>
+  <div>
+    <ion-button color="primary" class="btnDomicilio"><ion-icon name="home"></ion-icon> Alta Domicilio</ion-button>
+  </div>
+</ion-content>
