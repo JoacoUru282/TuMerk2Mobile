@@ -5,6 +5,7 @@ import { DataService } from 'src/app/servicios/api/data.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -13,7 +14,7 @@ import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
 })
 export class MiPerfilPage implements OnInit {
 
-  constructor(private api: ApiService, private jwtService: JwtService, private message: MessageUtil, private dataService: DataService) { }
+  constructor(private api: ApiService, private jwtService: JwtService, private message: MessageUtil, private dataService: DataService, private router: Router) { }
 
   usuario: any;
   direccionCompleta: DtDireccionCompleta [] = [];
@@ -49,6 +50,10 @@ export class MiPerfilPage implements OnInit {
       }
     }
      this.dataService.setData('direcciones', this.direccionCompleta);
+  }
+
+  goToDomicilio(){
+    this.router.navigate(['alta-domicilio']);
   }
 
 }

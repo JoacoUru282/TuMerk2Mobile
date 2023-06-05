@@ -90,6 +90,7 @@ export class SidebarComponent implements OnInit {
     this.api.obtenerDirecciones(idUsuario).subscribe({
       next: (response) => {
         this.direccionCompleta = response.direcciones;
+        location.reload();
         this.dataService.setData('direcciones', this.direccionCompleta);
       }
       });
