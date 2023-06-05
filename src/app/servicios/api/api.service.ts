@@ -129,7 +129,7 @@ export class ApiService {
 		return this.http.get<any>(`${this.apiURL}/usuarios/${usuarioId}`);
 	}
 
-	deleteDireccion(idUsuario: number, idDireccion: number){
+	deleteDireccion(idUsuario: any, idDireccion: number){
 		return this.http.delete(`${this.apiURL}/usuarios/${idUsuario}/domicilios/${idDireccion}`);
 	}
 

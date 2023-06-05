@@ -33,27 +33,34 @@ export class MiPerfilPage implements OnInit {
   async getDirecciones(){
     this.direccionCompleta = await this.dataService.getData('direcciones');
     console.log(this.direccionCompleta);
-    if(this.direccionCompleta === null){
-      this.message.showDialog('','No tiene ningun domicilio agregado');
-    }
   }
 
   async quitarDireccion(idDireccion: number){
-    for(let i = 0; i< this.direccionCompleta.length; i++){
-      if(this.direccionCompleta[i].id === idDireccion){
-        if(this.direccionCompleta[i].cantidadSeleccionada > 1){
-          this.direccionCompleta[i].cantidadSeleccionada --;
-        }else{
-          this.direccionCompleta.splice(i, 1);
-          break;
+    const idUsuario = await this.getIdUsuario();
+    this.api.deleteDireccion(idUsuario, idDireccion).subscribe({
+      next: (response) => {
+        for(let i = 0; i< this.direccionCompleta.length; i++){
+          if(this.direccionCompleta[i].id === idDireccion){
+            if(this.direccionCompleta[i].cantidadSeleccionada > 1){
+              this.direccionCompleta[i].cantidadSeleccionada --;
+            }else{
+              this.direccionCompleta.splice(i, 1);
+              break;
+            }
+          }
         }
+         this.dataService.setData('direcciones', this.direccionCompleta);
       }
-    }
-     this.dataService.setData('direcciones', this.direccionCompleta);
+    })
+    
   }
 
   goToDomicilio(){
     this.router.navigate(['alta-domicilio']);
+  }
+
+  async getIdUsuario() {
+    return await this.jwtService.obtenerUsuarioId();
   }
 
 }

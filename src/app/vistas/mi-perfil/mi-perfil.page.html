@@ -42,7 +42,7 @@
       <div class="row">
         <div class="column">
           <ion-item class="campo" *ngFor="let dir of direccionCompleta">
-            <ion-label>- {{dir.direccionCompleta}}</ion-label>
+            <ion-label class="direcciones">- {{dir.direccionCompleta}}</ion-label>
             <ion-button fill="clear" class="botonQuitar" (click)="quitarDireccion(dir.id)">
               <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
             </ion-button>

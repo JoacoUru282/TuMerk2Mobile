@@ -53,8 +53,10 @@ export class AltaDomicilioPage implements OnInit {
         const idUsuario = await this.getIdUsuario();
         this.api.altaDomicilio(dtAltaDomicilio, idUsuario).subscribe({
             next: (response) => {
+              this.router.navigate(['home']);
               this.message.showDialog('Bien!', 'Domicilio dado de alta');
               this.registrationForm.reset();
+              
             },
             error: (error) => {
               console.error(error);
