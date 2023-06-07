@@ -23,17 +23,9 @@ export interface DtGetUsuario {
 
 
 
-export class DtModificarUsuario {
-    contrasenia: string;
-    cedula: string;
-    nombre: string;
-    apellido: string;
-
-    constructor(nombre: string, apellido: string, contrasenia: string, cedula: string) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.contrasenia = contrasenia;
-        this.cedula = cedula;
-
-    }
+export interface DtModificarUsuario {
+    contrasenia?: string;
+    cedula?: string;
+    nombre?: string;
+    apellido?: string;
 }

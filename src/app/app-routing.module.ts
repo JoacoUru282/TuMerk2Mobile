@@ -52,7 +52,11 @@ const routes: Routes = [
   {
     path: 'mi-perfil',
     loadChildren: () => import('./vistas/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
+  },  {
+    path: 'edit-perfil',
+    loadChildren: () => import('./vistas/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
   }
+
     
   
 

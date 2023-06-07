@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DtGetUsuario, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
@@ -32,7 +31,6 @@ export class MiPerfilPage implements OnInit {
 
   async getDirecciones(){
     this.direccionCompleta = await this.dataService.getData('direcciones');
-    console.log(this.direccionCompleta);
   }
 
   async quitarDireccion(idDireccion: number){
@@ -53,6 +51,10 @@ export class MiPerfilPage implements OnInit {
       }
     })
     
+  }
+
+  goToEditPerfil(){
+    this.router.navigate(['edit-perfil']);
   }
 
   goToDomicilio(){

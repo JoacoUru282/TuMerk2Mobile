@@ -13,16 +13,16 @@
         <div class="row">
           <div class="column">
             <ion-item class="campo">
-              <ion-label>Nombre: {{usuario.nombre}} </ion-label>
+              <ion-label><strong>Nombre:</strong> {{usuario.nombre}} </ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label>Apellido: {{usuario.apellido}}</ion-label>
+              <ion-label><strong>Apellido:</strong> {{usuario.apellido}}</ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label>Cedula: {{usuario.cedula}}</ion-label>
+              <ion-label><strong>Cedula:</strong> {{usuario.cedula}}</ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label>Email: {{usuario.email}}</ion-label>
+              <ion-label><strong>Correo:</strong> {{usuario.email}}</ion-label>
             </ion-item>
           </div>
         </div>
@@ -30,7 +30,7 @@
   </ion-grid>
 
   <div>
-    <ion-button color="primary" class="btnEdit"><ion-icon name="create"></ion-icon>Editar</ion-button>
+    <ion-button color="primary" class="btnEdit" (click)="goToEditPerfil()"><ion-icon name="create"></ion-icon>Editar</ion-button>
   </div>
 
   <div class="centered-container">

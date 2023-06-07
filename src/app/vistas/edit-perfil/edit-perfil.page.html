@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section>
+    <div class="centered-container">
+      <h1 class="shadowed-heading">Edita tu perfil</h1>
+    </div>
+  
+    <form >
+      <ion-card class="card">
+        <div class="row">
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label position="floating"><strong>Nombre:</strong> {{usuario.nombre}}</ion-label>
+              <ion-input  type="text" [(ngModel)]="nombre"></ion-input>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label position="floating"><strong>Apellido:</strong> {{usuario.apellido}}</ion-label>
+              <ion-input  type="text" [(ngModel)]="apellido"></ion-input>
+            </ion-item>
+          </div>
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label position="floating"><strong>Cedula:</strong> {{usuario.cedula}}</ion-label>
+              <ion-input  type="number" pattern="[0-9]*" [(ngModel)]="ci"></ion-input>
+            </ion-item>
+          </div>
+          <div class="column">
+            <ion-item class="campo">
+              <ion-label position="floating"><strong>Nueva contraseña: </strong></ion-label>
+              <ion-input type="password" [formControl]="contraseniaFormControl"></ion-input>
+            </ion-item>
+            <ion-item class="campo">
+              <ion-label position="floating"><strong>Repetir contraseña:</strong></ion-label>
+              <ion-input type="password" [formControl]="confirmarFormControl"></ion-input>
+            </ion-item>
+          </div>
+        </div>
+      </ion-card>
+    </form>
+
+    <div>
+      <ion-button color="primary" class="btnEdit" (click)="modificarUsuario()">Confirmar</ion-button>
+    </div>
+
+    <div>
+      <ion-button color="primary" class="btnEdit" (click)="goToPerfil()">Volver</ion-button>
+    </div>
+</section>
+</ion-content>
