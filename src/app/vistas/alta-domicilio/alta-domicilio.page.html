@@ -1,9 +1,13 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <app-sidebar></app-sidebar>
   <section class="container-center">
       <h1 class="titulo">Agrega tu domicilio</h1>
       <hr />
@@ -38,4 +42,5 @@
         <ion-button expand="full" color="primary" (click)="goHome()">Volver al home</ion-button>
       </div>
   </section>
+  
 </ion-content>

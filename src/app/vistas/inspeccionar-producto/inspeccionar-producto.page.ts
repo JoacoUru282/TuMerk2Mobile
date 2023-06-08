@@ -21,6 +21,7 @@ export class InspeccionarProductoPage implements OnInit {
 
   async getProducto(){
     this.producto = await this.dataService.getData('inspeccionarProducto');
+    console.log;
   }
 
   calcularPreciofinal(precio: number, descuento: number){

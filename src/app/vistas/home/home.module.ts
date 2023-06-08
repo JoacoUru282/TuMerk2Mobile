@@ -4,14 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
-import { SidebarComponent } from 'src/app/plantillas/sidebar/sidebar.component';
+import { ComponentsModule } from 'src/app/plantillas/componets.module';
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, SidebarComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

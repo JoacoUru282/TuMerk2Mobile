@@ -7,7 +7,7 @@
       </ion-toolbar>
     </ion-header>
     
-    <ion-content>
+    <ion-content [fullscreen]="true">
       <form (ngSubmit)="onFormSubmit()">
         <div class="container">
           <ion-button *ngFor="let local of locales" expand="full" (click)="onLocalClick(local)">

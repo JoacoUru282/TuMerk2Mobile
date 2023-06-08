@@ -9,6 +9,7 @@ import { JwtService } from 'src/app/servicios/api/jwt-service.service';
 import { DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -25,10 +26,14 @@ export class SidebarComponent implements OnInit {
   user: DtGetUsuario;
   direccionCompleta: DtDireccionCompleta [] = [];
 
+
   ngOnInit(): void {
-    this.obtenerCategorias(true);
+    this.obtenerCategorias();
     this.getLocal();
   }
+
+
+
 
   logout(){
     this.storage.clear();
@@ -39,8 +44,8 @@ export class SidebarComponent implements OnInit {
     this.showCategories = !this.showCategories;
   }
 
-  obtenerCategorias(boolean: boolean){
-    this.api.categoriasLocal(boolean).subscribe({
+  obtenerCategorias(){
+    this.api.categoriasLocal().subscribe({
       next: (response) => {
         this.categorias = response 
       }

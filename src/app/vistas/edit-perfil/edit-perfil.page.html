@@ -1,31 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <app-sidebar></app-sidebar>
   <section>
     <div class="centered-container">
       <h1 class="shadowed-heading">Edita tu perfil</h1>
     </div>
-  
-    <form >
+
+    <form>
       <ion-card class="card">
         <div class="row">
           <div class="column">
             <ion-item class="campo">
               <ion-label position="floating"><strong>Nombre:</strong> {{usuario.nombre}}</ion-label>
-              <ion-input  type="text" [(ngModel)]="nombre"></ion-input>
+              <ion-input type="text" [(ngModel)]="nombre"></ion-input>
             </ion-item>
             <ion-item class="campo">
               <ion-label position="floating"><strong>Apellido:</strong> {{usuario.apellido}}</ion-label>
-              <ion-input  type="text" [(ngModel)]="apellido"></ion-input>
+              <ion-input type="text" [(ngModel)]="apellido"></ion-input>
             </ion-item>
           </div>
           <div class="column">
             <ion-item class="campo">
               <ion-label position="floating"><strong>Cedula:</strong> {{usuario.cedula}}</ion-label>
-              <ion-input  type="number" pattern="[0-9]*" [(ngModel)]="ci"></ion-input>
+              <ion-input type="number" pattern="[0-9]*" [(ngModel)]="ci"></ion-input>
             </ion-item>
           </div>
           <div class="column">
@@ -49,5 +53,6 @@
     <div>
       <ion-button color="primary" class="btnEdit" (click)="goToPerfil()">Volver</ion-button>
     </div>
-</section>
+  </section>
+  
 </ion-content>

@@ -87,8 +87,8 @@ export class ApiService {
 		return this.http.get<Local[]>(`${this.apiURL}/locales?abierto=${abierto}`);
 	}
 
-	categoriasLocal(publico: boolean){
-		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=${publico}`);
+	categoriasLocal(){
+		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=true`);
 	}
 
 	//Te trae todos los productos
@@ -117,10 +117,6 @@ export class ApiService {
 		return this.http.get<DtGetProducto[]>(`${this.apiURL}/locales/${idLocal}/productos?idCategoria=${idCategoria}`);
 	}
 
-	obtenerCategorias(publico: boolean) {
-		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?${publico}`);
-	}
-
 	altaDomicilio(dtAltaDomicilio: DtAltaDomicilio, idUsuario: any) {
         return this.http.post(`${this.apiURL}/usuarios/${idUsuario}/direcciones`, dtAltaDomicilio);
     }
@@ -130,7 +126,7 @@ export class ApiService {
 	}
 
 	deleteDireccion(idUsuario: any, idDireccion: number){
-		return this.http.delete(`${this.apiURL}/usuarios/${idUsuario}/domicilios/${idDireccion}`);
+		return this.http.delete(`${this.apiURL}/usuarios/${idUsuario}/direcciones/${idDireccion}`);
 	}
 
 	obtenerInfousuario(usuarioId: any){

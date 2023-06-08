@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { EditPerfilPageRoutingModule } from './edit-perfil-routing.module';
 
 import { EditPerfilPage } from './edit-perfil.page';
+import { ComponentsModule } from 'src/app/plantillas/componets.module';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

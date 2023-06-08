@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule, Platform } from '@ionic/angular';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { ApiService } from './servicios/api/api.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,8 +22,6 @@ export class AppComponent  {
 		
 	];
 	public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-	constructor() {
-	}
+	constructor() {}
 
-	
 }

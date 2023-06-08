@@ -61,7 +61,7 @@ export class ListProductosPage implements OnInit {
   }
 
   getNombreCategoría(idCategoria) {
-    this.api.obtenerCategorias(true).subscribe({
+    this.api.categoriasLocal().subscribe({
       next: (response) => {
         let categorias = response
         categorias.forEach(element => {

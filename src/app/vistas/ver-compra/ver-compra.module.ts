@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { VerCompraPageRoutingModule } from './ver-compra-routing.module';
 
 import { VerCompraPage } from './ver-compra.page';
+import { ComponentsModule } from 'src/app/plantillas/componets.module';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,

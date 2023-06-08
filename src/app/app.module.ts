@@ -15,6 +15,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { Storage, IonicStorageModule }  from '@ionic/storage-angular'; 
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsModule } from './plantillas/componets.module';
 
 export function jwtOptionsFactory(storage: Storage) {
 	return {
@@ -28,6 +29,7 @@ export function jwtOptionsFactory(storage: Storage) {
 @NgModule({
 	declarations: [AppComponent],
 	imports: [
+		ComponentsModule,
 		BrowserModule,
 		IonicModule.forRoot(),
 		AppRoutingModule,

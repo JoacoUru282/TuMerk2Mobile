@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { VerCarritoPageRoutingModule } from './ver-carrito-routing.module';
 
 import { VerCarritoPage } from './ver-carrito.page';
+import { ComponentsModule } from 'src/app/plantillas/componets.module';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,
