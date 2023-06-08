@@ -24,10 +24,7 @@ export class LoginPage  implements OnInit {
     private jwtService: JwtService) { }
 
   visibility: boolean = true;
-  loginForm = new FormGroup({
-    usuario : new FormControl('', Validators.required),
-    password : new FormControl('', Validators.required)
-  })
+  
 
   errorMessage: string = '';
   emailValido: boolean = true;
@@ -42,7 +39,7 @@ export class LoginPage  implements OnInit {
     this.visibility = !this.visibility;
   }
 
- public login(){
+ async login(){
     if(
       this.emailFormControl.value === '' ||
       this.emailFormControl.value === null ||
