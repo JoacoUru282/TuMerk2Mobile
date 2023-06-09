@@ -35,8 +35,8 @@
     </ion-row>
 
     <div>Total de la compra: $ {{precioTotal}}</div>
-    <div>Cupon del usuario: </div>
-    <div class="total">Total a pagar: $ </div>
+    <div *ngIf="usuario?.cupon !=null ">Cupon del usuario: $ {{usuario?.cupon}}</div>
+    <div class="total">Total a pagar: $ {{precioTotal - cupon}}</div>
 
     <div>
       <ion-list>

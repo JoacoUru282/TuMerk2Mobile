@@ -6,7 +6,7 @@ import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
-import { DtDireccionUser } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
 
 @Component({
@@ -25,11 +25,15 @@ export class VerCarritoPage implements OnInit {
   idDireccion: number;
   retiroEnLocal: boolean = false;
   envioDomicilio: boolean = false;
+  usuario?: DtGetUsuario;
+  cupon: number = 0;
 
  async ngOnInit() {
     this.inicializarProductoCarrito();
     await this.getDirecciones();
-    //this.calcularTotal();
+    await this.calcularTotal();
+    await this.getInfoUsuario();
+    await this.cargarCupon();
   }
 
   goToHomeCategory(){
@@ -38,12 +42,12 @@ export class VerCarritoPage implements OnInit {
 
   async inicializarProductoCarrito(){
     const valorStorage = await this.dataService.getData('productosCarrito') || [];
-    console.log(valorStorage);
     if(!valorStorage){
       await this.storage.set('productosCarrito', []);
     }else{
       this.productosCarrito = valorStorage;
     }
+    
   }
 
   async quitarProductoCarrito(idProducto: number){
@@ -58,6 +62,8 @@ export class VerCarritoPage implements OnInit {
       }
     }
     this.dataService.setData('productosCarrito', this.productosCarrito);
+    
+    location.reload();
   }
 
   async agregarProductoCarrito(idProducto: number){
@@ -68,18 +74,15 @@ export class VerCarritoPage implements OnInit {
        }
     }
     this.dataService.setData('productosCarrito', this.productosCarrito);
+    location.reload();
   }
   
   async calcularTotal(){
     if(this.productosCarrito !== null){
       for(let i = 0; i< this.productosCarrito.length; i++){
-        this.precioTotal = this.precioTotal = this.productosCarrito[i].precio;
+        this.precioTotal = this.precioTotal + this.productosCarrito[i].precio * this.productosCarrito[i].cantidadSeleccionada;
       }
     }
-  }
-
-  async getIdUsuario() {
-    return await this.jwtService.obtenerUsuarioId();
   }
 
   async getDirecciones(){
@@ -119,6 +122,19 @@ export class VerCarritoPage implements OnInit {
 
   abrirEnlace(url: string) {
     //const browser = this.inAppBrowser.create(url, '_system');
+  }
+
+  async getInfoUsuario(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    this.usuario = await new Promise((resolve, _) => 
+      this.api.obtenerInfousuario(idUsuario).subscribe( 
+        retorno => resolve(retorno) ));
+  }
+
+  async cargarCupon(){
+    if(this.usuario != null){
+      this.cupon = this.usuario?.cupon;
+    }
   }
 
 }
