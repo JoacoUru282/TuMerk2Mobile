@@ -17,6 +17,23 @@ ion-header {
   ion-menu-button {
     color: var(--ion-color-primary);
   }
+
+  h1{
+    color: orange;
+  }
+
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .shadowed-heading {
+    margin-top: 5px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
   
   #container {
     text-align: center;
@@ -59,7 +76,7 @@ ion-header {
   }
 
   .card{
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   ion-fab-button{

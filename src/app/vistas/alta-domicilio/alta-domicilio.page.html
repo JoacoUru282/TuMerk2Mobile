@@ -9,7 +9,10 @@
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
   <section class="container-center">
-      <h1 class="titulo">Agrega tu domicilio</h1>
+    <div class="centered-container">
+      <h1 class="shadowed-heading">Agrega un domicilio</h1>
+    </div>
+      
       <hr />
       <form >
         <div class="row">
@@ -36,10 +39,7 @@
         </div>
       </form>
       <div>
-        <ion-button expand="full" color="primary" (click)="darAlta()">Agregar domicilio</ion-button>
-      </div>
-      <div>
-        <ion-button expand="full" color="primary" (click)="goHome()">Volver al home</ion-button>
+        <ion-button class="btnAgregar" color="primary" (click)="darAlta()">Alta domicilio</ion-button>
       </div>
   </section>
   
