@@ -41,18 +41,14 @@ const routes: Routes = [
     loadChildren: () => import('./vistas/ver-carrito/ver-carrito.module').then( m => m.VerCarritoPageModule)
   },
   {
-
-    path: 'ver-compra',
-    loadChildren: () => import('./vistas/ver-compra/ver-compra.module').then( m => m.VerCompraPageModule)
-  },
-  {
     path: 'inspeccionar-producto',
     loadChildren: () => import('./vistas/inspeccionar-producto/inspeccionar-producto.module').then( m => m.InspeccionarProductoPageModule)
   },
   {
     path: 'mi-perfil',
     loadChildren: () => import('./vistas/mi-perfil/mi-perfil.module').then( m => m.MiPerfilPageModule)
-  },  {
+  },
+  {
     path: 'edit-perfil',
     loadChildren: () => import('./vistas/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
   },

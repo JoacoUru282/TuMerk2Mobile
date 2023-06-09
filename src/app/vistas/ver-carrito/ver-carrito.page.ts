@@ -57,7 +57,7 @@ export class VerCarritoPage implements OnInit {
         }
       }
     }
-     this.storage.set('productosCarrito', this.productosCarrito);
+    this.dataService.setData('productosCarrito', this.productosCarrito);
   }
 
   async agregarProductoCarrito(idProducto: number){
@@ -67,7 +67,7 @@ export class VerCarritoPage implements OnInit {
          break;
        }
     }
-    this.storage.set('productosCarrito', this.productosCarrito);
+    this.dataService.setData('productosCarrito', this.productosCarrito);
   }
   
   async calcularTotal(){
@@ -109,6 +109,7 @@ export class VerCarritoPage implements OnInit {
     const nroLocal = await this.dataService.getData('nroLocal');
     const enlace = await this.api.procesarPago(this.idDireccion, nroLocal, idUsuario, productosArticuloCarrito);
     console.log(enlace);
+    this.dataService.removeData('productosCarrito');
     if(enlace != null){
       window.location.href = enlace;
       //this.abrirEnlace(enlace);
