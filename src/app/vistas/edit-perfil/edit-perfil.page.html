@@ -18,17 +18,17 @@
         <div class="row">
           <div class="column">
             <ion-item class="campo">
-              <ion-label position="floating"><strong>Nombre:</strong> {{usuario.nombre}}</ion-label>
+              <ion-label position="floating"><strong>Nombre:</strong> {{usuario?.nombre}}</ion-label>
               <ion-input type="text" [(ngModel)]="nombre"></ion-input>
             </ion-item>
             <ion-item class="campo">
-              <ion-label position="floating"><strong>Apellido:</strong> {{usuario.apellido}}</ion-label>
+              <ion-label position="floating"><strong>Apellido:</strong> {{usuario?.apellido}}</ion-label>
               <ion-input type="text" [(ngModel)]="apellido"></ion-input>
             </ion-item>
           </div>
           <div class="column">
             <ion-item class="campo">
-              <ion-label position="floating"><strong>Cedula:</strong> {{usuario.cedula}}</ion-label>
+              <ion-label position="floating"><strong>Cedula:</strong> {{usuario?.cedula}}</ion-label>
               <ion-input type="number" pattern="[0-9]*" [(ngModel)]="ci"></ion-input>
             </ion-item>
           </div>

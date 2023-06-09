@@ -4,9 +4,10 @@ import { DataService } from 'src/app/servicios/api/data.service';
 import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
-import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { DtDireccionUser } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
 
 @Component({
   selector: 'app-ver-carrito',
@@ -19,11 +20,15 @@ export class VerCarritoPage implements OnInit {
 
   productosCarrito: DtProductoStorage[];
   precioTotal: number = 0;
-  direccionCompleta: DtDireccionCompleta [] = [];
+  direccionCompleta: DtDireccionUser [] = [];
   listaDirecciones: boolean = false;
+  idDireccion: number;
+  retiroEnLocal: boolean = false;
+  envioDomicilio: boolean = false;
 
-  ngOnInit() {
+ async ngOnInit() {
     this.inicializarProductoCarrito();
+    await this.getDirecciones();
     //this.calcularTotal();
   }
 
@@ -32,7 +37,8 @@ export class VerCarritoPage implements OnInit {
   }
 
   async inicializarProductoCarrito(){
-    const valorStorage = await this.storage.get('productosCarrito') || [];
+    const valorStorage = await this.dataService.getData('productosCarrito') || [];
+    console.log(valorStorage);
     if(!valorStorage){
       await this.storage.set('productosCarrito', []);
     }else{
@@ -72,20 +78,46 @@ export class VerCarritoPage implements OnInit {
     }
   }
 
-  async getDirecciones(){
-    const idUsuario = await this.getIdUsuario();
-    await this.router.navigate(['ver-compra']).then(() => {
-    this.api.obtenerDirecciones(idUsuario).subscribe({
-      next: (response) => {
-        this.direccionCompleta = response.direcciones;
-        this.dataService.setData('direcciones', this.direccionCompleta);
-      }
-      });
-    })
-  }
-
   async getIdUsuario() {
     return await this.jwtService.obtenerUsuarioId();
+  }
+
+  async getDirecciones(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    this.direccionCompleta = await new Promise((resolve, _) => 
+			this.api.obtenerDirecciones(idUsuario).subscribe( 
+        retorno => resolve(retorno.direcciones) ));  
+  }
+  
+  seleccionarEnvioDomicilio(){
+    this.envioDomicilio = true;
+    this.retiroEnLocal = false;
+  }
+
+  seleccionarRetiroLocal(){
+    this.retiroEnLocal = true;
+    this.envioDomicilio = false;
+  }
+
+  async pago(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    const productosArticuloCarrito: DtAltaArticulo[] = [];
+    this.productosCarrito.forEach((producto: DtProductoStorage) => {
+      const productoArticulo: DtAltaArticulo = {idProducto: producto.id, cantidad: producto.cantidadSeleccionada};
+      productosArticuloCarrito.push(productoArticulo);
+    });
+    const nroLocal = await this.dataService.getData('nroLocal');
+    const enlace = await this.api.procesarPago(this.idDireccion, nroLocal, idUsuario, productosArticuloCarrito);
+    console.log(enlace);
+    if(enlace != null){
+      window.location.href = enlace;
+      //this.abrirEnlace(enlace);
+    }
+    
+  }
+
+  abrirEnlace(url: string) {
+    //const browser = this.inAppBrowser.create(url, '_system');
   }
 
 }

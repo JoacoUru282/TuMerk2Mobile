@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
-import { DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
+import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 
 
 @Component({
@@ -24,16 +23,13 @@ export class SidebarComponent implements OnInit {
   productos: DtGetProducto[] = [];
   localId?: Number;
   user: DtGetUsuario;
-  direccionCompleta: DtDireccionCompleta [] = [];
+  direccionCompleta: DtDireccionUser [] = [];
 
 
   ngOnInit(): void {
     this.obtenerCategorias();
     this.getLocal();
   }
-
-
-
 
   logout(){
     this.storage.clear();
@@ -66,7 +62,7 @@ export class SidebarComponent implements OnInit {
   }
 
   async getLocal() {
-    const data = await this.storage?.get('nroLocal');
+    const data = await this.dataService.getData('nroLocal');
     this.localId = Number(data);
     return data;
   }
@@ -75,35 +71,17 @@ export class SidebarComponent implements OnInit {
     return this.dataService.getData('idCategoria');
   }
 
-  async getUserInfo(){
-    const idUsuario = await this.getIdUsuario();
-    this.api.obtenerInfousuario(idUsuario).subscribe(data =>{
-      console.log(data);
-      this.user = data;
-      this.dataService.setData('infoUsuario', this.user);
-      this.router.navigate(['mi-perfil']);
-    })
-  }
-
   async getIdUsuario() {
     return await this.jwtService.obtenerUsuarioId();
   }
 
-  async getDirecciones(){
-    const idUsuario = await this.getIdUsuario();
-    await this.router.navigate(['mi-perfil']).then(() => {
-    this.api.obtenerDirecciones(idUsuario).subscribe({
-      next: (response) => {
-        this.direccionCompleta = response.direcciones;
-        location.reload();
-        this.dataService.setData('direcciones', this.direccionCompleta);
-      }
-      });
+  goToMiPerfil(){
+     this.router.navigate(['mi-perfil']).then(() => {
+      location.reload();   
     })
   }
 
-  async goMiPerfil(){
-    this.getUserInfo();
-    this.getDirecciones();
+  goToMisCompras(){
+    this.router.navigate(['mis-compras']);
   }
 }

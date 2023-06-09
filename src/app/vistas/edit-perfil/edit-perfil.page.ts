@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtGetUsuario, DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
@@ -16,7 +16,7 @@ export class EditPerfilPage implements OnInit {
 
   constructor(private jwtService: JwtService, private api: ApiService, private dataService: DataService, private message: MessageUtil, private router: Router) { }
 
-  usuario: any;
+  usuario?: DtGetUsuario;
   contraseniaFormControl = new FormControl('');
   confirmarFormControl = new FormControl('');
   guardarUsuario: any;
@@ -26,18 +26,15 @@ export class EditPerfilPage implements OnInit {
   contrasenia: any;
   idUsuario: any;
   
-  ngOnInit() {
-    this.getInfoUsuario();
+  async ngOnInit() {
+    await this.getInfoUsuario();
   }
 
-  async getIdUsuario() {
-    return await this.jwtService.obtenerUsuarioId();
-  }
-
-  getInfoUsuario(){
-    this.usuario = this.dataService.getData('infoUsuario').then((data) => {
-      this.usuario = data;
-    })
+  async getInfoUsuario(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    this.usuario = await new Promise((resolve, _) => 
+      this.api.obtenerInfousuario(idUsuario).subscribe( 
+        retorno => resolve(retorno) ));
   }
 
   async modificarUsuario(){
@@ -62,7 +59,7 @@ export class EditPerfilPage implements OnInit {
     if (this.contrasenia !== '') {
       dtModificarUsuario.apellido = this.apellido;
     }
-    const idUsuario = await this.getIdUsuario();
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
     this.api.modificarUsuario(idUsuario, dtModificarUsuario).subscribe({
       next: (response) => {
         this.message.showDialog('', 'Se ha modificado la informacion del usuario');

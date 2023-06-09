@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api/api.service';
-import { DataService } from 'src/app/servicios/api/data.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
-import { DtDireccionCompleta } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { Router } from '@angular/router';
+import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -13,44 +11,39 @@ import { Router } from '@angular/router';
 })
 export class MiPerfilPage implements OnInit {
 
-  constructor(private api: ApiService, private jwtService: JwtService, private message: MessageUtil, private dataService: DataService, private router: Router) { }
+  constructor(private api: ApiService, private jwtService: JwtService, private router: Router) { }
 
-  usuario: any;
-  direccionCompleta: DtDireccionCompleta [] = [];
+  usuario?: DtGetUsuario;
+  direccionCompleta: DtDireccionUser [] ;
 
-   ngOnInit() {
-    this.getInfoUsuario();
+
+  async ngOnInit() {
+    await this.getInfoUsuario();
+    console.log(this.usuario);
     this.getDirecciones();
   }
 
-  getInfoUsuario(){
-    this.usuario = this.dataService.getData('infoUsuario').then((data) => {
-      this.usuario = data;
-    })
+  async getInfoUsuario(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    this.usuario = await new Promise((resolve, _) => 
+      this.api.obtenerInfousuario(idUsuario).subscribe( 
+        retorno => resolve(retorno) ));
   }
 
-  async getDirecciones(){
-    this.direccionCompleta = await this.dataService.getData('direcciones');
+  getDirecciones(){
+    this.direccionCompleta = this.usuario?.direcciones || [];
   }
 
   async quitarDireccion(idDireccion: number){
-    const idUsuario = await this.getIdUsuario();
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
     this.api.deleteDireccion(idUsuario, idDireccion).subscribe({
       next: (response) => {
-        for(let i = 0; i< this.direccionCompleta.length; i++){
-          if(this.direccionCompleta[i].id === idDireccion){
-            if(this.direccionCompleta[i].cantidadSeleccionada > 1){
-              this.direccionCompleta[i].cantidadSeleccionada --;
-            }else{
-              this.direccionCompleta.splice(i, 1);
-              break;
+        const index = this.direccionCompleta.findIndex(dir => dir.id === idDireccion);
+          if(index !== -1){
+            this.direccionCompleta.splice(index, 1);
             }
           }
-        }
-         this.dataService.setData('direcciones', this.direccionCompleta);
-      }
-    })
-    
+        })
   }
 
   goToEditPerfil(){
@@ -59,10 +52,6 @@ export class MiPerfilPage implements OnInit {
 
   goToDomicilio(){
     this.router.navigate(['alta-domicilio']);
-  }
-
-  async getIdUsuario() {
-    return await this.jwtService.obtenerUsuarioId();
   }
 
 }

@@ -12,17 +12,4 @@ export class DtAltaDomicilio {
     } 
 }
 
-  export interface DtDireccionCompleta {
-    id: number;
-    direccionCompleta: string;
-    cantidadSeleccionada: number;
-}
 
-export interface DtDireccionUser{
-  id: number;
-  calle: string;
-  esquina: string;
-  numero: number;
-  apartamento: number;
-  direccionCompleta: string;
-}

@@ -12,7 +12,11 @@
           <ion-button (click)="goMiPerfil()"><ion-icon name="person-circle-outline" slot="start"></ion-icon> Mi Perfil </ion-button>
         </ion-list>
 
-        <ion-list >
+        <ion-list id="labels-list">
+          <ion-button (click)="goToMisCompras()"><ion-icon name="cart-outline"></ion-icon> Mis Compras</ion-button> 
+        </ion-list>
+
+        <ion-list>
           <ion-accordion-group>
             <ion-button (click)="toggleCategories()">Categorias</ion-button>
               <ion-list *ngIf="showCategories">
@@ -38,9 +42,14 @@
       <ion-list id="inbox-list">
         <ion-list-header color="secondary">Menu</ion-list-header>
   
-        <ion-item button (click)="goMiPerfil()" color="secondary">
+        <ion-item button (click)="goToMiPerfil()" color="secondary">
           <ion-icon name="person-circle-outline" slot="start"></ion-icon>
           <ion-label><strong>Mi Perfil</strong></ion-label>
+        </ion-item>
+
+        <ion-item button (click)="goToMisCompras()" color="secondary">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          <ion-label><strong>Mis Compras</strong></ion-label>
         </ion-item>
   
         <ion-item button (click)="toggleCategories()" color="secondary">

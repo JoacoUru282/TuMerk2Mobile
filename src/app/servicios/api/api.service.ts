@@ -1,6 +1,6 @@
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Storage } from '@ionic/storage';
 import { tap, catchError } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { DtGetUsuario, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtAltaArticulo, DtAltaCompra, DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
 
 const TOKEN_KEY = 'access_token';
 
@@ -108,7 +109,6 @@ export class ApiService {
 
 	//Obtenes todos los productos de un local especifico
 	obtenerProductosLocal(idLocal: number): Observable <DtGetProducto[]>{
-		console.log(`${this.apiURL}/locales/${idLocal}/productos`);
 		return this.http.get<DtGetProducto[]>(`${this.apiURL}/locales/${idLocal}/productos`);
 	}
 
@@ -133,9 +133,46 @@ export class ApiService {
 		return this.http.get<any>(`${this.apiURL}/usuarios/${usuarioId}`);
 	}
 	  
-	
 	modificarUsuario(usuarioId: any, dtModificarUsuario: DtModificarUsuario) {
 		return this.http.put(`${this.apiURL}/usuarios/${usuarioId}`,dtModificarUsuario)
+	}
+
+	getCompras(idUsuario: any){
+		return this.http.get<DtCompra[]>(`${this.apiURL}/usuarios/${idUsuario}/compras`);
+	}
+
+	obtenerCupon(idUsuario: any){
+		return this.http.get<any>(`${this.apiURL}/usuarios/${idUsuario}`);
+	}
+
+	async procesarPago(idDireccion: number, nroLocal: number, idUsuario: any, carrito: DtAltaArticulo []): Promise<string> {
+		const httpOptions = {
+		  headers: new HttpHeaders({
+			'Accept': 'text/plain'
+		  }),
+		  responseType: 'text' as 'json'
+		};
+	  
+		let enlace: any;
+
+		const data: DtAltaCompra = {
+			nroLocal: Number(nroLocal),
+			idComprador: Number(idUsuario),
+			carrito: carrito,
+		};
+		
+		if (idDireccion !== undefined && idDireccion.toString() !== "") {
+			data.idDireccion = idDireccion;
+		}
+		await new Promise((resolve, _) => {
+			this.http.post(`${this.apiURL}/compras`, data, httpOptions).subscribe(
+			  (retorno) => {
+				enlace = retorno;
+				resolve(enlace);
+			  }
+			);
+		});
+		return enlace;
 	}
 
 	showAlert(msg: string) {

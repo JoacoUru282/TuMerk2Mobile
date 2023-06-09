@@ -55,6 +55,10 @@ const routes: Routes = [
   },  {
     path: 'edit-perfil',
     loadChildren: () => import('./vistas/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
+  },
+  {
+    path: 'mis-compras',
+    loadChildren: () => import('./vistas/mis-compras/mis-compras.module').then( m => m.MisComprasPageModule)
   }
 
     

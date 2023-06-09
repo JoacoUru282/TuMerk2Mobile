@@ -9,7 +9,7 @@
 
 <app-header></app-header>
 
-<ion-content [fullscreen]="true">
+ <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
   
   
@@ -17,21 +17,21 @@
     <h1 class="shadowed-heading">MI PERFIL</h1>
   </div>
 
-  <ion-grid class="container">
+  <ion-grid class="container" >
       <form>
         <div class="row">
           <div class="column">
             <ion-item class="campo">
-              <ion-label><strong>Nombre:</strong> {{usuario.nombre}} </ion-label>
+              <ion-label><strong>Nombre:</strong> {{usuario?.nombre}} </ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label><strong>Apellido:</strong> {{usuario.apellido}}</ion-label>
+              <ion-label><strong>Apellido:</strong> {{usuario?.apellido}}</ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label><strong>Cedula:</strong> {{usuario.cedula}}</ion-label>
+              <ion-label><strong>Cedula:</strong> {{usuario?.cedula}}</ion-label>
             </ion-item>
             <ion-item class="campo">
-              <ion-label><strong>Correo:</strong> {{usuario.email}}</ion-label>
+              <ion-label><strong>Correo:</strong> {{usuario?.email}}</ion-label>
             </ion-item>
           </div>
         </div>
@@ -66,4 +66,4 @@
 
   
   
-</ion-content>
+</ion-content> 

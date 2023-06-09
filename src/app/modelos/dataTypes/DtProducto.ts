@@ -28,7 +28,7 @@ export class DtAltaProducto {
 
  export interface DtPromocion{
   id: number
-  descuento: number
+  porcentajeDescuento: number
  }
 
  export interface DtProductoStorage{

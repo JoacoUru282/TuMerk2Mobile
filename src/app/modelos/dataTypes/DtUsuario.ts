@@ -1,4 +1,3 @@
-import { DtDireccionUser } from "./DtDomicilio"
 export class DtUsuario{
     id?: number
     email?: string | null
@@ -18,7 +17,7 @@ export interface DtGetUsuario {
     rol: string;
     activo: boolean;
     cupon: number;
-    direcciones: DtDireccionUser;
+    direcciones: DtDireccionUser[];
 }
 
 
@@ -29,3 +28,12 @@ export interface DtModificarUsuario {
     nombre?: string;
     apellido?: string;
 }
+
+export interface DtDireccionUser{
+    id: number;
+    calle: string;
+    esquina?: string;
+    numero: number;
+    apartamento?: number;
+    direccionCompleta: string;
+  }

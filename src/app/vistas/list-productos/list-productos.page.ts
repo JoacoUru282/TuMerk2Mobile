@@ -28,7 +28,7 @@ export class ListProductosPage implements OnInit {
   filtroMax?: number;
   idCategoria?: string;
   localId?: Number;
-  productosCategoria: any;
+  productosCategoria: DtGetProducto[];
   productosCarrito: DtProductoStorage[];
 
   async ngOnInit() {
@@ -119,7 +119,7 @@ export class ListProductosPage implements OnInit {
     if (!existe){
       let precioFinalProducto: number = producto.precio;
       if (producto.promocion !== null) {
-          precioFinalProducto = this.calcularPreciofinal(producto.precio,producto.promocion.descuento);
+          precioFinalProducto = this.calcularPreciofinal(producto.precio,producto.promocion.porcentajeDescuento);
       } 
         let variable: DtProductoStorage = {
         id: producto.id,
