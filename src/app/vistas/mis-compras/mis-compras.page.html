@@ -14,19 +14,21 @@
   
   <ion-grid class="container" >
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let com of compra" >
+      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let com of compra">
         <ion-card class="card">
-          <div>
-            <p>Fecha: {{fechaCompra(com)}}</p>
-            <p>Comprado en: {{com.nombreLocal}}</p>
-            <p>Estado: {{com.estado}}</p>
-            <p>Precio total:{{com.total}}</p>
-          </div>
-          <div>
-            <ion-button>
-              Reclamos
-            </ion-button>
-          </div>
+          <ion-card-content class="ion-text-center">
+            <div>
+              <p>Fecha: {{fechaCompra(com)}}</p>
+              <p>Comprado en: {{com.nombreLocal}}</p>
+              <p>Estado: {{com.estado}}</p>
+              <p>Precio total:{{com.total}}</p>
+            </div>
+            <div>
+              <ion-button class="ion-text-center" (click)="listarReclamos()">
+                Reclamos
+              </ion-button>
+            </div>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

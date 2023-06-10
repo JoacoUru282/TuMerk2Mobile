@@ -33,4 +33,8 @@ export class MisComprasPage implements OnInit {
   fechaCompra(date: DtCompra){
     return new Date(date.fecha).toLocaleDateString();
   }
+
+  listarReclamos(){
+    this.router.navigate(['listar-reclamos']);
+  }
 }

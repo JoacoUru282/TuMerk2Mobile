@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AltaReclamoPageRoutingModule } from './alta-reclamo-routing.module';
+import { ListarReclamosPageRoutingModule } from './listar-reclamos-routing.module';
 
-import { AltaReclamoPage } from './alta-reclamo.page';
+import { ListarReclamosPage } from './listar-reclamos.page';
 import { ComponentsModule } from 'src/app/plantillas/componets.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/plantillas/componets.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    AltaReclamoPageRoutingModule
+    ListarReclamosPageRoutingModule
   ],
-  declarations: [AltaReclamoPage]
+  declarations: [ListarReclamosPage]
 })
-export class AltaReclamoPageModule {}
+export class ListarReclamosPageModule {}
