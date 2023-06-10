@@ -39,4 +39,9 @@ export class JwtService {
     const tokenCode: Token | null = this.helper.decodeToken(accessToken!);
     return tokenCode?.scopes?.filter(scope => scope.includes("ROLE_")).map(scope => scope.replace("ROLE_", ""))[0];
   }
+
+  async isTokenExpired(): Promise<boolean> {
+    const accessToken = await this.obtenerAccessTokenDeSesion();
+    return this.helper.isTokenExpired(accessToken!);
+  }
 }

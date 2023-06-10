@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DtGetUsuario, DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
-import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 
 @Component({

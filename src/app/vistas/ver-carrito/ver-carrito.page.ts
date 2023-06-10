@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
-import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
 import { Platform } from '@ionic/angular';

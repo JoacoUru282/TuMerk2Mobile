@@ -7,7 +7,7 @@ import { LoginResponse } from 'src/app/modelos/dataTypes/loginResponse.interface
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { Router } from '@angular/router';
-import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 
 @Component({
   selector: 'app-login',

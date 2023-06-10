@@ -9,13 +9,14 @@ import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from './servicios/api/api.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Storage, IonicStorageModule }  from '@ionic/storage-angular'; 
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './plantillas/componets.module';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 export function jwtOptionsFactory(storage: Storage) {
 	return {
@@ -53,7 +54,8 @@ export function jwtOptionsFactory(storage: Storage) {
 	providers: [
 		/*StatusBar,
 		SplashScreen,*/
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+		{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
 	],
 	bootstrap: [AppComponent]
 })

@@ -2,7 +2,9 @@ export interface DtCompra{
     id: number;
     fecha: Date;
     estado: string;
+    descripcionEstado: string;
     tipoPago: string;
+    descripcionTipoPago: string;
     entregaDomicilio: string;
     nombreLocal: string;
     subtotal: number;

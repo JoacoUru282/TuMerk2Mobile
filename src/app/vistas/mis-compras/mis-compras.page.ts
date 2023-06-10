@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { Router } from '@angular/router';
 import { DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
 

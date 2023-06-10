@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt-service.service';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { Router } from '@angular/router';
 
