@@ -8,6 +8,7 @@ import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { JwtService } from 'src/app/servicios/api/jwt-service.service';
 import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-ver-carrito',
@@ -16,7 +17,7 @@ import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
 })
 export class VerCarritoPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private message: MessageUtil, private jwtService: JwtService) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private message: MessageUtil, private jwtService: JwtService, private platform: Platform) { }
 
   productosCarrito: DtProductoStorage[];
   precioTotal: number = 0;
@@ -114,14 +115,11 @@ export class VerCarritoPage implements OnInit {
     console.log(enlace);
     this.dataService.removeData('productosCarrito');
     if(enlace != null){
-      window.location.href = enlace;
-      //this.abrirEnlace(enlace);
+      this.platform.ready().then(( ) => {
+        window.open(enlace, '_system');
+      })
     }
     
-  }
-
-  abrirEnlace(url: string) {
-    //const browser = this.inAppBrowser.create(url, '_system');
   }
 
   async getInfoUsuario(){
