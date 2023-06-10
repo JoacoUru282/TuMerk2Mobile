@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MisComprasPageRoutingModule } from './mis-compras-routing.module';
+import { VerReclamoPageRoutingModule } from './ver-reclamo-routing.module';
 
-import { MisComprasPage } from './mis-compras.page';
+import { VerReclamoPage } from './ver-reclamo.page';
 import { ComponentsModule } from 'src/app/plantillas/componets.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/plantillas/componets.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    MisComprasPageRoutingModule
+    VerReclamoPageRoutingModule
   ],
-  declarations: [MisComprasPage]
+  declarations: [VerReclamoPage]
 })
-export class MisComprasPageModule {}
+export class VerReclamoPageModule {}

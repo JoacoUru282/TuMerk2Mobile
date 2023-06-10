@@ -1,28 +1,34 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <app-sidebar></app-sidebar>
   <div class="centered-container">
     <h1 class="shadowed-heading">Historico de compras</h1>
   </div>
   
   <ion-grid class="container" >
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let com of compra" >
+      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let com of compra">
         <ion-card class="card">
-          <div>
-            <p>Fecha: {{fechaCompra(com)}}</p>
-            <p>Comprado en: {{com.nombreLocal}}</p>
-            <p>Estado: {{com.descripcionEstado}}</p>
-            <p>Precio total:{{com.total}}</p>
-          </div>
-          <div>
-            <ion-button>
-              Reclamos
-            </ion-button>
-          </div>
+          <ion-card-content class="ion-text-center">
+            <div>
+              <p>Fecha: {{fechaCompra(com)}}</p>
+              <p>Comprado en: {{com.nombreLocal}}</p>
+              <p>Estado: {{com.descripcionEstado}}</p>
+              <p>Precio total:{{com.total}}</p>
+            </div>
+            <div>
+              <ion-button class="ion-text-center" (click)="listarReclamos()">
+                Reclamos
+              </ion-button>
+            </div>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

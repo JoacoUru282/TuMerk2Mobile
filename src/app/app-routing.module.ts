@@ -55,7 +55,21 @@ const routes: Routes = [
   {
     path: 'mis-compras',
     loadChildren: () => import('./vistas/mis-compras/mis-compras.module').then( m => m.MisComprasPageModule)
+  },
+  
+  {
+    path: 'alta-reclamo',
+    loadChildren: () => import('./vistas/alta-reclamo/alta-reclamo.module').then( m => m.AltaReclamoPageModule)
+  },  {
+    path: 'listar-reclamos',
+    loadChildren: () => import('./vistas/listar-reclamos/listar-reclamos.module').then( m => m.ListarReclamosPageModule)
+  },
+  {
+    path: 'ver-reclamo',
+    loadChildren: () => import('./vistas/ver-reclamo/ver-reclamo.module').then( m => m.VerReclamoPageModule)
   }
+
+
 
     
   

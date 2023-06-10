@@ -107,37 +107,37 @@ export class ListProductosPage implements OnInit {
     }
   }
 
-  async agregarProductoCarrito(producto: DtGetProducto){
+  async agregarProductoCarrito(producto: DtGetProducto) {
     let existe = false;
-    for(let i = 0; i< this.productosCarrito.length; i++){
-     if(this.productosCarrito[i].id === producto.id){
-         this.productosCarrito[i].cantidadSeleccionada ++;
-         existe = true;
-         break;
-       }
+    for (let i = 0; i < this.productosCarrito.length; i++) {
+      if (this.productosCarrito[i].id === producto.id) {
+        this.productosCarrito[i].cantidadSeleccionada++;
+        existe = true;
+        break;
+      }
     }
-    if (!existe){
+    if (!existe) {
       let precioFinalProducto: number = producto.precio;
       if (producto.promocion !== null) {
-          precioFinalProducto = this.calcularPreciofinal(producto.precio,producto.promocion.porcentajeDescuento);
-      } 
-        let variable: DtProductoStorage = {
+        precioFinalProducto = this.calcularPreciofinal(producto.precio, producto.promocion.porcentajeDescuento);
+      }
+      let variable: DtProductoStorage = {
         id: producto.id,
         nombre: producto.nombre,
         precio: precioFinalProducto,
         cantidadSeleccionada: 1
-        };
-        this.productosCarrito.push(variable);
-     }
-     this.storage.set('productosCarrito', this.productosCarrito);
-   }
+      };
+      this.productosCarrito.push(variable);
+    }
+    this.storage.set('productosCarrito', this.productosCarrito);
+  }
 
-   goVerCarrito(){
+  goVerCarrito() {
     this.router.navigate(['ver-carrito']);
-   }
+  }
 
-  async onProductoClick(producto: DtGetProducto){
-    this.dataService.setData('inspeccionarProducto', producto );
+  async onProductoClick(producto: DtGetProducto) {
+    this.dataService.setData('inspeccionarProducto', producto);
     this.router.navigate(['inspeccionar-producto']);
   }
 
