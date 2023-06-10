@@ -28,14 +28,11 @@ export class AuthInterceptor implements HttpInterceptor {
       ...request.headers,
       'Authorization': `Bearer ${token}`,
     })
-    console.log(request.headers);
-    
     const authRequest = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
       }
     });
-    console.log(request.headers);
     return await lastValueFrom(next.handle(authRequest));
   }
 

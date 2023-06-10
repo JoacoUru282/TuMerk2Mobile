@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  // BACKEND_API_URL: 'https://tumerk2-backend-beta.up.railway.app/api'
-  BACKEND_API_URL: 'http://backend-tumerk2.servehttp.com/api'
+  BACKEND_API_URL: 'https://tumerk2-backend-beta.up.railway.app/api'
+  //BACKEND_API_URL: 'http://backend-tumerk2.servehttp.com/api'
 };
 
 /*
