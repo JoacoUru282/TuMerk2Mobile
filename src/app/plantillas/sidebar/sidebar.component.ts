@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage-angular';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class SidebarComponent implements OnInit {
   constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService) { }
 
   categorias: DtCategoria[] = [];
+  categoriasMostrar: DtCategoria[] = [];
   showCategories: boolean = false;
   productos: DtGetProducto[] = [];
   localId?: Number;
@@ -36,6 +38,7 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+
   toggleCategories() {
     this.showCategories = !this.showCategories;
   }
@@ -46,6 +49,20 @@ export class SidebarComponent implements OnInit {
         this.categorias = response 
       }
     });
+  }
+
+  private generarCategorias() {
+    const count = this.categoriasMostrar.length + 1;
+    for (let i = 0; i < 15; i++) {
+      this.categoriasMostrar.push(this.categorias[i]);
+    }
+  }
+
+  onIonInfinite(ev) {
+    this.generarCategorias();
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
   }
 
   async verProductosPorCategoria(idCategoria: number){
@@ -83,5 +100,9 @@ export class SidebarComponent implements OnInit {
 
   goToMisCompras(){
     this.router.navigate(['mis-compras']);
+  }
+
+  goToReclamos(){
+    this.router.navigate(['listar-reclamos']);
   }
 }

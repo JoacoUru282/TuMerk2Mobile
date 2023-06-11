@@ -51,6 +51,11 @@
           <ion-icon name="cart-outline" slot="start"></ion-icon>
           <ion-label><strong>Mis Compras</strong></ion-label>
         </ion-item>
+
+        <ion-item button (click)="goToReclamos()" color="secondary">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          <ion-label><strong>Reclamos</strong></ion-label>
+        </ion-item>
   
         <ion-item button (click)="toggleCategories()" color="secondary">
           <ion-icon name="grid-outline" slot="start"></ion-icon>
@@ -62,6 +67,10 @@
             <ion-label><strong>{{ categoria.nombre }}</strong></ion-label>
           </ion-item>
         </ion-list>
+        <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    
   
         <ion-item button (click)="logout()" color="secondary">
           <ion-icon name="log-out-outline" slot="start"></ion-icon>
