@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class ListProductosPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router) { }
+  constructor(private api: ApiService, private dataService: DataService, private router: Router) { }
 
   productos: DtGetProducto[] = [];
   pageSize = 20;
@@ -38,22 +38,22 @@ export class ListProductosPage implements OnInit {
     this.inicializarProductoCarrito();
   }
 
-  getLocal() {
-    const data = this.storage?.get('nroLocal');
+  async getLocal() {
+    const data = await this.dataService.getData('nroLocal');
     this.localId = Number(data);
     return data;
   }
 
   async getProductoCategoria(){
-    this.productosCategoria = await this.storage?.get('productosCategoria');
+    this.productosCategoria = await this.dataService.getData('productosCategoria');
   }
 
   calcularPreciofinal(precio: number, descuento: number){
     return precio * (1 - (descuento / 100));
   }
 
-  getCategoria() {
-    return this.dataService.getData('idCategoria');
+  async getCategoria() {
+    return await this.dataService.getData('idCategoria');
   }
   
   calculateTotalPages() {
@@ -72,36 +72,10 @@ export class ListProductosPage implements OnInit {
     });
   }
 
-  // getProductos(): DtGetProducto[] {
-  //   const startIndex = this.currentPage * this.pageSize;
-  //   const endIndex = startIndex + this.pageSize;
-  //   let productosMostrados: DtGetProducto[];
-
-  //   this.productos.forEach(element => {
-  //     if (element.precio > this.valMax)
-  //       this.valMax = element.precio
-  //   });
-    
-  //   if (this.filtroNombre || this.filtroMin || this.filtroMax ) {
-  //     const filtroLowerCase = this.filtroNombre.toLowerCase();
-
-  //     productosMostrados = this.productos.filter(productos =>
-  //       productos.nombre.toLowerCase().includes(filtroLowerCase) && 
-  //       productos.precio <= this.filtroMax! && 
-  //       productos.precio >= this.filtroMin!
-  //     );
-
-  //   } else {
-  //     productosMostrados = this.productos;
-  //   }
-
-  //   return productosMostrados.slice(startIndex, endIndex);
-  // }
-
   async inicializarProductoCarrito(){
-    const valorStorage = await this.storage.get('productosCarrito') || [];
+    const valorStorage = await this.dataService.getData('productosCarrito') || [];
     if(!valorStorage){
-      await this.storage.set('productosCarrito', []);
+      await this.dataService.setData('productosCarrito', []);
     }else{
       this.productosCarrito = valorStorage;
     }
@@ -129,7 +103,7 @@ export class ListProductosPage implements OnInit {
       };
       this.productosCarrito.push(variable);
     }
-    this.storage.set('productosCarrito', this.productosCarrito);
+    this.dataService.setData('productosCarrito', this.productosCarrito);
   }
 
   goVerCarrito() {

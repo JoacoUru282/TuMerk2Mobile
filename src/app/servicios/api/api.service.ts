@@ -92,20 +92,10 @@ export class ApiService {
 		return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=true`);
 	}
 
-	//Te trae todos los productos
-	obtenerProductos() {
-		return this.http.get<DtGetProducto[]>(`${this.apiURL}/productos`);
-	}
-	
 	//Te trae un producto de UN local en especifico
-	obtenerProductoDeLocal(localId:number, productoId: number){
+	/*obtenerProductoDeLocal(localId:number, productoId: number){
 		return this.http.get<DtGetProducto>(`${this.apiURL}/locales/${localId}/productos/${productoId}`)
-	}
-
-	//Te trae un producto en especifico
-	obtenerProducto(productoId: number){
-		return this.http.get<DtGetProducto>(`${this.apiURL}/productos/${productoId}`)
-	}
+	}*/
 
 	//Obtenes todos los productos de un local especifico
 	obtenerProductosLocal(idLocal: number): Observable <DtGetProducto[]>{
@@ -141,9 +131,6 @@ export class ApiService {
 		return this.http.get<DtCompra[]>(`${this.apiURL}/usuarios/${idUsuario}/compras`);
 	}
 
-	obtenerCupon(idUsuario: any){
-		return this.http.get<any>(`${this.apiURL}/usuarios/${idUsuario}`);
-	}
 
 	async procesarPago(idDireccion: number, nroLocal: number, idUsuario: any, carrito: DtAltaArticulo []): Promise<string> {
 		const httpOptions = {

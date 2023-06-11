@@ -53,19 +53,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  private generarCategorias() {
-    const count = this.categoriasMostrar.length + 1;
-    for (let i = 0; i < 15; i++) {
-      this.categoriasMostrar.push(this.categorias[i]);
-    }
-  }
-
-  onIonInfinite(ev) {
-    this.generarCategorias();
-    setTimeout(() => {
-      (ev as InfiniteScrollCustomEvent).target.complete();
-    }, 500);
-  }
 
   async verProductosPorCategoria(idCategoria: number){
     this.dataService.setData('idCategoria', idCategoria);

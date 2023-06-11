@@ -47,6 +47,11 @@
           <ion-label><strong>Mi Perfil</strong></ion-label>
         </ion-item>
 
+        <ion-item button (click)="logout()" color="secondary">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label><strong>Cerrar sesión</strong></ion-label>
+        </ion-item>
+
         <ion-item button (click)="goToMisCompras()" color="secondary">
           <ion-icon name="cart-outline" slot="start"></ion-icon>
           <ion-label><strong>Mis Compras</strong></ion-label>
@@ -54,7 +59,7 @@
 
         <ion-item button (click)="goToReclamos()" color="secondary">
           <ion-icon name="mail-outline" slot="start"></ion-icon>
-          <ion-label><strong>Reclamos</strong></ion-label>
+          <ion-label><strong>Mis Reclamos</strong></ion-label>
         </ion-item>
   
         <ion-item button (click)="toggleCategories()" color="secondary">
@@ -67,15 +72,9 @@
             <ion-label><strong>{{ categoria.nombre }}</strong></ion-label>
           </ion-item>
         </ion-list>
-        <ion-infinite-scroll *ngIf="showCategories" (ionInfinite)="onIonInfinite($event)">
-          <ion-infinite-scroll-content></ion-infinite-scroll-content>
-        </ion-infinite-scroll>
     
   
-        <ion-item button (click)="logout()" color="secondary">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          <ion-label><strong>Cerrar sesión</strong></ion-label>
-        </ion-item>
+
   
       </ion-list>
     </ion-content>
