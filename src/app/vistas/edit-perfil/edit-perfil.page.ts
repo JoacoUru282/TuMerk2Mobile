@@ -14,7 +14,12 @@ import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 })
 export class EditPerfilPage implements OnInit {
 
-  constructor(private jwtService: JwtService, private api: ApiService, private dataService: DataService, private message: MessageUtil, private router: Router) { }
+  constructor(
+    private jwtService: JwtService, 
+    private api: ApiService, 
+    private dataService: DataService,
+    private message: MessageUtil, 
+    private router: Router) { }
 
   usuario?: DtGetUsuario;
   contraseniaFormControl = new FormControl('');
@@ -73,6 +78,19 @@ export class EditPerfilPage implements OnInit {
 
   goToPerfil(){
     this.router.navigate(['mi-perfil']);
+  }
+
+  async deleteUser(){
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+    this.api.deleteUsuarios(idUsuario).subscribe({
+      next: (response) => {
+        this.dataService.removeAll();
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.message.showDialog('Error', 'Error al eliminar');
+      }
+    })
   }
 
 }

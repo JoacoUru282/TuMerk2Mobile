@@ -175,6 +175,10 @@ export class ApiService {
 		return enlace;
 	}
 
+	deleteUsuarios(idUsuario: any) {
+        return this.http.delete(`${this.apiURL}/usuarios/${idUsuario}`);
+    }
+
 	showAlert(msg: string) {
 		let alert = this.alertController.create({
 			message: msg,

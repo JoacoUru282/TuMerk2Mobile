@@ -30,4 +30,8 @@ export class DataService {
   removeData(key: string) {
     this.storage?.remove(key);
   }
+
+  removeAll(){
+    this.storage?.clear();
+  }
 }

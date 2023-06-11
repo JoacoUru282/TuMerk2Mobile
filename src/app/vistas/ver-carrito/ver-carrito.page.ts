@@ -119,7 +119,6 @@ export class VerCarritoPage implements OnInit {
         window.open(enlace, '_system');
       })
     }
-    
   }
 
   async getInfoUsuario(){

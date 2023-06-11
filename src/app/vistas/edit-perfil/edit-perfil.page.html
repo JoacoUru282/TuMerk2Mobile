@@ -46,13 +46,20 @@
       </ion-card>
     </form>
 
-    <div>
-      <ion-button color="primary" class="btnEdit" (click)="modificarUsuario()">Confirmar</ion-button>
+    <div class="center-button">
+      <ion-button class="volver" (click)="goToPerfil()">
+      <ion-icon name="caret-back-outline"></ion-icon>
+        Volver
+      </ion-button>
+      <ion-button class="modificar" (click)="modificarUsuario()">
+        Confirmar
+      <ion-icon name="cart" class="cart-icon" ></ion-icon>
+      </ion-button>
     </div>
 
     <div>
-      <ion-button color="primary" class="btnEdit" (click)="goToPerfil()">Volver</ion-button>
+      <ion-button color="danger" class="eliminarUsr" (click)="deleteUser()">Eliminar perfil</ion-button>
     </div>
-  </section>
+  </section> 
   
 </ion-content>
