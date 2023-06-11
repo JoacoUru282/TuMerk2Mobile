@@ -26,6 +26,8 @@ export class SidebarComponent implements OnInit {
   localId?: Number;
   user: DtGetUsuario;
   direccionCompleta: DtDireccionUser [] = [];
+  loadingCategories: boolean = false;
+
 
 
   ngOnInit(): void {
