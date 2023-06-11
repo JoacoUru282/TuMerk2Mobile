@@ -12,10 +12,11 @@
     <!-- Formulario de inicio de sesión -->
     <form (ngSubmit)="login()">
       <input type="text" id="login" class="fadeIn second" placeholder="Ingrese su correo" [formControl]="emailFormControl">
-      <ion-item> 
-        <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingrese su contraseña" [formControl]="passwordFormControl">
-        <ion-icon name="eye-outline" class="ion-color-black" (click)="toggleVisibility()"></ion-icon>
-      </ion-item>
+      <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingrese su contraseña" [formControl]="passwordFormControl">
+      <div class="fadeIn fourth">
+        <ion-icon name="eye-outline" class="ion-color-black agrandar-icono" (click)="toggleVisibility()"></ion-icon>
+      </div>
+      
       <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
     </form>
 
