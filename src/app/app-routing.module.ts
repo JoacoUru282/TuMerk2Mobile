@@ -60,7 +60,8 @@ const routes: Routes = [
   {
     path: 'alta-reclamo',
     loadChildren: () => import('./vistas/alta-reclamo/alta-reclamo.module').then( m => m.AltaReclamoPageModule)
-  },  {
+  },
+  {
     path: 'listar-reclamos',
     loadChildren: () => import('./vistas/listar-reclamos/listar-reclamos.module').then( m => m.ListarReclamosPageModule)
   },

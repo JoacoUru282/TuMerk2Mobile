@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
 import { AlertController } from '@ionic/angular';

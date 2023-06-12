@@ -8,9 +8,12 @@ import { AltaReclamoPageRoutingModule } from './alta-reclamo-routing.module';
 
 import { AltaReclamoPage } from './alta-reclamo.page';
 import { ComponentsModule } from 'src/app/plantillas/componets.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     ComponentsModule,
     CommonModule,
     FormsModule,

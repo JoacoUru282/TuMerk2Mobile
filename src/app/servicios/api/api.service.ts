@@ -13,7 +13,7 @@ import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { DtGetUsuario, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { DtAltaArticulo, DtAltaCompra, DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
+import { DtAltaArticulo, DtAltaCompra, DtAltaReclamo, DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
 
 const TOKEN_KEY = 'access_token';
 
@@ -173,6 +173,10 @@ export class ApiService {
 			buttons: ['OK']
 		});
 		alert.then((alert) => alert.present());
+	}
+
+	altaReclamo(dtAltaReclamo: DtAltaReclamo) {
+		return this.http.post(`${this.apiURL}/reclamos`,dtAltaReclamo);
 	}
 
 	
