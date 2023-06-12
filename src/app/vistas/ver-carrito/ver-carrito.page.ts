@@ -6,7 +6,7 @@ import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtDireccionUser } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
 import { Platform } from '@ionic/angular';
 
@@ -26,14 +26,12 @@ export class VerCarritoPage implements OnInit {
   idDireccion: number;
   retiroEnLocal: boolean = false;
   envioDomicilio: boolean = false;
-  usuario?: DtGetUsuario;
   cupon: number = 0;
 
  async ngOnInit() {
     this.inicializarProductoCarrito();
     await this.getDirecciones();
     await this.calcularTotal();
-    await this.getInfoUsuario();
     await this.cargarCupon();
   }
 
@@ -114,6 +112,11 @@ export class VerCarritoPage implements OnInit {
     const enlace = await this.api.procesarPago(this.idDireccion, nroLocal, idUsuario, productosArticuloCarrito);
     console.log(enlace);
     this.dataService.removeData('productosCarrito');
+    
+    this.productosCarrito = [];
+    this.precioTotal = 0;
+    this.cupon = 0;
+
     if(enlace != null){
       this.platform.ready().then(( ) => {
         window.open(enlace, '_system');
@@ -123,15 +126,20 @@ export class VerCarritoPage implements OnInit {
 
   async getInfoUsuario(){
     const idUsuario = await this.jwtService.obtenerUsuarioId();
-    this.usuario = await new Promise((resolve, _) => 
+    return await new Promise((resolve, _) => 
       this.api.obtenerInfousuario(idUsuario).subscribe( 
         retorno => resolve(retorno) ));
   }
 
   async cargarCupon(){
-    if(this.usuario != null){
-      this.cupon = this.usuario?.cupon;
+    const usuario: any = await this.getInfoUsuario();
+    if(usuario != null){
+      this.cupon = usuario.cupon;
     }
   }
+
+  // changeButtonState(){
+  //   this.isDisable  = !this.isDisable
+  // }
 
 }

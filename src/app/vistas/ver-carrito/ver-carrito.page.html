@@ -35,7 +35,7 @@
     </ion-row>
 
     <div>Total de la compra: $ {{precioTotal}}</div>
-    <div *ngIf="usuario?.cupon !=null ">Cupon del usuario: $ {{usuario?.cupon}}</div>
+    <div *ngIf="cupon !=null ">Cupon del usuario: $ {{cupon}}</div>
     <div class="total">Total a pagar: $ {{precioTotal - cupon}}</div>
 
     <div>
@@ -69,7 +69,7 @@
     <ion-icon name="caret-back-outline"></ion-icon>
       Volver
     </ion-button>
-    <ion-button class="carrito" (click)="pago()">
+    <ion-button class="carrito" (click)="pago()" [disabled]="!retiroEnLocal && !envioDomicilio && productosCarrito != null">
       Comprar
     <ion-icon name="cart" class="cart-icon" ></ion-icon>
     </ion-button>
