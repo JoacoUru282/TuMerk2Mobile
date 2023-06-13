@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/servicios/api/api.service';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { Router } from '@angular/router';
 import { DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
+import { DataService } from 'src/app/servicios/api/data.service';
 
 @Component({
   selector: 'app-mis-compras',
@@ -11,7 +12,7 @@ import { DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
 })
 export class MisComprasPage implements OnInit {
 
-  constructor(private jwtService: JwtService, private api: ApiService, private router: Router) { }
+  constructor(private jwtService: JwtService,private dataService: DataService, private api: ApiService, private router: Router) { }
   compra: DtCompra[];
 
   async ngOnInit() {
@@ -23,6 +24,8 @@ export class MisComprasPage implements OnInit {
     this.compra = await new Promise((resolve, _) => 
       this.api.getCompras(idUsuario).subscribe(
         response => resolve(response)));
+    console.log(this.compra)
+    this.dataService.setData('compras', this.compra);
   }
   
 
@@ -34,7 +37,8 @@ export class MisComprasPage implements OnInit {
     return new Date(date.fecha).toLocaleDateString();
   }
 
-  altaReclamo(){
+  altaReclamo(numCompra: number){
+    this.dataService.setData('numeroDeCompra', numCompra);
     this.router.navigate(['alta-reclamo']);
   }
 }
