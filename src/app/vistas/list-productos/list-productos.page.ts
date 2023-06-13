@@ -30,8 +30,10 @@ export class ListProductosPage implements OnInit {
   localId?: Number;
   productosCategoria: DtGetProducto[];
   productosCarrito: DtProductoStorage[];
+  tituloCategoria: string;
 
   async ngOnInit() {
+    this.getTituloCategoria();
     this.getProductoCategoria();
     this.calculateTotalPages();
     this.getNombreCategoría(Number(this.getCategoria()));
@@ -113,6 +115,10 @@ export class ListProductosPage implements OnInit {
   async onProductoClick(producto: DtGetProducto) {
     this.dataService.setData('inspeccionarProducto', producto);
     this.router.navigate(['inspeccionar-producto']);
+  }
+
+  async getTituloCategoria(){
+    this.tituloCategoria= await this.dataService.getData('categoriaElegida');
   }
 
 }

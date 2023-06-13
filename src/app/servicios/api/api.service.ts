@@ -103,7 +103,7 @@ export class ApiService {
 	}
 
 	//Obtenes los productos de un local segun la categoria
-	obtenerProductosDeCategoria(idLocal:number, idCategoria: number){
+	obtenerProductosDeCategoria(idLocal:number, idCategoria: number): Observable<DtGetProducto[]> {
 		return this.http.get<DtGetProducto[]>(`${this.apiURL}/locales/${idLocal}/productos?idCategoria=${idCategoria}`);
 	}
 

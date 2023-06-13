@@ -43,6 +43,14 @@ ion-menu-button {
   text-decoration: none;
 }
 
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-left: -30px;
+}
+
 .product-container {
   display: flex;
   align-items: center;
@@ -80,4 +88,113 @@ ion-fab-button{
   min-width: 25px;
   z-index: 10;
 }
+  
+
+ion-header {
+  --ion-background-color: blue;
+  --color: white;
+}
+
+// Estilos para el contenido
+ion-content {
+  --ion-background-color: white;
+  --color: black;
+}
+
+// Estilos para el botón de hamburguesa
+ion-menu-button {
+  --color: black;
+}
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-left: -30px;
+}
+
+.product-container {
+  display: flex;
+  align-items: center;
+}
+
+.product-info {
+  margin-left: 20px; /* Ajusta el espacio entre la imagen y el texto */
+  color: black;
+}
+.imagen {
+  width: 60px;
+  height: 60px;
+  margin-left: 5px;
+}
+
+.card{
+  margin-top: 40px;
+}
+
+ion-fab-button{
+  height: 70px;
+  width: 70px;
+}
+
+.cart-icon{
+  font-size: 30px;
+}
+
+.cart-lenght{
+  position: absolute;
+  top: 18px;
+  left: 25px;
+  font-weight: 600;
+  font-size: 1em;
+  min-width: 25px;
+  z-index: 10;
+}
+
+.shadowed-heading {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h1{
+  color: orange;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
   

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 import { DtGetProducto, DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
@@ -26,11 +27,13 @@ export class HomePage implements OnInit {
   localId?: Number;
   productosCategoria: DtGetProducto[];
   productosCarrito: DtProductoStorage[];
+  categorias: DtCategoria[] = [];
+  productosDescuento: DtGetProducto[] = [];
+  
 
   async ngOnInit() {
-    this.getProductoCategoria();
-    this.calculateTotalPages();
-    this.getNombreCategoría(Number(this.getCategoria()));
+    this.getLocal();
+    this.getProductosDescuento();
     this.inicializarProductoCarrito();
   }
 
@@ -42,6 +45,53 @@ export class HomePage implements OnInit {
 
   async getProductoCategoria(){
     this.productosCategoria = await this.dataService.getData('productosCategoria');
+  }
+
+  
+  async getProductosDescuento() {
+    await this.obtenerCategorias();
+    let idsCategorias: number[] = this.categorias.map((categoria) => categoria.id);
+  
+    for (const categoriaId of idsCategorias) {
+      this.api.obtenerProductosDeCategoria(Number(this.localId), categoriaId).subscribe({
+        next: (response) => {
+          let largo = response.length;
+          for (var i = 0; i < largo; i++) { 
+            if (response[i].promocion?.porcentajeDescuento > 0) { 
+              console.log("esta tiene promo", response[i]);
+              
+              const nuevoProducto: DtGetProducto = {
+                id: response[i].id,
+                nombre: response[i].nombre,
+                descripcion: response[i].descripcion,
+                precio: response[i].precio,
+                imagen: response[i].imagen,
+                idCategoria: response[i].idCategoria,
+                cantidadStock: response[i].cantidadStock,
+                promocion: {
+                  id: response[i].promocion.id,
+                  porcentajeDescuento: response[i].promocion.porcentajeDescuento
+                }
+              };
+
+              this.productosDescuento.push(nuevoProducto);
+            }
+          }
+        }
+      });
+    }
+  
+    console.log("proDescuentos", this.productosDescuento);
+  }
+  
+  
+  
+  
+
+  
+
+  async obtenerCategorias(){
+    this.categorias = await this.dataService.getData('categorias');
   }
 
   calcularPreciofinal(precio: number, descuento: number){
@@ -56,17 +106,6 @@ export class HomePage implements OnInit {
     this.totalPages = Math.ceil(this.productos.length / this.pageSize);
   }
 
-  getNombreCategoría(idCategoria) {
-    this.api.categoriasLocal().subscribe({
-      next: (response) => {
-        let categorias = response
-        categorias.forEach(element => {
-          if (element.id === idCategoria)
-            this.nombreCategoria = element.nombre
-        });
-      }
-    });
-  }
 
 
   async inicializarProductoCarrito(){

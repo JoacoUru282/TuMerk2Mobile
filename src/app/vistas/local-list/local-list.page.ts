@@ -5,6 +5,7 @@ import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { Router } from '@angular/router';
+import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 
 
 @Component({
@@ -22,9 +23,11 @@ export class LocalListPage implements OnInit {
     ) { }
 
   locales: Local[] = [];
+  categorias: DtCategoria[];
 
   ngOnInit() {
     this.getLocales();
+    this.setearCategorias();
   }
 
   onLocalClick(local: Local) {
@@ -46,6 +49,15 @@ export class LocalListPage implements OnInit {
         this.message.showDialog('Error', 'Error')
       }
     })
+  }
+
+  setearCategorias(){
+    this.api.categoriasLocal().subscribe({
+      next: (response) => {
+        this.categorias = response 
+        this.dataService.setData('categorias', this.categorias)
+      }
+    });
   }
 
 }

@@ -64,6 +64,15 @@ ion-header {
     text-decoration: none;
   }
 
+  .header-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-left: -30px;
+  }
+  
+
   .product-container {
     display: flex;
     align-items: center;
@@ -91,3 +100,59 @@ ion-header {
     margin: auto;
   }
 
+  .centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .btnEdit,
+  .btnDomicilio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .centered-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .shadowed-heading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btnEdit,
+  .btnDomicilio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .campo {
+    margin-bottom: 10px;
+  }
+  
+  .direcciones {
+    font-size: 14px;
+  }
+  
+  .botonQuitar {
+    --ion-color-danger: red;
+  }
+  

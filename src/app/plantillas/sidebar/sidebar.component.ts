@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService) { }
 
-  categorias: DtCategoria[] = [];
+  categorias: DtCategoria[];
   categoriasMostrar: DtCategoria[] = [];
   showCategories: boolean = false;
   productos: DtGetProducto[] = [];
@@ -49,13 +49,15 @@ export class SidebarComponent implements OnInit {
     this.api.categoriasLocal().subscribe({
       next: (response) => {
         this.categorias = response 
+        this.dataService.setData('categorias', this.categorias)
       }
     });
   }
 
 
-  async verProductosPorCategoria(idCategoria: number){
+  async verProductosPorCategoria(idCategoria: number, nombreCategoria: string){
     this.dataService.setData('idCategoria', idCategoria);
+    this.setCategoria(nombreCategoria);
     await this.router.navigate(['list-productos']).then(() => {
       this.api.obtenerProductosDeCategoria(Number(this.localId), idCategoria).subscribe({
         next: (response) => {
@@ -93,5 +95,13 @@ export class SidebarComponent implements OnInit {
 
   goToReclamos(){
     this.router.navigate(['listar-reclamos']);
+  }
+
+  goToHome(){
+    this.router.navigate(['home']);
+  }
+
+  setCategoria(categoriaElegida: string){
+    this.dataService.setData('categoriaElegida', categoriaElegida);
   }
 }
