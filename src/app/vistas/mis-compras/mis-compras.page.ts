@@ -24,13 +24,6 @@ export class MisComprasPage implements OnInit {
     this.compra = await new Promise((resolve, _) => 
       this.api.getCompras(idUsuario).subscribe(
         response => resolve(response)));
-    console.log(this.compra)
-    this.dataService.setData('compras', this.compra);
-  }
-  
-
-  volver(){
-    this.router.navigate(['home']);
   }
 
   fechaCompra(date: DtCompra){
@@ -38,7 +31,7 @@ export class MisComprasPage implements OnInit {
   }
 
   altaReclamo(numCompra: number){
-    this.dataService.setData('numeroDeCompra', numCompra);
+    this.dataService.setData('reclamoIdCompra', this.compra[numCompra].id);
     this.router.navigate(['alta-reclamo']);
   }
 }

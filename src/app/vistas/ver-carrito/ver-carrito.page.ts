@@ -17,7 +17,7 @@ import { Platform } from '@ionic/angular';
 })
 export class VerCarritoPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private message: MessageUtil, private jwtService: JwtService, private platform: Platform) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService, private platform: Platform) { }
 
   productosCarrito: DtProductoStorage[];
   precioTotal: number = 0;
@@ -137,9 +137,5 @@ export class VerCarritoPage implements OnInit {
       this.cupon = usuario.cupon;
     }
   }
-
-  // changeButtonState(){
-  //   this.isDisable  = !this.isDisable
-  // }
 
 }

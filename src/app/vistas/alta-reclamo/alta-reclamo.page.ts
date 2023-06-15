@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 import { DtAltaReclamo, DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
 import { Token } from 'src/app/modelos/dataTypes/Token.interface';
 import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { tipoReclamo } from 'src/app/modelos/enums/Reclamo';
 import { APIError } from 'src/app/modelos/dataTypes/ApiError';
 import { DataService } from 'src/app/servicios/api/data.service';
+import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 
 @Component({
   selector: 'app-alta-reclamo',
@@ -23,17 +22,12 @@ export class AltaReclamoPage implements OnInit {
   compraId!: number;
   compras: DtCompra[];
 
-  
-
-
   constructor(
     private apiService: ApiService,
     private dataService: DataService,
     private router: Router,
-    private route: ActivatedRoute,
-    private jwtService: JwtService,
-    private helper: JwtHelperService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private message: MessageUtil
   ) {
     this.reclamoForm = this.formBuilder.group({
       motivoFormControl: ['', Validators.required],
@@ -42,46 +36,17 @@ export class AltaReclamoPage implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    /*if (!this.auth()) {
-      this.router.navigate(['']);
-    }*/
-    await this.getCompras();
-    await this.getCompraReclamo();
     await this.getCompraId();
-  }
-  
-  async getCompras(): Promise<void> {
-    this.compras = await this.dataService.getData('compras');
-  }
-
-  async getCompraReclamo(): Promise<void> {
-    this.compraReclamo = await this.dataService.getData('numeroDeCompra');
   }
 
   async getCompraId(): Promise<void> {
-    this.compraId = await this.compras[this.compraReclamo].id;
+    this.compraId = await this.dataService.getData('reclamoIdCompra');
+    this.dataService.removeData('reclamoIdCompra');
   }
-
-  auth(): boolean {
-    const token = this.getToken();
-    if (token != null) {
-      try {
-        this.token = this.helper.decodeToken(token!) as Token;
-        if (this.token && this.token.scopes && this.token.scopes[0] === 'ROLE_COMPRADOR') {
-          return true;
-        }
-      } catch (error) {
-        return false;
-      }
-    }
-    return false;
-  }
-  
-  
 
   altaReclamo(): void {
     if (this.compraId <= 0) {
-      console.log('El identificador de la compra debe ser un número positivo');
+      this.message.showDialog('', 'El identificador de la compra debe ser un número positivo');
       return;
     }
     
@@ -100,15 +65,14 @@ export class AltaReclamoPage implements OnInit {
         motivoReclamo = 'PRODUCTO_INCORRECTO';
         break;
       default:
-        console.log('Debe indicar un motivo para su reclamo');
+        this.message.showDialog('', 'Debe indicar un motivo para su reclamo');
         return;
     }
 
     const texto = this.reclamoForm.get('textoFormControl')?.value;
-    console.log("este es el texto", texto);
 
     if (!motivoReclamo || !texto) {
-      console.log('Has dejado campos vacíos');
+      this.message.showDialog('', 'Has dejado campos vacíos');
       return;
     } else {
       const dtAltaReclamo: DtAltaReclamo = {
@@ -118,8 +82,7 @@ export class AltaReclamoPage implements OnInit {
       };
       this.apiService.altaReclamo(dtAltaReclamo).subscribe({
         next: (response) => {
-          console.log('Se ha efectuado el reclamo', response);
-          this.router.navigate(['']);
+          this.router.navigate(['home']);
         },
         error: (err: APIError) => {
           console.log(err);
@@ -135,8 +98,5 @@ export class AltaReclamoPage implements OnInit {
     }
   }
 
-  getToken(): string {
-    return JSON.stringify(localStorage.getItem('token'));
-  }
 }
 

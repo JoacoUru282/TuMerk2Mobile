@@ -47,7 +47,6 @@ export class HomePage implements OnInit {
     this.productosCategoria = await this.dataService.getData('productosCategoria');
   }
 
-  
   async getProductosDescuento() {
     await this.obtenerCategorias();
     let idsCategorias: number[] = this.categorias.map((categoria) => categoria.id);
@@ -58,7 +57,6 @@ export class HomePage implements OnInit {
           let largo = response.length;
           for (var i = 0; i < largo; i++) { 
             if (response[i].promocion?.porcentajeDescuento > 0) { 
-              console.log("esta tiene promo", response[i]);
               
               const nuevoProducto: DtGetProducto = {
                 id: response[i].id,
@@ -80,15 +78,7 @@ export class HomePage implements OnInit {
         }
       });
     }
-  
-    console.log("proDescuentos", this.productosDescuento);
   }
-  
-  
-  
-  
-
-  
 
   async obtenerCategorias(){
     this.categorias = await this.dataService.getData('categorias');
@@ -105,8 +95,6 @@ export class HomePage implements OnInit {
   calculateTotalPages() {
     this.totalPages = Math.ceil(this.productos.length / this.pageSize);
   }
-
-
 
   async inicializarProductoCarrito(){
     const valorStorage = await this.dataService.getData('productosCarrito') || [];

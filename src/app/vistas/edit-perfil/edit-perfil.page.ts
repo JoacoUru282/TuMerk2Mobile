@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DtGetUsuario, DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { ApiService } from 'src/app/servicios/api/api.service';

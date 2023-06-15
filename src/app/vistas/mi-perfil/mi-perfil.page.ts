@@ -19,7 +19,6 @@ export class MiPerfilPage implements OnInit {
 
   async ngOnInit() {
     await this.getInfoUsuario();
-    console.log(this.usuario);
     this.getDirecciones();
   }
 

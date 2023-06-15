@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
-import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 

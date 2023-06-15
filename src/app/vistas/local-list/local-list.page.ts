@@ -37,7 +37,6 @@ export class LocalListPage implements OnInit {
 
   onFormSubmit() {
     // Acciones a realizar al enviar el formulario
-    console.log('Formulario enviado');
   }
 
   public getLocales(){

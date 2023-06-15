@@ -52,11 +52,6 @@
           <ion-label><strong>Mi Perfil</strong></ion-label>
         </ion-item>
 
-        <ion-item button (click)="logout()" color="secondary">
-          <ion-icon name="log-out-outline" slot="start"></ion-icon>
-          <ion-label><strong>Cerrar sesión</strong></ion-label>
-        </ion-item>
-
         <ion-item button (click)="goToMisCompras()" color="secondary">
           <ion-icon name="cart-outline" slot="start"></ion-icon>
           <ion-label><strong>Mis Compras</strong></ion-label>
@@ -79,14 +74,11 @@
             <ion-icon name="caret-forward-outline" slot="end"></ion-icon>
           </ion-item>
         </ion-list>
-        <div class="image-container">
-          <img src="assets/carritoNormal.jpg" alt="un carrito normal, que cualquier familia puede
-          darse el lujo de tener">
-        </div>
-        <div class="image-container">
-          <img src="assets/carritoNormalito.jpg" alt="un carrito normal, que cualquier familia puede
-          darse el lujo de tener">
-        </div>
+
+        <ion-item button (click)="logout()" color="secondary">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          <ion-label><strong>Cerrar Sesión</strong></ion-label>
+        </ion-item>
       </ion-list>
 
     </ion-content>

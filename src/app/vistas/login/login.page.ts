@@ -57,7 +57,6 @@ export class LoginPage  implements OnInit {
             await this.jwtService.guardarAccessTokenEnSesion(response.accessToken!);
             const rol = await this.jwtService.obtenerRol();
             if(rol === "COMPRADOR"){
-              this.message.showDialog('', 'Te has logueado correctamente');
               this.router.navigate(['local-list']);
             }else{
               this.message.showDialog('Error', 'No sos usuario comprador');

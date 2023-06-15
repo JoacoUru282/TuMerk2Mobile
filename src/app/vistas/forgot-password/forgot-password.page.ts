@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 
@@ -18,7 +17,7 @@ export class ForgotPasswordPage implements OnInit {
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private api: ApiService, private alertController: AlertController, private messages: MessageUtil) { }
+  constructor(private api: ApiService, private messages: MessageUtil) { }
 
   ngOnInit(): void {}
 
