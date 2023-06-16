@@ -1,3 +1,23 @@
+ion-header {
+  --ion-background-color: blue;
+  --color: white;
+}
+
+// Estilos para el contenido
+ion-content {
+  --ion-background-color: white;
+  --color: black;
+}
+
+// Estilos para el botón de hamburguesa
+ion-menu-button {
+  --color: black;
+}
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+
 .titulo {
     text-align: center;
     font-size: 24px;
