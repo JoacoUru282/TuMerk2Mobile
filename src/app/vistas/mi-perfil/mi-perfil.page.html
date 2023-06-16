@@ -62,7 +62,10 @@
         <ion-row>
           <ion-col>
             <ion-item class="campo" *ngFor="let dir of direccionCompleta">
-              <ion-label class="direcciones">- {{dir.direccionCompleta}}</ion-label>
+              <ion-textarea
+                [autoGrow]="true"
+                value= {{dir.direccionCompleta}}>
+              </ion-textarea>
               <ion-button fill="clear" class="botonQuitar" (click)="quitarDireccion(dir.id)">
                 <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
               </ion-button>

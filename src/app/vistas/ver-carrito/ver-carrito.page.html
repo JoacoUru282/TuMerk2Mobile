@@ -35,9 +35,9 @@
       </ion-col>
     </ion-row>
 
-    <div>Total de la compra: $ {{precioTotal}}</div>
-    <div *ngIf="cupon !=null ">Cupon del usuario: $ {{cupon}}</div>
-    <div class="total">Total a pagar: $ {{precioTotal - cupon}}</div>
+    <div class="etiqueta">Total de la compra: $ {{precioTotal}}</div>
+    <div class="etiqueta" *ngIf="cupon !=null ">Cupon del usuario: $ {{cupon}}</div>
+    <div class="etiqueta">Total a pagar: $ {{precioTotal - cupon}}</div>
 
     <div>
       <ion-list>

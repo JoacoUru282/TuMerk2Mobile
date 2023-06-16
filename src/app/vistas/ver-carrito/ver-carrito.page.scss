@@ -37,6 +37,17 @@ ion-header {
     
   }
 
+  .center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 30px; 
+  }
+  
+  
+  
+
   .shadowed-heading {
     
     
@@ -118,11 +129,15 @@ ion-header {
   }
 
   .carrito{
-    margin-left: 100px;
+    margin-right: 0px;
   }
 
   .volver{
-    margin-left: 25px;
+    margin-left: 0px;
+  }
+
+  .etiqueta{
+    margin-left: 15px;
   }
 
   
