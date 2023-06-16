@@ -17,7 +17,7 @@ import { Platform } from '@ionic/angular';
 })
 export class VerCarritoPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService, private platform: Platform) { }
+  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService, private platform: Platform, private message: MessageUtil) { }
 
   productosCarrito: DtProductoStorage[];
   precioTotal: number = 0;
@@ -118,9 +118,14 @@ export class VerCarritoPage implements OnInit {
     this.cupon = 0;
 
     if(enlace != null){
-      this.platform.ready().then(( ) => {
-        window.open(enlace, '_system');
-      })
+      if(enlace.includes('paypal')){
+        this.platform.ready().then(( ) => {
+          window.open(enlace, '_system');
+        })
+      }else{
+        this.message.showDialog('', 'Has comprado utilizando tu cupon');
+      }
+      
     }
   }
 
