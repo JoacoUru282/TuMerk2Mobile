@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.tumerk2university.tumerk2;
 
 import com.getcapacitor.BridgeActivity;
 

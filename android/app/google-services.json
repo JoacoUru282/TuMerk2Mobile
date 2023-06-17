@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381063207787",
+    "project_id": "proyecto2023-dd2f1",
+    "storage_bucket": "proyecto2023-dd2f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381063207787:android:674a5db58f1f5694ae0a2e",
+        "android_client_info": {
+          "package_name": "com.tumerk2university.tumerk2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381063207787-10i1epf0nrnp7ifosq86q9d0obphevco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYwIf64fpPV_PQae2PlwAg4F_gNNJyXpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381063207787-10i1epf0nrnp7ifosq86q9d0obphevco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
