@@ -1,7 +1,7 @@
   <ion-menu contentId="main-content" type="overlay">
     <ion-content>
-      <ion-list id="inbox-list">
-        <ion-list-header color="secondary">Menu</ion-list-header>
+      <ion-list>
+        <ion-list-header>MENÚ</ion-list-header>
 
         <ion-item button (click)="goToHome()" color="secondary">
           <ion-icon name="home-outline" slot="start"></ion-icon>
@@ -33,11 +33,11 @@
           <ion-label><strong>Categorías</strong></ion-label>
           <ion-icon name="chevron-down" slot="end"></ion-icon>
         </ion-item>
+
         <ion-list *ngIf="showCategories">
           <ion-item *ngFor="let categoria of categorias" button (click)="verProductosPorCategoria(categoria.id, categoria.nombre)" color="primary">
             <ion-icon name="remove-outline" slot="start"></ion-icon>
             <ion-label ><strong>{{ categoria.nombre }}</strong></ion-label>
-            <ion-icon name="caret-forward-outline" slot="end"></ion-icon>
           </ion-item>
         </ion-list>
 

@@ -10,11 +10,6 @@
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
   <section class="container-center">
-    <div class="centered-container">
-      <h1 class="shadowed-heading">Agrega un domicilio</h1>
-    </div>
-      
-      <hr />
       <form >
         <div class="row">
           <div class="column">
@@ -34,7 +29,7 @@
             </ion-item>
             <ion-item class="campo">
               <ion-label position="floating">Apartamento</ion-label>
-              <ion-input type="number" pattern="[0-9]*" placeholder="Ingrese numero de apartamento" [formControl]="apartamentoFormControl"></ion-input>
+              <ion-input type="number" placeholder="Ingrese apartamento" [formControl]="apartamentoFormControl"></ion-input>
             </ion-item>
           </div>
         </div>

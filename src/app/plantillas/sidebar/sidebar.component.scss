@@ -5,9 +5,15 @@ ion-menu {
 }
 
 ion-list {
+  background-color: var(--ion-toolbar-background);
+}
+
+ion-list {
   ion-list-header {
-    background-color: #333; /* Color de fondo del encabezado */
-    color: #fff; /* Color del texto del encabezado */
+    color: black; /* Color de fondo del encabezado */
+    background-color: #ff8a00; /* Color del texto del encabezado */
+    font-weight: 500;
+    font-size: large;
   }
 
   ion-item {
@@ -20,7 +26,7 @@ ion-list {
     }
 
     ion-icon {
-      color: #333; /* Color de los iconos del menú */
+      color: white; /* Color de los iconos del menú */
     }
   }
 }

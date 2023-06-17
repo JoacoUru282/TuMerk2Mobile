@@ -29,13 +29,17 @@
     background-color: #3dc2ff; /* Cambia el color de fondo a rojo */
   }
   
-  .custom-alert .alert-button-group .alert-button {
-    color: #ffffff; /* Cambia el color del texto de los botones a blanco */
-  }
+.custom-alert .alert-button-group .alert-button {
+  color: #ffffff; /* Cambia el color del texto de los botones a blanco */
+}
 
-  .custom-alert .alert-message {
-    color: rgb(8, 50, 164); /* Cambia el color del texto a rojo */
-    font-size: 22px; /* Cambia el tamaño de fuente a 16px */
-    font-weight: bold; /* Cambia el peso de fuente a negrita */
-    text-align: center;
-  }
+.custom-alert .alert-message {
+  color: rgb(8, 50, 164); /* Cambia el color del texto a rojo */
+  font-size: 22px; /* Cambia el tamaño de fuente a 16px */
+  font-weight: bold; /* Cambia el peso de fuente a negrita */
+  text-align: center;
+}
+
+ion-toolbar ion-title {
+  color: var(--ion-color-anaranjado)
+}
