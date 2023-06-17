@@ -44,4 +44,8 @@ export class JwtService {
     const accessToken = await this.obtenerAccessTokenDeSesion();
     return this.helper.isTokenExpired(accessToken!);
   }
+
+  isThisTokenExpired(accessToken: string): boolean {
+    return this.helper.isTokenExpired(accessToken);
+  }
 }

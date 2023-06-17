@@ -8,6 +8,7 @@ import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
 import { Router } from '@angular/router';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
+import { DataService } from 'src/app/servicios/api/data.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginPage  implements OnInit {
     private alertController: AlertController, 
     private message: MessageUtil, 
     private router: Router, 
-    private jwtService: JwtService) { }
+    private jwtService: JwtService,
+    private dataService: DataService) { }
 
   visibility: boolean = true;
   
@@ -33,7 +35,19 @@ export class LoginPage  implements OnInit {
     Validators.email]);
   passwordFormControl = new FormControl('', Validators.required);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.getData('jwt').then(jwt => {
+      if (jwt && !this.jwtService.isThisTokenExpired(jwt)) {
+        this.dataService.getData('nroLocal').then(nroLocal => {
+            if (nroLocal) {
+              this.router.navigate(['home']);
+            } else {
+              this.router.navigate(['local-list']);
+            }
+        });
+      }
+    });
+  }
 
   public toggleVisibility() {
     this.visibility = !this.visibility;
