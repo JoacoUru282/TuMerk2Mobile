@@ -1,42 +1,3 @@
-
-
-<!-- MENU ORIGINAL:-->
-<!--
-  <ion-menu contentId="main-content" type="overlay">
-
-    <ion-content>
-      <ion-list id="inbox-list">
-        <ion-list-header>Menu</ion-list-header>
-
-        <ion-list id="labels-list" >
-          <ion-button (click)="goMiPerfil()"><ion-icon name="person-circle-outline" slot="start"></ion-icon> Mi Perfil </ion-button>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-button (click)="goToMisCompras()"><ion-icon name="cart-outline"></ion-icon> Mis Compras</ion-button> 
-        </ion-list>
-
-        <ion-list>
-          <ion-accordion-group>
-            <ion-button (click)="toggleCategories()">Categorias</ion-button>
-              <ion-list *ngIf="showCategories">
-                <ion-accordion *ngFor="let categoria of categorias">
-                  <ion-item slot="header" id="categoria.id" (click)="verProductosPorCategoria(categoria.id)"> {{categoria.nombre}}</ion-item>
-              </ion-accordion>
-            </ion-list>
-          </ion-accordion-group>
-        </ion-list>
-
-        <ion-list id="labels-list" >
-          <ion-button (click)="logout()">Cerrar sesión</ion-button> 
-        </ion-list>
-
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet id="main-content"></ion-router-outlet> -->
-
-
   <ion-menu contentId="main-content" type="overlay">
     <ion-content>
       <ion-list id="inbox-list">
@@ -44,7 +5,7 @@
 
         <ion-item button (click)="goToHome()" color="secondary">
           <ion-icon name="home-outline" slot="start"></ion-icon>
-          <ion-label><strong>Home</strong></ion-label>
+          <ion-label><strong>Inicio</strong></ion-label>
         </ion-item>
   
         <ion-item button (click)="goToMiPerfil()" color="secondary">
@@ -58,8 +19,13 @@
         </ion-item>
 
         <ion-item button (click)="goToReclamos()" color="secondary">
-          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
           <ion-label><strong>Mis Reclamos</strong></ion-label>
+        </ion-item>
+
+        <ion-item button (click)="goToSeleccionarLocal()" color="secondary">
+          <ion-icon name="business-outline" slot="start"></ion-icon>
+          <ion-label><strong>Cambiar de Local</strong></ion-label>
         </ion-item>
   
         <ion-item button (click)="toggleCategories()" color="secondary">

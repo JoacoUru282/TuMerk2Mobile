@@ -97,6 +97,10 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['listar-reclamos']);
   }
 
+  goToSeleccionarLocal(){
+    this.router.navigate(['local-list']);
+  }
+
   goToHome(){
     this.router.navigate(['home']);
   }
