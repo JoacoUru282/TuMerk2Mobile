@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtAltaDomicilio } from '../../modelos/dataTypes/DtDomicilio';
+import { ApiService } from '../../servicios/api/api.service';
+import { JwtService } from '../../servicios/api/jwt.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-alta-domicilio',
-  templateUrl: './alta-domicilio.page.html',
-  styleUrls: ['./alta-domicilio.page.scss'],
+    selector: 'app-alta-domicilio',
+    templateUrl: './alta-domicilio.page.html',
+    styleUrls: ['./alta-domicilio.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
 })
 export class AltaDomicilioPage implements OnInit {
 

@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DtLogin } from 'src/app/modelos/dataTypes/DtLogin';
-import { AlertController } from '@ionic/angular';
-import { LoginResponse } from 'src/app/modelos/dataTypes/loginResponse.interface';
-import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { DataService } from 'src/app/servicios/api/data.service';
+import { AlertController, IonicModule } from '@ionic/angular';
+import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
+import { DtLogin } from '../../modelos/dataTypes/DtLogin';
+import { LoginResponse } from '../../modelos/dataTypes/loginResponse.interface';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { JwtService } from '../../servicios/api/jwt.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
-  
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        IonicModule,
+    ],
 })
 export class LoginPage  implements OnInit {
   constructor(

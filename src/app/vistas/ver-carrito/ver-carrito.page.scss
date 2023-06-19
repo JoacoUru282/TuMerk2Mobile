@@ -1,39 +1,9 @@
-  h1{
-    color: orange;
-  }
-
-  .header-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    margin-left: -30px;
-  }
-  
-  .centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-
   .center-button {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     gap: 30px; 
-  }
-  
-  
-  
-
-  .shadowed-heading {
-    
-    
-    margin-top: 5px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   
   #container {
@@ -61,21 +31,6 @@
     text-decoration: none;
   }
 
-  .product-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .product-info {
-    margin-left: 20px; /* Ajusta el espacio entre la imagen y el texto */
-    color: black;
-  }
-  .imagen {
-    width: 60px;
-    height: 60px;
-    margin-left: 5px;
-  }
-
   .card{
     margin-top: 5px;
     height: 70px
@@ -84,6 +39,12 @@
   ion-fab-button{
     height: 70px;
     width: 70px;
+  }
+
+  .product-info {
+    margin: auto;
+    color: rgb(8, 50, 164);
+    text-align: center;
   }
 
   .cart-icon{

@@ -6,12 +6,20 @@ import { Router } from '@angular/router';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { NgIf, NgFor } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        NgIf,
+        NgFor,
+    ],
 })
 export class SidebarComponent implements OnInit {
 
@@ -51,8 +59,7 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
-
-
+  
   async verProductosPorCategoria(idCategoria: number, nombreCategoria: string){
     this.dataService.setData('idCategoria', idCategoria);
     this.setCategoria(nombreCategoria);

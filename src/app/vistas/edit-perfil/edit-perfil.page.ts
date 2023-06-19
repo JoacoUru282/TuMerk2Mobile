@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DtGetUsuario, DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DataService } from 'src/app/servicios/api/data.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtGetUsuario, DtModificarUsuario } from '../../modelos/dataTypes/DtUsuario';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { JwtService } from '../../servicios/api/jwt.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-edit-perfil',
-  templateUrl: './edit-perfil.page.html',
-  styleUrls: ['./edit-perfil.page.scss'],
+    selector: 'app-edit-perfil',
+    templateUrl: './edit-perfil.page.html',
+    styleUrls: ['./edit-perfil.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
 })
 export class EditPerfilPage implements OnInit {
 

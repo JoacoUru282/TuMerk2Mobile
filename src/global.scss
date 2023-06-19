@@ -26,20 +26,30 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 .custom-alert .alert-wrapper {
-    background-color: #3dc2ff; /* Cambia el color de fondo a rojo */
-  }
-  
+  background-color: #3dc2ff;
+}
+
 .custom-alert .alert-button-group .alert-button {
-  color: #ffffff; /* Cambia el color del texto de los botones a blanco */
+  color: #ffffff;
 }
 
 .custom-alert .alert-message {
-  color: rgb(8, 50, 164); /* Cambia el color del texto a rojo */
-  font-size: 22px; /* Cambia el tamaño de fuente a 16px */
-  font-weight: bold; /* Cambia el peso de fuente a negrita */
+  color: rgb(8, 50, 164);
+  font-size: 22px;
+  font-weight: bold;
   text-align: center;
 }
 
 ion-toolbar ion-title {
   color: var(--ion-color-anaranjado)
+}
+
+/* Utilizados */
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-left: -30px;
 }

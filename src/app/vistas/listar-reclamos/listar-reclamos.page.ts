@@ -1,12 +1,21 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DtReclamo } from 'src/app/modelos/dataTypes/DtCompra';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtReclamo } from '../../modelos/dataTypes/DtCompra';
+import { ApiService } from '../../servicios/api/api.service';
+import { JwtService } from '../../servicios/api/jwt.service';
 
 @Component({
-  selector: 'app-listar-reclamos',
-  templateUrl: './listar-reclamos.page.html',
-  styleUrls: ['./listar-reclamos.page.scss'],
+    selector: 'app-listar-reclamos',
+    templateUrl: './listar-reclamos.page.html',
+    styleUrls: ['./listar-reclamos.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        NgFor,
+    ],
 })
 export class ListarReclamosPage implements OnInit {
 

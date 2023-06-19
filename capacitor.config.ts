@@ -4,7 +4,9 @@ const config: CapacitorConfig = {
   appId: 'com.tumerk2university.tumerk2',
   appName: 'TuMerk2',
   webDir: 'www',
-  bundledWebRuntime: false
+  server: {
+    androidScheme: 'https'
+  }
 };
 
 export default config;

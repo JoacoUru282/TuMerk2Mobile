@@ -1,18 +1,29 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DtAltaReclamo, DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
-import { Token } from 'src/app/modelos/dataTypes/Token.interface';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { tipoReclamo } from 'src/app/modelos/enums/Reclamo';
-import { APIError } from 'src/app/modelos/dataTypes/ApiError';
-import { DataService } from 'src/app/servicios/api/data.service';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { APIError } from '../../modelos/dataTypes/ApiError';
+import { DtAltaReclamo, DtCompra } from '../../modelos/dataTypes/DtCompra';
+import { Token } from '../../modelos/dataTypes/Token.interface';
+import { tipoReclamo } from '../../modelos/enums/Reclamo';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-alta-reclamo',
-  templateUrl: './alta-reclamo.page.html',
-  styleUrls: ['./alta-reclamo.page.scss'],
+    selector: 'app-alta-reclamo',
+    templateUrl: './alta-reclamo.page.html',
+    styleUrls: ['./alta-reclamo.page.scss'],
+    standalone: true,
+    imports: [
+      IonicModule,
+      CommonModule,
+      FormsModule,
+      SidebarComponent,
+      ReactiveFormsModule,
+    ],
 })
 export class AltaReclamoPage implements OnInit {
   reclamoForm: FormGroup;

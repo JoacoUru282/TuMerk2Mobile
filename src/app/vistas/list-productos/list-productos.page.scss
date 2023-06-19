@@ -23,23 +23,16 @@
     text-decoration: none;
   }
 
-  .header-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    margin-left: -30px;
-  }
-
   .product-container {
     display: flex;
     align-items: center;
   }
   
   .product-info {
-    margin-left: 20px; /* Ajusta el espacio entre la imagen y el texto */
+    margin-left: 20px;
     color: black;
   }
+
   .imagen {
     width: 60px;
     height: 60px;

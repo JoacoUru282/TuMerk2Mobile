@@ -1,16 +1,25 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DataService } from 'src/app/servicios/api/data.service';
-import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtGetProducto, DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
 
 
 
 @Component({
-  selector: 'app-list-productos',
-  templateUrl: './list-productos.page.html',
-  styleUrls: ['./list-productos.page.scss'],
+    selector: 'app-list-productos',
+    templateUrl: './list-productos.page.html',
+    styleUrls: ['./list-productos.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        NgFor,
+        NgIf,
+    ],
 })
 export class ListProductosPage implements OnInit {
 
@@ -61,7 +70,7 @@ export class ListProductosPage implements OnInit {
     this.totalPages = Math.ceil(this.productos.length / this.pageSize);
   }
 
-  getNombreCategoría(idCategoria) {
+  getNombreCategoría(idCategoria: any) {
     this.api.categoriasLocal().subscribe({
       next: (response) => {
         let categorias = response

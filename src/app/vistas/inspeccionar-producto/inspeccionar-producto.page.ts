@@ -1,12 +1,21 @@
-import { DtGetProducto, DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/servicios/api/data.service';
 import { Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtGetProducto, DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
+import { DataService } from '../../servicios/api/data.service';
 
 @Component({
-  selector: 'app-inspeccionar-producto',
-  templateUrl: './inspeccionar-producto.page.html',
-  styleUrls: ['./inspeccionar-producto.page.scss'],
+    selector: 'app-inspeccionar-producto',
+    templateUrl: './inspeccionar-producto.page.html',
+    styleUrls: ['./inspeccionar-producto.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        NgIf,
+    ],
 })
 export class InspeccionarProductoPage implements OnInit {
   productosCarrito: DtProductoStorage[];

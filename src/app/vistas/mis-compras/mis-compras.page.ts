@@ -1,14 +1,24 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { Router } from '@angular/router';
-import { DtCompra } from 'src/app/modelos/dataTypes/DtCompra';
-import { DataService } from 'src/app/servicios/api/data.service';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtCompra } from '../../modelos/dataTypes/DtCompra';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { JwtService } from '../../servicios/api/jwt.service';
 
 @Component({
-  selector: 'app-mis-compras',
-  templateUrl: './mis-compras.page.html',
-  styleUrls: ['./mis-compras.page.scss'],
+    selector: 'app-mis-compras',
+    templateUrl: './mis-compras.page.html',
+    styleUrls: ['./mis-compras.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        NgFor,
+        NgIf,
+    ],
 })
 export class MisComprasPage implements OnInit {
 

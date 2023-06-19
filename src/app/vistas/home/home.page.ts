@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/servicios/api/data.service';
 import {
   ActionPerformed,
   PushNotificationSchema,
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DtTokenUser } from 'src/app/modelos/dataTypes/DtUsuario';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtTokenUser } from '../../modelos/dataTypes/DtUsuario';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { JwtService } from '../../servicios/api/jwt.service';
 
 @Component({
-  selector: 'app-folder',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+    selector: 'app-home',
+    templateUrl: './home.page.html',
+    styleUrls: ['./home.page.scss'],
+    standalone: true,
+    imports: [IonicModule, SidebarComponent],
 })
 export class HomePage implements OnInit {
 

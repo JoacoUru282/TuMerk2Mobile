@@ -1,18 +1,29 @@
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DataService } from 'src/app/servicios/api/data.service';
-import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { DtDireccionUser } from 'src/app/modelos/dataTypes/DtUsuario';
-import { DtAltaArticulo } from 'src/app/modelos/dataTypes/DtCompra';
-import { Platform } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtAltaArticulo } from '../../modelos/dataTypes/DtCompra';
+import { DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
+import { DtDireccionUser } from '../../modelos/dataTypes/DtUsuario';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { JwtService } from '../../servicios/api/jwt.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-ver-carrito',
-  templateUrl: './ver-carrito.page.html',
-  styleUrls: ['./ver-carrito.page.scss'],
+    selector: 'app-ver-carrito',
+    templateUrl: './ver-carrito.page.html',
+    styleUrls: ['./ver-carrito.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        NgFor,
+        NgIf,
+        FormsModule,
+    ],
 })
 export class VerCarritoPage implements OnInit {
 

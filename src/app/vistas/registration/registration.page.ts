@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DtRegistro } from 'src/app/modelos/dataTypes/DtRegistro';
-import { AlertController } from '@ionic/angular';
-import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
+import { AlertController, IonicModule } from '@ionic/angular';
+import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
+import { DtRegistro } from '../../modelos/dataTypes/DtRegistro';
+import { ApiService } from '../../servicios/api/api.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.page.html',
-  styleUrls: ['./registration.page.scss'],
+    selector: 'app-registration',
+    templateUrl: './registration.page.html',
+    styleUrls: ['./registration.page.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        IonicModule,
+    ],
 })
 export class RegistrationPage implements OnInit {
 

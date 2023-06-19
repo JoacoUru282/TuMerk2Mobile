@@ -1,28 +1,3 @@
-  h1{
-    color: orange;
-  }
-
-  .header-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    margin-left: -30px;
-  }
-
-  .centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-
-  .shadowed-heading {
-    margin-top: 5px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
   #container {
     text-align: center;
     position: absolute;
@@ -46,21 +21,6 @@
   
   #container a {
     text-decoration: none;
-  }
-
-  .product-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .product-info {
-    margin-left: 20px; /* Ajusta el espacio entre la imagen y el texto */
-    color: black;
-  }
-  .imagen {
-    width: 60px;
-    height: 60px;
-    margin-left: 5px;
   }
 
   .card{

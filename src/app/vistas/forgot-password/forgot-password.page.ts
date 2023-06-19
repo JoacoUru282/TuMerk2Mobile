@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
-import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
+import { ApiService } from '../../servicios/api/api.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.page.html',
-  styleUrls: ['./forgot-password.page.scss'],
+    selector: 'app-forgot-password',
+    templateUrl: './forgot-password.page.html',
+    styleUrls: ['./forgot-password.page.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule],
 })
 export class ForgotPasswordPage implements OnInit {
 

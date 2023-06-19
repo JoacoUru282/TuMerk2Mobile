@@ -1,13 +1,24 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { IonicModule } from '@ionic/angular';
+import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
+import { DtDireccionUser, DtGetUsuario } from '../../modelos/dataTypes/DtUsuario';
+import { ApiService } from '../../servicios/api/api.service';
+import { JwtService } from '../../servicios/api/jwt.service';
 
 @Component({
-  selector: 'app-mi-perfil',
-  templateUrl: './mi-perfil.page.html',
-  styleUrls: ['./mi-perfil.page.scss'],
+    selector: 'app-mi-perfil',
+    templateUrl: './mi-perfil.page.html',
+    styleUrls: ['./mi-perfil.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        SidebarComponent,
+        FormsModule,
+        NgFor,
+    ],
 })
 export class MiPerfilPage implements OnInit {
 

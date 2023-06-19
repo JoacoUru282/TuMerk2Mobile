@@ -1,17 +1,26 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { Local } from 'src/app/modelos/dataTypes/Local.interface';
-import { BackEndError } from 'src/app/modelos/dataTypes/BackEndError.interface';
-import { MessageUtil } from 'src/app/servicios/api/message-util.service';
-import { DataService } from 'src/app/servicios/api/data.service';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
+import { IonicModule } from '@ionic/angular';
+import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
+import { DtCategoria } from '../../modelos/dataTypes/DtCategoria';
+import { Local } from '../../modelos/dataTypes/Local.interface';
+import { ApiService } from '../../servicios/api/api.service';
+import { DataService } from '../../servicios/api/data.service';
+import { MessageUtil } from '../../servicios/api/message-util.service';
 
 
 @Component({
-  selector: 'app-local-list',
-  templateUrl: './local-list.page.html',
-  styleUrls: ['./local-list.page.scss'],
+    selector: 'app-local-list',
+    templateUrl: './local-list.page.html',
+    styleUrls: ['./local-list.page.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        FormsModule,
+        NgFor,
+    ],
 })
 export class LocalListPage implements OnInit {
 
