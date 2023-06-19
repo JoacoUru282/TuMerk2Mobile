@@ -7,6 +7,8 @@ import {
   Token,
 } from '@capacitor/push-notifications';
 import { ApiService } from 'src/app/servicios/api/api.service';
+import { DtTokenUser } from 'src/app/modelos/dataTypes/DtUsuario';
+import { JwtService } from 'src/app/servicios/api/jwt.service';
 
 @Component({
   selector: 'app-folder',
@@ -15,28 +17,20 @@ import { ApiService } from 'src/app/servicios/api/api.service';
 })
 export class HomePage implements OnInit {
 
-  constructor(private dataService: DataService, private api: ApiService) { }
+  constructor(private api: ApiService, private jwtService: JwtService, private dataService: DataService) { }
 
 
   ngOnInit() {
     this.inicializarNotificacionesFirebase();
   }
   
-  /* =========================== FIREBASE NOTIFICATIONS =========================== */
-
+  /* =========================== NOTIFICACIONES FIREBASE =========================== */
 
   async inicializarNotificacionesFirebase() {
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        PushNotifications.register();
-      } else {
-        console.log('[FCM] Usuario decidió no recibir notificaciones en tu dispositivo');
-      }
-    });
-
     PushNotifications.addListener('registration',
       (token: Token) => {
         console.log('[FCM] Registration success. Token: ' + token.value);
+        this.dataService.setData("mobileTokenFCM", token.value)
       }
     );
 
@@ -59,5 +53,47 @@ export class HomePage implements OnInit {
         console.log('[FCM] Push received: ' + JSON.stringify(notification));
       }
     );
+
+    PushNotifications.checkPermissions().then(result => {
+      if (result.receive === 'granted') {
+        console.log('[FCM] checkPermissions() granted');
+        this.enviarUsuarioToken();
+      }
+      else {
+        console.log('[FCM] checkPermissions() not granted');
+
+        PushNotifications.requestPermissions().then(result2 => {
+          if (result2.receive === 'granted') {
+            console.log('[FCM] requestPermissions() granted');
+            this.enviarUsuarioToken();
+          }
+          else {
+            console.log('[FCM] requestPermissions() not granted');
+          }
+        });
+      }
+    });
   }
+
+  private async enviarUsuarioToken() {
+    const mobileToken = await this.dataService.getData("mobileTokenFCM")
+
+    if (mobileToken)
+      this.establecerUsuarioTokenFCM(mobileToken);
+  }
+
+  private async establecerUsuarioTokenFCM(tokenFCM: string) {
+    const idUsuario = await this.jwtService.obtenerUsuarioId();
+
+    const data: DtTokenUser = {
+      token: tokenFCM,
+      tipo: "FCM_REGISTRATION"
+    }
+
+    this.api.establecerUsuarioTokenFCM(data, idUsuario).subscribe({
+      error: (e) => console.error(e)
+    });
+  }
+  
+  /* =========================== NOTIFICACIONES FIREBASE =========================== */
 }

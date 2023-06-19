@@ -83,8 +83,8 @@ export class EditPerfilPage implements OnInit {
   async deleteUser(){
     const idUsuario = await this.jwtService.obtenerUsuarioId();
     this.api.deleteUsuarios(idUsuario).subscribe({
-      next: (response) => {
-        this.dataService.removeAll();
+      next: async (response) => {
+        await this.dataService.removeAll();
         this.router.navigate(['/login']);
       },
       error: (err) => {

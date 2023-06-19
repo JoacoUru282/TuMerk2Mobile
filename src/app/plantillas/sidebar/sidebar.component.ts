@@ -35,8 +35,8 @@ export class SidebarComponent implements OnInit {
     this.getLocal();
   }
 
-  logout(){
-    this.storage.clear();
+  async logout(){
+    await this.dataService.removeAll();
     this.router.navigate(['/login']);
   }
 

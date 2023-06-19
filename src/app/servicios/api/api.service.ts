@@ -11,7 +11,7 @@ import { Local } from 'src/app/modelos/dataTypes/Local.interface';
 import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
-import { DtGetUsuario, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
+import { DtGetUsuario, DtTokenUser, DtUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtAltaArticulo, DtAltaCompra, DtAltaReclamo, DtCompra, DtReclamo } from 'src/app/modelos/dataTypes/DtCompra';
 
@@ -184,4 +184,7 @@ export class ApiService {
 	}
 
 	
+	establecerUsuarioTokenFCM(data: DtTokenUser, idUsuario: any) {
+        return this.http.post(`${this.apiURL}/usuarios/${idUsuario}/tokens`, data);
+    }
 }

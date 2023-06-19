@@ -31,8 +31,10 @@ export class DataService {
     this.storage?.remove(key);
   }
 
-  removeAll(){
-    this.storage?.clear();
+  async removeAll(){
+    const mantenerValor = await this.getData("mobileTokenFCM");
+    await this.storage?.clear();
+    await this.setData("mobileTokenFCM", mantenerValor);
   }
 
   

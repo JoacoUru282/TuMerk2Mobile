@@ -37,3 +37,9 @@ export interface DtDireccionUser{
     apartamento?: number;
     direccionCompleta: string;
   }
+
+export interface DtTokenUser{
+    token: string;
+    tipo: string;
+    expiracion?: string;
+}
