@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  BACKEND_API_URL: 'https://tumerk2-backend-beta.up.railway.app/api'
+  BACKEND_API_URL: 'https://tumerk2.up.railway.app/api'
 };
 
 /*
