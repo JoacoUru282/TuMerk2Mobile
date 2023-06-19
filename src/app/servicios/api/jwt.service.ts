@@ -10,10 +10,9 @@ const TOKEN_KEY = 'jwt';
 })
 export class JwtService {
 
-  constructor(private dataService: DataService, private helper: JwtHelperService) {
-  }
+  constructor(private dataService: DataService, private helper: JwtHelperService) {}
 
-  
+
   guardarAccessTokenEnSesion(accessToken: string) {
     this.dataService.setData(TOKEN_KEY, accessToken);
   }

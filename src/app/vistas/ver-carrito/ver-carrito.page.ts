@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
-import { Storage } from '@ionic/storage-angular';
 import { DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Router } from '@angular/router';
 import { MessageUtil } from 'src/app/servicios/api/message-util.service';
@@ -17,7 +16,7 @@ import { Platform } from '@ionic/angular';
 })
 export class VerCarritoPage implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService, private platform: Platform, private message: MessageUtil) { }
+  constructor(private api: ApiService, private dataService: DataService, private router: Router, private jwtService: JwtService, private platform: Platform, private message: MessageUtil) { }
 
   productosCarrito: DtProductoStorage[];
   precioTotal: number = 0;
@@ -42,7 +41,7 @@ export class VerCarritoPage implements OnInit {
   async inicializarProductoCarrito(){
     const valorStorage = await this.dataService.getData('productosCarrito') || [];
     if(!valorStorage){
-      await this.storage.set('productosCarrito', []);
+      await this.dataService.setData('productosCarrito', []);
     }else{
       this.productosCarrito = valorStorage;
     }

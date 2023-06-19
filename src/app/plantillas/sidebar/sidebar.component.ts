@@ -3,11 +3,9 @@ import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
 import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { JwtService } from 'src/app/servicios/api/jwt.service';
 import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +15,7 @@ import { InfiniteScrollCustomEvent, IonicModule } from '@ionic/angular';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router, private jwtService: JwtService) { }
+  constructor(private api: ApiService, private dataService: DataService, private router: Router, private jwtService: JwtService) { }
 
   categorias: DtCategoria[];
   categoriasMostrar: DtCategoria[] = [];

@@ -1,9 +1,7 @@
 import { DtGetProducto, DtProductoStorage } from 'src/app/modelos/dataTypes/DtProducto';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/servicios/api/api.service';
 import { DataService } from 'src/app/servicios/api/data.service';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-inspeccionar-producto',
@@ -13,7 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 export class InspeccionarProductoPage implements OnInit {
   productosCarrito: DtProductoStorage[];
 
-  constructor(private api: ApiService, private dataService: DataService, private storage: Storage, private router: Router) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   producto: DtGetProducto
   async ngOnInit() {
@@ -55,13 +53,13 @@ export class InspeccionarProductoPage implements OnInit {
       };
       this.productosCarrito.push(variable);
     }
-    this.storage.set('productosCarrito', this.productosCarrito);
+    this.dataService.setData('productosCarrito', this.productosCarrito);
   }
 
   async inicializarProductoCarrito(){
-    const valorStorage = await this.storage.get('productosCarrito') || [];
+    const valorStorage = await this.dataService.getData('productosCarrito') || [];
     if(!valorStorage){
-      await this.storage.set('productosCarrito', []);
+      await this.dataService.setData('productosCarrito', []);
     }else{
       this.productosCarrito = valorStorage;
     }
