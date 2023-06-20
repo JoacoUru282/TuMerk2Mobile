@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { JwtService } from './jwt.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private jwtService: JwtService) { }
+  constructor(private jwtService: JwtService) {}
 
   async getToken() {
     return await this.jwtService.obtenerAccessTokenDeSesion();

@@ -9,28 +9,26 @@
 
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-  
+
   <ion-card>
     <ion-card-content>
       <form [formGroup]="reclamoForm">
-        <hr>
+        <hr />
         <ion-item>
           <ion-label>Motivo</ion-label>
           <ion-select formControlName="motivoFormControl" placeholder="Seleccione el motivo de su reclamo" required>
             <ion-select-option *ngFor="let tipo of tipoReclamoValues" [value]="tipo">{{ tipo }}</ion-select-option>
           </ion-select>
         </ion-item>
-        <br>
+        <br />
         <ion-item>
           <ion-label>Descripción</ion-label>
           <ion-textarea formControlName="textoFormControl" placeholder="Describe tu reclamo" (input)="validarCaracteres()" required></ion-textarea>
           <span class="caracteres-contador">{{ reclamoForm.get('textoFormControl')?.value?.length }}/350 caracteres</span>
         </ion-item>
-        <br>
+        <br />
         <ion-button expand="full" color="primary" (click)="altaReclamo()">Enviar reclamo</ion-button>
       </form>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-

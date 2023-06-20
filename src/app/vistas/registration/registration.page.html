@@ -9,20 +9,26 @@
     <h2 class="a"></h2>
     <!-- Formulario de registro -->
     <form>
-      <input type="text" id="nombre" class="fadeIn second" placeholder="Ingresa tu Nombre" formControlName="Nombre" [formControl]="nameFormControl">
-    
-      <input type="text" id="apellido" class="fadeIn second" placeholder="Ingresa tu Apellido" formControlName="Apellido" [formControl]="apellidoFormControl">
-    
-      <input type="text" id="email" class="fadeIn second" placeholder="Ingresa tu Email" formControlName="Email" [formControl]="emailFormControl">
-    
-      <input type="text" id="ci" class="fadeIn second" placeholder="Ingresa tu Cedula" formControlName="Cedula" [formControl]="cedulaFormControl">
-      <ion-item> 
-        <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingresa tu contraseña" formControlName="Contraseña" [formControl]="passwordFormControl">
+      <input type="text" id="nombre" class="fadeIn second" placeholder="Ingresa tu Nombre" formControlName="Nombre" [formControl]="nameFormControl" />
+
+      <input type="text" id="apellido" class="fadeIn second" placeholder="Ingresa tu Apellido" formControlName="Apellido" [formControl]="apellidoFormControl" />
+
+      <input type="text" id="email" class="fadeIn second" placeholder="Ingresa tu Email" formControlName="Email" [formControl]="emailFormControl" />
+
+      <input type="text" id="ci" class="fadeIn second" placeholder="Ingresa tu Cedula" formControlName="Cedula" [formControl]="cedulaFormControl" />
+      <ion-item>
+        <input
+          type="{{ visibility ? 'password' : 'text' }}"
+          id="pass"
+          class="fadeIn third"
+          placeholder="Ingresa tu contraseña"
+          formControlName="Contraseña"
+          [formControl]="passwordFormControl"
+        />
         <ion-icon name="eye-outline" (click)="toggleVisibility()"></ion-icon>
       </ion-item>
-      
-      <input type="submit" class="fadeIn fourth" value="Registrarse" (click)="onRegister()">
-   
+
+      <input type="submit" class="fadeIn fourth" value="Registrarse" (click)="onRegister()" />
     </form>
 
     <!-- Recuperar contraseña -->
@@ -31,4 +37,3 @@
     </div>
   </div>
 </div>
-

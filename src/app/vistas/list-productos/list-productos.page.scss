@@ -1,66 +1,45 @@
-  #container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .product-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .product-info {
-    margin-left: 20px;
-    color: black;
-  }
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
 
-  .imagen {
-    width: 60px;
-    height: 60px;
-    margin-left: 5px;
-  }
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
 
-  .card{
-    margin-top: 40px;
-  }
+#container a {
+  text-decoration: none;
+}
 
-  ion-fab-button{
-    height: 70px;
-    width: 70px;
-  }
+.product-container {
+  display: flex;
+  align-items: center;
+}
 
-  .cart-icon{
-    font-size: 30px;
-  }
+.product-info {
+  margin-left: 20px;
+  color: black;
+}
 
-  .cart-lenght{
-    position: absolute;
-    top: 18px;
-    left: 25px;
-    font-weight: 600;
-    font-size: 1em;
-    min-width: 25px;
-    z-index: 10;
-  }
+.imagen {
+  width: 60px;
+  height: 60px;
+  margin-left: 5px;
+}
 
-  
-    
+ion-fab-button {
+  height: 70px;
+  width: 70px;
+}

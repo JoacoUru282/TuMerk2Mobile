@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DtCategoria } from 'src/app/modelos/dataTypes/DtCategoria';
-import { ApiService } from 'src/app/servicios/api/api.service';
-import { DataService } from 'src/app/servicios/api/data.service';
+import { ApiService } from 'src/app/servicios/api.service';
+import { DataService } from 'src/app/servicios/data.service';
 import { Router } from '@angular/router';
 import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
-import { JwtService } from 'src/app/servicios/api/jwt.service';
-import { DtDireccionUser, DtGetUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { NgIf, NgFor } from '@angular/common';
+import { JwtService } from 'src/app/servicios/jwt.service';
+import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 
@@ -17,8 +16,7 @@ import { IonicModule } from '@ionic/angular';
     standalone: true,
     imports: [
         IonicModule,
-        NgIf,
-        NgFor,
+        CommonModule
     ],
 })
 export class SidebarComponent implements OnInit {
@@ -26,15 +24,9 @@ export class SidebarComponent implements OnInit {
   constructor(private api: ApiService, private dataService: DataService, private router: Router, private jwtService: JwtService) { }
 
   categorias: DtCategoria[];
-  categoriasMostrar: DtCategoria[] = [];
   showCategories: boolean = false;
   productos: DtGetProducto[] = [];
   localId?: Number;
-  user: DtGetUsuario;
-  direccionCompleta: DtDireccionUser [] = [];
-  loadingCategories: boolean = false;
-
-
 
   ngOnInit(): void {
     this.obtenerCategorias();
@@ -54,15 +46,14 @@ export class SidebarComponent implements OnInit {
   obtenerCategorias(){
     this.api.categoriasLocal().subscribe({
       next: (response) => {
-        this.categorias = response 
-        this.dataService.setData('categorias', this.categorias)
+        this.categorias = response
       }
     });
   }
   
   async verProductosPorCategoria(idCategoria: number, nombreCategoria: string){
     this.dataService.setData('idCategoria', idCategoria);
-    this.setCategoria(nombreCategoria);
+    await this.setCategoria(nombreCategoria);
     await this.router.navigate(['list-productos']).then(() => {
       this.api.obtenerProductosDeCategoria(Number(this.localId), idCategoria).subscribe({
         next: (response) => {

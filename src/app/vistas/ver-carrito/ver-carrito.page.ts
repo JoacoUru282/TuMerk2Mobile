@@ -7,10 +7,10 @@ import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtAltaArticulo } from '../../modelos/dataTypes/DtCompra';
 import { DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
 import { DtDireccionUser } from '../../modelos/dataTypes/DtUsuario';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
-import { JwtService } from '../../servicios/api/jwt.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
+import { JwtService } from '../../servicios/jwt.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 @Component({
     selector: 'app-ver-carrito',

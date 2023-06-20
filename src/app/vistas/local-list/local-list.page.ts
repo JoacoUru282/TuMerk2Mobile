@@ -6,9 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
 import { DtCategoria } from '../../modelos/dataTypes/DtCategoria';
 import { Local } from '../../modelos/dataTypes/Local.interface';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 
 @Component({
@@ -36,7 +36,6 @@ export class LocalListPage implements OnInit {
 
   ngOnInit() {
     this.getLocales();
-    this.setearCategorias();
   }
 
   onLocalClick(local: Local) {
@@ -57,15 +56,6 @@ export class LocalListPage implements OnInit {
         this.message.showDialog('Error', 'Error')
       }
     })
-  }
-
-  setearCategorias(){
-    this.api.categoriasLocal().subscribe({
-      next: (response) => {
-        this.categorias = response 
-        this.dataService.setData('categorias', this.categorias)
-      }
-    });
   }
 
 }

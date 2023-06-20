@@ -9,7 +9,7 @@ p {
   margin-top: 20px;
 }
 
-p.p2{
+p.p2 {
   font-size: 15px;
   color: white;
 }
@@ -23,7 +23,7 @@ ion-button {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -39,8 +39,8 @@ ion-button {
   max-width: 500px;
   position: relative;
   padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
   height: 400px;
 }

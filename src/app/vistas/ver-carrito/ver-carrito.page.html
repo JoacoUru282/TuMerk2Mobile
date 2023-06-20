@@ -9,31 +9,33 @@
 
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-  
+
   <ion-grid class="container">
     <ion-row>
-      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCarrito" >
-        <ion-card class="card">
+      <ion-col size="12" size-md="6" size-lg="6" *ngFor="let producto of productosCarrito">
+        <ion-card>
           <div class="product-container">
             <ion-col size="8">
               <div class="product-info">
-                <p class="nombreProducto"><strong>{{ producto.nombre }}</strong></p>
+                <p class="nombreProducto">
+                  <strong>{{ producto.nombre }}</strong>
+                </p>
                 <p class="precioProducto">$ {{ producto.precio }} X {{ producto.cantidadSeleccionada }} = $ {{producto.precio*producto.cantidadSeleccionada}}</p>
               </div>
             </ion-col>
-              <ion-button fill="clear" (click)="agregarProductoCarrito(producto.id)">
-                <ion-icon name="add"></ion-icon>
-              </ion-button>
-              <ion-button fill="clear" (click)="quitarProductoCarrito(producto.id)" class="botonQuitar">
-                <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
-              </ion-button>
+            <ion-button fill="clear" (click)="agregarProductoCarrito(producto.id)">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" (click)="quitarProductoCarrito(producto.id)" class="botonQuitar">
+              <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
+            </ion-button>
           </div>
         </ion-card>
       </ion-col>
     </ion-row>
 
     <div class="etiqueta">Total de la compra: $ {{precioTotal}}</div>
-    <div class="etiqueta" *ngIf="cupon !=null ">Cupon del usuario: $ {{cupon}}</div>
+    <div class="etiqueta" *ngIf="cupon">Cupon del usuario: $ {{cupon}}</div>
     <div class="etiqueta">Total a pagar: $ {{precioTotal - cupon}}</div>
 
     <div>
@@ -43,14 +45,14 @@
             <ion-label>Retiro en local</ion-label>
             <ion-radio value="retiro"></ion-radio>
           </ion-item>
-      
+
           <ion-item (click)="seleccionarEnvioDomicilio()">
             <ion-label>Envío a domicilio</ion-label>
             <ion-radio value="envio"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>
-      
+
       <ion-item *ngIf="envioDomicilio === true">
         <ion-label>Seleccione la dirección de envío</ion-label>
         <ion-select [(ngModel)]="idDireccion" [disabled]="retiroEnLocal">
@@ -62,13 +64,12 @@
 
   <div class="center-button">
     <ion-button class="volver" (click)="goToHomeCategory()">
-    <ion-icon name="caret-back-outline"></ion-icon>
+      <ion-icon name="caret-back-outline"></ion-icon>
       Volver
     </ion-button>
-    <ion-button class="carrito" (click)="pago()" [disabled]="!retiroEnLocal && !envioDomicilio && productosCarrito != null">
+    <ion-button class="carrito" (click)="pago()" [disabled]="!retiroEnLocal && !envioDomicilio && productosCarrito">
       Comprar
-    <ion-icon name="cart" class="cart-icon" ></ion-icon>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
     </ion-button>
   </div>
-  
 </ion-content>

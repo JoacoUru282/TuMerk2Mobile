@@ -1,6 +1,6 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
-    <ion-title class="header-title">Agregar domicilio</ion-title>
+    <ion-title class="header-title">Nuevo domicilio</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -9,35 +9,34 @@
 
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-  
+
   <section class="container-center">
-      <form >
-        <div class="row">
-          <div class="column">
-            <ion-item class="campo">
-              <ion-label position="floating">Calle</ion-label>
-              <ion-input type="text" placeholder="Ingrese la calle" required [formControl]="calleFormControl"></ion-input>
-            </ion-item>
-            <ion-item class="campo">
-              <ion-label position="floating">Esquina</ion-label>
-              <ion-input type="text" placeholder="Ingrese la esquina" [formControl]="esquinaFormControl"></ion-input>
-            </ion-item>
-          </div>
-          <div class="column">
-            <ion-item class="campo">
-              <ion-label position="floating">Número de puerta</ion-label>
-              <ion-input type="number" pattern="[0-9]*" placeholder="Ingrese número de puerta" required [formControl]="numeroFormControl"></ion-input>
-            </ion-item>
-            <ion-item class="campo">
-              <ion-label position="floating">Apartamento</ion-label>
-              <ion-input type="number" placeholder="Ingrese apartamento" [formControl]="apartamentoFormControl"></ion-input>
-            </ion-item>
-          </div>
+    <form>
+      <div class="row">
+        <div class="column">
+          <ion-item class="campo">
+            <ion-label position="floating">Calle</ion-label>
+            <ion-input type="text" placeholder="Ingrese la calle" required [formControl]="calleFormControl"></ion-input>
+          </ion-item>
+          <ion-item class="campo">
+            <ion-label position="floating">Esquina</ion-label>
+            <ion-input type="text" placeholder="Ingrese la esquina" [formControl]="esquinaFormControl"></ion-input>
+          </ion-item>
         </div>
-      </form>
-      <div>
-        <ion-button class="btnAgregar" color="primary" (click)="darAlta()">Alta domicilio</ion-button>
+        <div class="column">
+          <ion-item class="campo">
+            <ion-label position="floating">Número de puerta</ion-label>
+            <ion-input type="number" pattern="[0-9]*" placeholder="Ingrese número de puerta" required [formControl]="numeroFormControl"></ion-input>
+          </ion-item>
+          <ion-item class="campo">
+            <ion-label position="floating">Apartamento</ion-label>
+            <ion-input type="number" placeholder="Ingrese apartamento" [formControl]="apartamentoFormControl"></ion-input>
+          </ion-item>
+        </div>
       </div>
+    </form>
+    <div>
+      <ion-button class="btnAgregar" color="primary" (click)="darAlta()">Agregar</ion-button>
+    </div>
   </section>
-  
 </ion-content>

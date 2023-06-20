@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtAltaDomicilio } from '../../modelos/dataTypes/DtDomicilio';
-import { ApiService } from '../../servicios/api/api.service';
-import { JwtService } from '../../servicios/api/jwt.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { JwtService } from '../../servicios/jwt.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 @Component({
     selector: 'app-alta-domicilio',

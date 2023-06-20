@@ -8,9 +8,9 @@ import { APIError } from '../../modelos/dataTypes/ApiError';
 import { DtAltaReclamo, DtCompra } from '../../modelos/dataTypes/DtCompra';
 import { Token } from '../../modelos/dataTypes/Token.interface';
 import { tipoReclamo } from '../../modelos/enums/Reclamo';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 @Component({
     selector: 'app-alta-reclamo',

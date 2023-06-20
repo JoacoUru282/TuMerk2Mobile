@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
- <ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-  
+
   <div class="profile-container">
     <ion-grid class="container">
       <form>
@@ -31,26 +31,21 @@
         </ion-row>
       </form>
     </ion-grid>
-  
+
     <div class="centered-container">
-      <ion-button color="primary" class="btnEdit" (click)="goToEditPerfil()">
-        <ion-icon name="create"></ion-icon>Editar
-      </ion-button>
+      <ion-button color="primary" class="btnEdit" (click)="goToEditPerfil()"> <ion-icon name="create"></ion-icon>Editar </ion-button>
     </div>
-  
+
     <div class="centered-container">
       <h2 class="shadowed-heading">Direcciones</h2>
     </div>
-  
+
     <ion-grid class="container">
       <form>
         <ion-row>
           <ion-col>
             <ion-item class="campo" *ngFor="let dir of direccionCompleta">
-              <ion-textarea
-                [autoGrow]="true"
-                value= {{dir.direccionCompleta}}>
-              </ion-textarea>
+              <ion-textarea [autoGrow]="true" value="{{dir.direccionCompleta}}"> </ion-textarea>
               <ion-button fill="clear" class="botonQuitar" (click)="quitarDireccion(dir.id)">
                 <ion-icon name="trash-bin-sharp" color="red"></ion-icon>
               </ion-button>
@@ -59,13 +54,9 @@
         </ion-row>
       </form>
     </ion-grid>
-  
+
     <div class="centered-container">
-      <ion-button color="primary" class="btnDomicilio" (click)="goToDomicilio()">
-        <ion-icon name="home"></ion-icon> Alta Domicilio
-      </ion-button>
+      <ion-button color="primary" class="btnDomicilio" (click)="goToDomicilio()"> <ion-icon name="home"></ion-icon> Alta Domicilio </ion-button>
     </div>
   </div>
-  
-  
-</ion-content> 
+</ion-content>

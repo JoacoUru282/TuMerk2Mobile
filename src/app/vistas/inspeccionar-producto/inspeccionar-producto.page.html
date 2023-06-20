@@ -9,55 +9,47 @@
 
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-  
+
   <ion-card color="secondary" *ngIf="producto">
     <ion-card-header>
       <ion-card-subtitle>
         <div class="product-info">
           <ion-text>
-            <h3>
-              {{producto.nombre}}
-            </h3>
+            <h3>{{producto.nombre}}</h3>
           </ion-text>
         </div>
-        <img src="data:image/png;base64,{{producto!.imagen}}" alt="Image" class="imagen">
+        <img src="data:image/webp;base64,{{producto!.imagen}}" alt="Image" class="imagen" />
       </ion-card-subtitle>
     </ion-card-header>
     <ion-card color="primary">
-        <ion-list lines="none">
-          <ion-item >
-            <ion-card-content>
-               <ion-text class="estilo-contenido">
-                  <h2>
-                   {{producto.descripcion}} 
-                  </h2> 
-                </ion-text> 
-              </ion-card-content>
-          </ion-item>
-          <ion-item *ngIf="!producto.promocion">
-            <ion-card-content >
-              <ion-text class="estilo-contenido"> 
-                <h2> 
-                  Precio $ {{ producto.precio }} 
-                </h2> 
-              </ion-text> 
-            </ion-card-content>
-          </ion-item>
-          <ion-item *ngIf="producto.promocion">
-            <ion-card-content > 
-              <ion-text class="estilo-contenido"> 
-                <h2> 
-                  Precio final <s> $ {{ producto.precio }} </s> -> $ {{calcularPreciofinal(producto.precio,producto.promocion.porcentajeDescuento)}} 
-                </h2> 
-              </ion-text> 
-            </ion-card-content>
-          </ion-item>
-          <ion-col size="4" class="ion-text-right">
-            <ion-button fill="clear" (click)="agregarProductoCarrito(producto)">
-              <ion-icon name="add" size="large"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-list>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-card-content>
+            <ion-text class="estilo-contenido">
+              <h2>{{producto.descripcion}}</h2>
+            </ion-text>
+          </ion-card-content>
+        </ion-item>
+        <ion-item *ngIf="!producto.promocion">
+          <ion-card-content>
+            <ion-text class="estilo-contenido">
+              <h2>Precio $ {{ producto.precio }}</h2>
+            </ion-text>
+          </ion-card-content>
+        </ion-item>
+        <ion-item *ngIf="producto.promocion">
+          <ion-card-content>
+            <ion-text class="estilo-contenido">
+              <h2>Precio final <s> $ {{ producto.precio }} </s> -> $ {{calcularPreciofinal(producto.precio,producto.promocion.porcentajeDescuento)}}</h2>
+            </ion-text>
+          </ion-card-content>
+        </ion-item>
+        <ion-col size="4" class="ion-text-right">
+          <ion-button fill="clear" (click)="agregarProductoCarrito(producto)">
+            <ion-icon name="add" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-list>
     </ion-card>
   </ion-card>
 
@@ -68,5 +60,4 @@
       </ion-fab-button>
     </ion-fab>
   </div>
-  
 </ion-content>

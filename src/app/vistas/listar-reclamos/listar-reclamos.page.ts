@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtReclamo } from '../../modelos/dataTypes/DtCompra';
-import { ApiService } from '../../servicios/api/api.service';
-import { JwtService } from '../../servicios/api/jwt.service';
+import { ApiService } from '../../servicios/api.service';
+import { JwtService } from '../../servicios/jwt.service';
 
 @Component({
     selector: 'app-listar-reclamos',

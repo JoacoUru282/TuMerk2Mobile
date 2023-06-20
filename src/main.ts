@@ -1,7 +1,6 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppComponent } from './app/app.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -10,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule, provideHttpC
 import { IonicRouteStrategy, IonicModule } from '@ionic/angular';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
-import { DataService } from './app/servicios/api/data.service';
+import { DataService } from './app/servicios/data.service';
 
 if (environment.production) {
   enableProdMode();

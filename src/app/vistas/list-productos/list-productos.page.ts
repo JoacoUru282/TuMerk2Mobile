@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtGetProducto, DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
 
 
 
@@ -26,32 +26,15 @@ export class ListProductosPage implements OnInit {
   constructor(private api: ApiService, private dataService: DataService, private router: Router) { }
 
   productos: DtGetProducto[] = [];
-  pageSize = 20;
-  currentPage = 0;
-  valMax: number = 0;
-  totalPages?: number;
-  nombreCategoria: string = '';
-  filtroNombre: string = '';
-  filtroMin?: number = 0
-  filtroMax?: number;
   idCategoria?: string;
-  localId?: Number;
   productosCategoria: DtGetProducto[];
   productosCarrito: DtProductoStorage[];
   tituloCategoria: string;
 
   async ngOnInit() {
+    this.inicializarProductoCarrito();
     this.getTituloCategoria();
     this.getProductoCategoria();
-    this.calculateTotalPages();
-    this.getNombreCategoría(Number(this.getCategoria()));
-    this.inicializarProductoCarrito();
-  }
-
-  async getLocal() {
-    const data = await this.dataService.getData('nroLocal');
-    this.localId = Number(data);
-    return data;
   }
 
   async getProductoCategoria(){
@@ -64,22 +47,6 @@ export class ListProductosPage implements OnInit {
 
   async getCategoria() {
     return await this.dataService.getData('idCategoria');
-  }
-  
-  calculateTotalPages() {
-    this.totalPages = Math.ceil(this.productos.length / this.pageSize);
-  }
-
-  getNombreCategoría(idCategoria: any) {
-    this.api.categoriasLocal().subscribe({
-      next: (response) => {
-        let categorias = response
-        categorias.forEach(element => {
-          if (element.id === idCategoria)
-            this.nombreCategoria = element.nombre
-        });
-      }
-    });
   }
 
   async inicializarProductoCarrito(){
@@ -127,6 +94,7 @@ export class ListProductosPage implements OnInit {
 
   async getTituloCategoria(){
     this.tituloCategoria= await this.dataService.getData('categoriaElegida');
+    this.dataService.removeData('categoriaElegida');
   }
 
 }

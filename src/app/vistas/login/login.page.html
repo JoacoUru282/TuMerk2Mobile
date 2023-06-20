@@ -1,4 +1,3 @@
-
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <p></p>
@@ -11,17 +10,15 @@
     <h2 class="a"></h2>
     <!-- Formulario de inicio de sesión -->
     <form (ngSubmit)="login()">
-      <input type="text" id="login" class="fadeIn second" placeholder="Ingrese su correo" [formControl]="emailFormControl">
-      <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingrese su contraseña" [formControl]="passwordFormControl">
+      <input type="text" id="login" class="fadeIn second" placeholder="Ingrese su correo" [formControl]="emailFormControl" />
+      <input type="{{ visibility ? 'password' : 'text' }}" id="pass" class="fadeIn third" placeholder="Ingrese su contraseña" [formControl]="passwordFormControl" />
       <div class="fadeIn fourth">
         <ion-icon name="eye-outline" class="ion-color-black agrandar-icono" (click)="toggleVisibility()"></ion-icon>
       </div>
-      
-      <div class="fadeIn fourth">
-        
-      </div>
-      
-      <input type="submit" class="fadeIn fourth" value="Iniciar Sesión">
+
+      <div class="fadeIn fourth"></div>
+
+      <input type="submit" class="fadeIn fourth" value="Iniciar Sesión" />
     </form>
 
     <!-- Recuperar contraseña -->
@@ -33,4 +30,3 @@
     </div>
   </div>
 </div>
-

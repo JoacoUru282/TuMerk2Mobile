@@ -9,8 +9,8 @@
 
 <ion-content [fullscreen]="true">
   <app-sidebar></app-sidebar>
-    
-  <ion-grid class="container" >
+
+  <ion-grid class="container">
     <ion-row>
       <ion-col size="12" size-md="6" size-lg="6" *ngFor="let com of compra; let i = index">
         <ion-card class="card">
@@ -23,14 +23,11 @@
               <p>Precio total: {{ com.total }}</p>
             </div>
             <div *ngIf="com.estado === 'ENTREGADO'">
-              <ion-button class="ion-text-center" (click)="altaReclamo(i)">
-                Crear Reclamo
-              </ion-button>
+              <ion-button class="ion-text-center" (click)="altaReclamo(i)"> Crear Reclamo </ion-button>
             </div>
           </ion-card-content>
         </ion-card>
       </ion-col>
-      
     </ion-row>
-  </ion-grid> 
+  </ion-grid>
 </ion-content>

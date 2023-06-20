@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtGetProducto, DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
-import { DataService } from '../../servicios/api/data.service';
+import { DataService } from '../../servicios/data.service';
 
 @Component({
     selector: 'app-inspeccionar-producto',

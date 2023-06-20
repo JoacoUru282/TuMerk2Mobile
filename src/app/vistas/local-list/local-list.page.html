@@ -1,19 +1,16 @@
-    <ion-header class="custom-header">
-      <ion-toolbar>
-        <ion-title>
-          <p>Bienvenido!</p>
-          <p class = "p2">Seleccione un Local</p> 
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
-    <ion-content [fullscreen]="true">
-      <form (ngSubmit)="onFormSubmit()">
-        <div class="container">
-          <ion-button *ngFor="let local of locales" expand="full" (click)="onLocalClick(local)">
-            {{ local.nombre }}
-          </ion-button>
-        </div>
-      </form>
-    </ion-content>
+<ion-header class="custom-header">
+  <ion-toolbar>
+    <ion-title>
+      <p>Bienvenido!</p>
+      <p class="p2">Seleccione un Local</p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="onFormSubmit()">
+    <div class="container">
+      <ion-button *ngFor="let local of locales" expand="full" (click)="onLocalClick(local)"> {{ local.nombre }} </ion-button>
+    </div>
+  </form>
+</ion-content>

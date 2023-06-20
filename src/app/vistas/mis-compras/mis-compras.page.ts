@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtCompra } from '../../modelos/dataTypes/DtCompra';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
-import { JwtService } from '../../servicios/api/jwt.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
+import { JwtService } from '../../servicios/jwt.service';
 
 @Component({
     selector: 'app-mis-compras',

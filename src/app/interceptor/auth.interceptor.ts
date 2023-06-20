@@ -7,7 +7,7 @@ import {
   HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { AuthService } from '../servicios/api/auth.service';
+import { AuthService } from '../servicios/auth.service';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 import { from } from 'rxjs/internal/observable/from';
 

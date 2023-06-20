@@ -1,84 +1,71 @@
-  .center-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    gap: 30px; 
-  }
-  
-  #container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
+.center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 30px;
+}
 
-  .card{
-    margin-top: 5px;
-    height: 70px
-  }
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  ion-fab-button{
-    height: 70px;
-    width: 70px;
-  }
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
 
-  .product-info {
-    margin: auto;
-    color: rgb(8, 50, 164);
-    text-align: center;
-  }
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
 
-  .cart-icon{
-    font-size: 30px;
-  }
+#container a {
+  text-decoration: none;
+}
 
-  .cart-lenght{
-    position: absolute;
-    top: 18px;
-    left: 25px;
-    font-weight: 600;
-    font-size: 1em;
-    min-width: 25px;
-    z-index: 10;
-  }
+ion-fab-button {
+  height: 70px;
+  width: 70px;
+}
 
-  .botonQuitar{
-    margin-left: 0px;
-  }
+.product-info {
+  margin: auto;
+  color: rgb(8, 50, 164);
+}
 
-  .botonAgregar{
-    margin-left: 0px;
-  }
+.cart-icon {
+  font-size: 30px;
+}
 
-  .carrito{
-    margin-right: 0px;
-  }
+.botonQuitar {
+  margin-left: 0px;
+}
 
-  .volver{
-    margin-left: 0px;
-  }
+.carrito {
+  margin-right: 0px;
+}
 
-  .etiqueta{
-    margin-left: 15px;
-  }
+.volver {
+  margin-left: 0px;
+}
 
-  
+.etiqueta {
+  margin-left: 15px;
+}
+
+.product-container {
+  display: flex;
+  align-items: center;
+}
+.product-info {
+  margin-left: 20px;
+  color: black;
+}

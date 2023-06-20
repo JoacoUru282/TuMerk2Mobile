@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
-import { ApiService } from '../../servicios/api/api.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 @Component({
     selector: 'app-forgot-password',

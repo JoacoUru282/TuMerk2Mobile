@@ -5,10 +5,10 @@ import { AlertController, IonicModule } from '@ionic/angular';
 import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
 import { DtLogin } from '../../modelos/dataTypes/DtLogin';
 import { LoginResponse } from '../../modelos/dataTypes/loginResponse.interface';
-import { ApiService } from '../../servicios/api/api.service';
-import { DataService } from '../../servicios/api/data.service';
-import { JwtService } from '../../servicios/api/jwt.service';
-import { MessageUtil } from '../../servicios/api/message-util.service';
+import { ApiService } from '../../servicios/api.service';
+import { DataService } from '../../servicios/data.service';
+import { JwtService } from '../../servicios/jwt.service';
+import { MessageUtil } from '../../servicios/message-util.service';
 
 @Component({
     selector: 'app-login',
