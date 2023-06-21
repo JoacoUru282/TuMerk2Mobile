@@ -42,7 +42,7 @@ export class ApiService {
     return this.http.get<Local[]>(`${this.apiURL}/locales?abierto=${abierto}`);
   }
 
-  categoriasLocal() {
+  categoriasLocal(): Observable<DtCategoria[]> {
     return this.http.get<DtCategoria[]>(`${this.apiURL}/categorias?publico=true`);
   }
 
