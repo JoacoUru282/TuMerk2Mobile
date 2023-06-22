@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+
 import { DataService } from './servicios/data.service';
 import { ApiService } from './servicios/api.service';
-import { DtGetProducto } from './modelos/dataTypes/DtProducto';
 import { DtCategoria } from './modelos/dataTypes/DtCategoria';
 
 interface AppPage {
@@ -27,8 +27,8 @@ interface AppPage {
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
-  puedenVerSidebar: string[] = ['/home', '/mi-perfil', '/mis-compras', '/listar-reclamos', '/list-productos'];
-  mostrarSidebar: boolean = false;
+  puedenVerSidebar: string[] = ['/login', '/local-list'];
+  mostrarSidebar: boolean;
 
   categorias: DtCategoria[];
   mostrarCategorias: boolean = false;
@@ -42,8 +42,8 @@ export class AppComponent {
 
   private verificarVerSidebar() {
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.mostrarSidebar = this.puedenVerSidebar.includes(event.url);
+        if (event instanceof NavigationEnd) {
+        this.mostrarSidebar = !this.puedenVerSidebar.includes(event.url);
       }
     });
   }
@@ -85,6 +85,6 @@ export class AppComponent {
 
   async menuCerrarSesion() {
     await this.dataService.removeAll();
-    this.router.navigate(['/login']).then(_ => location.reload());
+    this.router.navigate(['login']);
   }
 }
