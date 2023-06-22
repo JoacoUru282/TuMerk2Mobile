@@ -85,6 +85,6 @@ export class AppComponent {
 
   async menuCerrarSesion() {
     await this.dataService.removeAll();
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']).then(_ => location.reload());
   }
 }
