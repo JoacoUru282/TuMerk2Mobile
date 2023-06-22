@@ -1,3 +1,68 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu *ngIf="puedeVerSidebar" contentId="sidebar-menu-router" type="overlay">
+    <ion-content>
+      <ion-list lines="full">
+        <ion-list-header>MENÚ</ion-list-header>
+        
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuInicio()">
+            <ion-icon aria-hidden="true" slot="start" ios="home-outline" md="home-sharp"></ion-icon>
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuMiPerfil()">
+            <ion-icon aria-hidden="true" slot="start" ios="person-circle-outline" md="person-circle-sharp"></ion-icon>
+            <ion-label>Mi Perfil</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuMisCompras()">
+            <ion-icon aria-hidden="true" slot="start" ios="cart-outline" md="cart-sharp"></ion-icon>
+            <ion-label>Mis Compras</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuMisReclamos()">
+            <ion-icon aria-hidden="true" slot="start" ios="chatbubbles-outline" md="chatbubbles-sharp"></ion-icon>
+            <ion-label>Mis Reclamos</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <ion-item detail="false" button (click)="menuCategorias()">
+          <ion-icon aria-hidden="true" slot="start" ios="grid-outline" md="grid-sharp"></ion-icon>
+          <ion-label>Categorías</ion-label>
+          <ion-icon aria-hidden="true" slot="end" ios="chevron-down-outline" md="chevron-down-sharp"></ion-icon>
+        </ion-item>
+      
+        <ion-list *ngIf="mostrarCategorias">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item *ngFor="let categoria of categorias" detail="false" button (click)="menuCategoria(categoria.id, categoria.nombre)">
+              <ion-icon name="remove-outline" slot="start"></ion-icon>
+              <ion-label>{{ categoria.nombre }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuCambiarLocal()">
+            <ion-icon aria-hidden="true" slot="start" ios="business-outline" md="business-sharp"></ion-icon>
+            <ion-label>Cambiar de Local</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <ion-menu-toggle auto-hide="false">
+          <ion-item detail="false" button (click)="menuCerrarSesion()">
+            <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
+            <ion-label>Cerrar Sesión</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-router-outlet id="sidebar-menu-router"></ion-router-outlet>
 </ion-app>

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, Platform } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtAltaArticulo } from '../../modelos/dataTypes/DtCompra';
 import { DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
 import { DtDireccionUser } from '../../modelos/dataTypes/DtUsuario';
@@ -19,7 +18,6 @@ import { MessageUtil } from '../../servicios/message-util.service';
     standalone: true,
     imports: [
         IonicModule,
-        SidebarComponent,
         NgFor,
         NgIf,
         FormsModule,

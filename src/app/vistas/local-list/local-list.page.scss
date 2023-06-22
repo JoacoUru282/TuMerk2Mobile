@@ -3,19 +3,14 @@
 }
 
 p {
-  font-size: 25px;
+  font-size: 15px;
   color: white;
   text-align: center;
   margin-top: 20px;
 }
 
-p.p2 {
-  font-size: 15px;
-  color: white;
-}
-
 ion-button {
-  --background: rgba(57, 172, 231, 0.5);
+  --background: var(--ion-color-secundario-tint);
   --transform: scale(0.95);
   margin: 25px;
 }

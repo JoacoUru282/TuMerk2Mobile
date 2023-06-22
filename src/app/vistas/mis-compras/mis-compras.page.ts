@@ -2,7 +2,6 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtCompra } from '../../modelos/dataTypes/DtCompra';
 import { ApiService } from '../../servicios/api.service';
 import { DataService } from '../../servicios/data.service';
@@ -15,7 +14,6 @@ import { JwtService } from '../../servicios/jwt.service';
     standalone: true,
     imports: [
         IonicModule,
-        SidebarComponent,
         NgFor,
         NgIf,
     ],

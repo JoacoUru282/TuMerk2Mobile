@@ -2,7 +2,6 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtGetProducto, DtProductoStorage } from '../../modelos/dataTypes/DtProducto';
 import { DataService } from '../../servicios/data.service';
 
@@ -13,7 +12,6 @@ import { DataService } from '../../servicios/data.service';
     standalone: true,
     imports: [
         IonicModule,
-        SidebarComponent,
         NgIf,
     ],
 })

@@ -31,7 +31,7 @@ export const routes: Routes = [
     loadComponent: () => import('./vistas/alta-domicilio/alta-domicilio.page').then( m => m.AltaDomicilioPage)
   },
   {
-    path: 'list-productos',
+    path: 'list-productos/:idCat',
     loadComponent: () => import('./vistas/list-productos/list-productos.page').then( m => m.ListProductosPage)
   },
   {

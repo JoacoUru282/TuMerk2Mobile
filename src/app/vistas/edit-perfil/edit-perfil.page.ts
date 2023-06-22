@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtGetUsuario, DtModificarUsuario } from '../../modelos/dataTypes/DtUsuario';
 import { ApiService } from '../../servicios/api.service';
 import { DataService } from '../../servicios/data.service';
@@ -16,7 +15,6 @@ import { MessageUtil } from '../../servicios/message-util.service';
     standalone: true,
     imports: [
         IonicModule,
-        SidebarComponent,
         FormsModule,
         ReactiveFormsModule,
     ],

@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { APIError } from '../../modelos/dataTypes/ApiError';
 import { DtAltaReclamo, DtCompra } from '../../modelos/dataTypes/DtCompra';
 import { Token } from '../../modelos/dataTypes/Token.interface';
@@ -21,7 +20,6 @@ import { MessageUtil } from '../../servicios/message-util.service';
       IonicModule,
       CommonModule,
       FormsModule,
-      SidebarComponent,
       ReactiveFormsModule,
     ],
 })
