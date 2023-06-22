@@ -27,9 +27,8 @@ interface AppPage {
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
-  appPages: string[] = ['/home', '/mi-perfil', '/mis-compras', '/listar-reclamos', '/list-productos'];
-
-  puedeVerSidebar: boolean = false;
+  puedenVerSidebar: string[] = ['/home', '/mi-perfil', '/mis-compras', '/listar-reclamos', '/list-productos'];
+  mostrarSidebar: boolean = false;
 
   categorias: DtCategoria[];
   mostrarCategorias: boolean = false;
@@ -42,11 +41,9 @@ export class AppComponent {
   }
 
   private verificarVerSidebar() {
-    let noPermitirSidebarURL: string[] = [];
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.puedeVerSidebar = !noPermitirSidebarURL.includes(event.url);
+        this.mostrarSidebar = this.puedenVerSidebar.includes(event.url);
       }
     });
   }
@@ -88,6 +85,6 @@ export class AppComponent {
 
   async menuCerrarSesion() {
     await this.dataService.removeAll();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']).then(_ => location.reload());
   }
 }
