@@ -15,7 +15,7 @@ export const routes: Routes = [
     loadComponent: () => import('./vistas/registration/registration.page').then( m => m.RegistrationPage)
   },
   {
-    path: 'recuperar-contraseña',
+    path: 'recuperar-contrasena',
     loadComponent: () => import('./vistas/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
   },
   {

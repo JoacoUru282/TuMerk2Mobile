@@ -1,4 +1,8 @@
 export interface BackEndError{
-    timestamp?:string;
-    mensaje?:string;
+    status: number;
+    error: {
+        timestamp:string;
+        mensaje:string;
+        detalles?: string[];
+    }
 }

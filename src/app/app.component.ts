@@ -27,7 +27,7 @@ interface AppPage {
   imports: [IonicModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class AppComponent {
-  puedenVerSidebar: string[] = ['/login', '/local-list'];
+  puedenVerSidebar: string[] = ['/login', '/registrarse', '/recuperar-contrasena', '/local-list'];
   mostrarSidebar: boolean;
 
   categorias: DtCategoria[];
