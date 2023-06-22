@@ -76,25 +76,41 @@
   --ion-color-light-tint: #f5f6f9;
 
   /** custom **/
-  --ion-color-anaranjado: #ff8a00;
-	--ion-color-anaranjado-rgb: 255,138,0;
-	--ion-color-anaranjado-contrast: #000000;
-	--ion-color-anaranjado-contrast-rgb: 0,0,0;
-	--ion-color-anaranjado-shade: #e07900;
-	--ion-color-anaranjado-tint: #ff961a;
+	--ion-color-primario: #00bcf5;
+	--ion-color-primario-rgb: 0,188,245;
+	--ion-color-primario-contrast: #000000;
+	--ion-color-primario-contrast-rgb: 0,0,0;
+	--ion-color-primario-shade: #00a5d8;
+	--ion-color-primario-tint: #1ac3f6;
+  
+  --ion-color-secundario: #ff8a00;
+	--ion-color-secundario-rgb: 255,138,0;
+	--ion-color-secundario-contrast: #000000;
+	--ion-color-secundario-contrast-rgb: 0,0,0;
+	--ion-color-secundario-shade: #e07900;
+	--ion-color-secundario-tint: #ff961a;
 }
 
-.ion-color-anaranjado {
-  --ion-color-base: var(--ion-color-anaranjado);
-  --ion-color-base-rgb: var(--ion-color-anaranjado-rgb);
-  --ion-color-contrast: var(--ion-color-anaranjado-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-anaranjado-contrast-rgb);
-  --ion-color-shade: var(--ion-color-anaranjado-shade);
-  --ion-color-tint: var(--ion-color-anaranjado-tint);
+.ion-color-primario {
+	--ion-color-base: var(--ion-color-primario);
+	--ion-color-base-rgb: var(--ion-color-primario-rgb);
+	--ion-color-contrast: var(--ion-color-primario-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-primario-contrast-rgb);
+	--ion-color-shade: var(--ion-color-primario-shade);
+	--ion-color-tint: var(--ion-color-primario-tint);
+}
+
+.ion-color-secundario {
+  --ion-color-base: var(--ion-color-secundario);
+  --ion-color-base-rgb: var(--ion-color-secundario-rgb);
+  --ion-color-contrast: var(--ion-color-secundario-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-secundario-contrast-rgb);
+  --ion-color-shade: var(--ion-color-secundario-shade);
+  --ion-color-tint: var(--ion-color-secundario-tint);
 }
 
 .md body {
-  --ion-toolbar-background: #00C2FF;
+  --ion-toolbar-background: var(--ion-color-primario);
   --ion-background-color: #ffffff;
 }
 

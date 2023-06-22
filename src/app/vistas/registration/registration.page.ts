@@ -20,7 +20,7 @@ import { MessageUtil } from '../../servicios/message-util.service';
 })
 export class RegistrationPage implements OnInit {
 
-  constructor(private api: ApiService, private alertController: AlertController, private router: Router, private message: MessageUtil) { }
+  constructor(private api: ApiService, private router: Router, private messageUtil: MessageUtil) { }
   MIN_NAME_LENGHT = 8;
   visibility: boolean = true;
 
@@ -48,7 +48,7 @@ export class RegistrationPage implements OnInit {
       this.apellidoFormControl.value === '' ||
       this.cedulaFormControl.value === ''
     ){
-      this.message.showDialog('Error', 'Has dejado campos vacios');
+      this.messageUtil.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if (this.esEmailValido(this.emailFormControl.value)) {
         let data: DtRegistro = {
@@ -60,28 +60,19 @@ export class RegistrationPage implements OnInit {
         };
         this.api.register(data).subscribe({
           next: () => {
-            this.message.showDialog('Bien!', 'Te has registrado correctamente');
+            this.messageUtil.showDialog('Bien!', 'Te has registrado correctamente');
             this.router.navigate(['login']);
           },
           error: (err: BackEndError) => {
-            this.showAlert(err.mensaje);
+            this.messageUtil.showBackendError(err);
           },
         });
       }
       else{
-        this.message.showDialog('Error', 'El email esta mal escrito');
+        this.messageUtil.showDialog('Error', 'El email esta mal escrito');
       }
     }
   }
-
-  showAlert(msg: string|undefined) {
-		let alert = this.alertController.create({
-			message: msg,
-			header: 'Error',
-			buttons: ['OK']
-		});
-		alert.then((alert) => alert.present());
-	}
 
   esEmailValido(email: string): boolean {
     let mailValido = false;

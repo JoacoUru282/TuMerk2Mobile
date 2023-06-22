@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtDireccionUser, DtGetUsuario } from '../../modelos/dataTypes/DtUsuario';
 import { ApiService } from '../../servicios/api.service';
 import { JwtService } from '../../servicios/jwt.service';
@@ -15,7 +14,6 @@ import { JwtService } from '../../servicios/jwt.service';
     standalone: true,
     imports: [
         IonicModule,
-        SidebarComponent,
         FormsModule,
         NgFor,
     ],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { BackEndError } from '../../modelos/dataTypes/BackEndError.interface';
 import { DtLogin } from '../../modelos/dataTypes/DtLogin';
 import { LoginResponse } from '../../modelos/dataTypes/loginResponse.interface';
@@ -24,11 +24,11 @@ import { MessageUtil } from '../../servicios/message-util.service';
 export class LoginPage  implements OnInit {
   constructor(
     private api: ApiService, 
-    private alertController: AlertController, 
-    private message: MessageUtil, 
+    private messageUtil: MessageUtil, 
     private router: Router, 
     private jwtService: JwtService,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private loadingController: LoadingController) { }
 
   visibility: boolean = true;
   
@@ -53,6 +53,12 @@ export class LoginPage  implements OnInit {
       }
     });
   }
+  async showLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Iniciando sesión...',
+    });
+    await loading.present();
+  }
 
   public toggleVisibility() {
     this.visibility = !this.visibility;
@@ -64,42 +70,35 @@ export class LoginPage  implements OnInit {
       this.emailFormControl.value === null ||
       this.passwordFormControl.value === ''
     ){
-      this.message.showDialog('Error', 'Has dejado campos vacios');
+      this.messageUtil.showDialog('Error', 'Has dejado campos vacios');
     }else{
       if(this.isEmailOk(this.emailFormControl.value)){
         let data: DtLogin = {
           email: this.emailFormControl.value,
           contrasenia: this.passwordFormControl.value
         };
+        this.showLoading();
         this.api.login(data).subscribe({
           next:async (response: LoginResponse) => {
+            this.loadingController.dismiss();
             await this.jwtService.guardarAccessTokenEnSesion(response.accessToken!);
             const rol = await this.jwtService.obtenerRol();
             if(rol === "COMPRADOR"){
               this.router.navigate(['local-list']);
             }else{
-              this.message.showDialog('Error', 'No sos usuario comprador');
+              this.messageUtil.showDialog('Error', 'Solo el rol comprador tiene permitido iniciar sesión por el mobile');
             }
           },
           error: (err: BackEndError) => {
-            this.showAlert(err.mensaje);
+            this.loadingController.dismiss();
+            this.messageUtil.showBackendError(err);
           }
         })
       }else{
-        this.message.showDialog('Error', 'El email esta mal escrito');
+        this.messageUtil.showDialog('Error', 'El email no es válido');
       }
     }
   }
-
-  showAlert(msg: string|undefined) {
-		let alert = this.alertController.create({
-			message: msg,
-			header: 'Error',
-			buttons: ['OK']
-		});
-		alert.then((alert) => alert.present());
-	}
-  
 
   isEmailOk(email: string): boolean{
     let mailOk = false;

@@ -15,7 +15,7 @@ export const routes: Routes = [
     loadComponent: () => import('./vistas/registration/registration.page').then( m => m.RegistrationPage)
   },
   {
-    path: 'recuperar-contraseña',
+    path: 'recuperar-contrasena',
     loadComponent: () => import('./vistas/forgot-password/forgot-password.page').then( m => m.ForgotPasswordPage)
   },
   {
@@ -31,7 +31,7 @@ export const routes: Routes = [
     loadComponent: () => import('./vistas/alta-domicilio/alta-domicilio.page').then( m => m.AltaDomicilioPage)
   },
   {
-    path: 'list-productos',
+    path: 'list-productos/:idCat',
     loadComponent: () => import('./vistas/list-productos/list-productos.page').then( m => m.ListProductosPage)
   },
   {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionPerformed, PushNotificationSchema, PushNotifications, Token } from '@capacitor/push-notifications';
 import { IonicModule } from '@ionic/angular';
-import { SidebarComponent } from '../../componentes/sidebar/sidebar.component';
 import { DtTokenUser } from '../../modelos/dataTypes/DtUsuario';
 import { ApiService } from '../../servicios/api.service';
 import { JwtService } from '../../servicios/jwt.service';
@@ -12,7 +11,7 @@ import { Capacitor } from '@capacitor/core';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonicModule, SidebarComponent],
+  imports: [IonicModule],
 })
 export class HomePage implements OnInit {
   constructor(private api: ApiService, private jwtService: JwtService) {}
