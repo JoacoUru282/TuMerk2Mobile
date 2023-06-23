@@ -9,7 +9,7 @@ import { DtGetProducto } from 'src/app/modelos/dataTypes/DtProducto';
 import { DtAltaDomicilio } from 'src/app/modelos/dataTypes/DtDomicilio';
 import { DtTokenUser } from 'src/app/modelos/dataTypes/DtUsuario';
 import { DtModificarUsuario } from 'src/app/modelos/dataTypes/DtUsuario';
-import { DtAltaArticulo, DtAltaCompra, DtAltaReclamo, DtCompra, DtReclamo } from 'src/app/modelos/dataTypes/DtCompra';
+import { DtAltaArticulo, DtAltaCompra, DtAltaMensajeReclamo, DtAltaReclamo, DtCompra, DtReclamo } from 'src/app/modelos/dataTypes/DtCompra';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -87,6 +87,19 @@ export class ApiService {
 
   getReclamos(idUsuario: any) {
     return this.http.get<DtReclamo[]>(`${this.apiURL}/usuarios/${idUsuario}/reclamos`);
+  }
+
+  getReclamo(id: number) {
+    return this.http.get<DtReclamo>(`${this.apiURL}/reclamos/${id}`);
+  }
+
+  getEnviarMensajeReclamo(idReclamo: number, mensaje: string) {
+    const data: DtAltaMensajeReclamo = {
+      sucursal: false,
+      texto: mensaje,
+      idReclamo: idReclamo
+    }
+    return this.http.post<DtReclamo>(`${this.apiURL}/reclamos/mensajes`, data);
   }
 
   async procesarPago(idDireccion: number, nroLocal: number, idUsuario: any, carrito: DtAltaArticulo[]): Promise<string> {

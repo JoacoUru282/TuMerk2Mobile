@@ -63,7 +63,7 @@ export const routes: Routes = [
     loadComponent: () => import('./vistas/listar-reclamos/listar-reclamos.page').then( m => m.ListarReclamosPage)
   },
   {
-    path: 'ver-reclamo',
+    path: 'ver-reclamo/:id',
     loadComponent: () => import('./vistas/ver-reclamo/ver-reclamo.page').then( m => m.VerReclamoPage)
   },
 ];

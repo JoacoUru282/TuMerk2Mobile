@@ -60,17 +60,16 @@ export class AltaReclamoPage implements OnInit {
     }
     
     const motivo = this.reclamoForm.get('motivoFormControl')?.value;
-    console.log("este es el motivo", motivo);
     let motivoReclamo: string;
 
     switch (motivo) {
-      case 'Producto vencido':
+      case 'Producto Vencido':
         motivoReclamo = 'PRODUCTO_VENCIDO';
         break;
       case 'Producto Defectuoso':
         motivoReclamo = 'PRODUCTO_DEFECTUOSO';
         break;
-      case 'Producto incorrecto':
+      case 'Producto Incorrecto':
         motivoReclamo = 'PRODUCTO_INCORRECTO';
         break;
       default:
@@ -90,7 +89,8 @@ export class AltaReclamoPage implements OnInit {
         idCompra: this.compraId
       };
       this.apiService.altaReclamo(dtAltaReclamo).subscribe({
-        next: (response) => {
+        next: (_) => {
+          this.message.showDialog('Información', 'Has agregado el reclamo correctamente!');
           this.router.navigate(['home']);
         },
         error: (err: APIError) => {

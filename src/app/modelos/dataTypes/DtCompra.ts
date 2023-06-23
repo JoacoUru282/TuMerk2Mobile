@@ -61,7 +61,7 @@ export class DtAltaMensajeReclamo {
 }
 
 /**Esquema ReclamoDTO*/
-export class DtReclamo {
+export interface DtReclamo {
     id: number
     fecha: string
     estado: estadoReclamo
@@ -69,31 +69,14 @@ export class DtReclamo {
     motivo: tipoReclamo
     descripcionMotivo: string
     texto: string
+    idCompra: number
     mensajes: DtMensajeReclamo[]
-
-    constructor(id: number, fecha:string, estado: estadoReclamo, descripcionEstado: string, descripcionMotivo: string, motivo: tipoReclamo, texto: string, mensajes: DtMensajeReclamo[]) {
-        this.id = id
-        this.fecha = fecha
-        this.estado = estado
-        this.motivo = motivo
-        this.texto = texto
-        this.descripcionEstado = descripcionEstado
-        this.descripcionMotivo = descripcionMotivo
-        this.mensajes = mensajes
-    }
 }
 
 /**Esquema MensajeDTO*/
-export class DtMensajeReclamo {
+export interface DtMensajeReclamo {
     id: number
     fecha: string
     sucursal: boolean
     texto: string
-
-    constructor(id: number, sucursal: boolean, texto: string, fecha: string) {
-        this.id = id
-        this.sucursal = sucursal;
-        this.texto = texto;
-        this.fecha = fecha;
-    }
 }

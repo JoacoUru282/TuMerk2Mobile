@@ -1,5 +1,6 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
+    <ion-title class="header-title">Reclamo {{ reclamo ? '#' + reclamo.id: '' }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -7,9 +8,71 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ver-reclamo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="reclamo">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Fecha: {{ parseFecha(reclamo.fecha) }}</ion-card-subtitle>
+        <ion-card-title>Información</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Estado: </ion-label>
+          <ion-label>{{ reclamo.descripcionEstado }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Compra: </ion-label>
+          <ion-label>#{{ reclamo.idCompra }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Motivo: </ion-label>
+          <ion-label>{{ reclamo.descripcionMotivo }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Descripción: </ion-label>
+          <ion-label>{{ reclamo.texto }}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="isReclamoEstadoAbierto()">
+      <ion-card-header>
+        <ion-card-title>Nuevo Mensaje</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Ingrese el texto</ion-label>
+          <ion-textarea [(ngModel)]="nuevoMensaje" rows="3"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="full" (click)="agregarMensaje()">Enviar</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Mensajes</ion-card-title>
+      </ion-card-header>
+
+      <ng-container *ngIf="reclamo.mensajes.length === 0; else mostrarMensajes">
+        <ion-item>
+          <ion-label>No hay mensajes enviados</ion-label>
+        </ion-item>
+      </ng-container>
+
+      <ng-template #mostrarMensajes>
+        <ion-card-content>
+          <ion-list>
+            <ion-item [class.mensaje-local]="mensaje.sucursal" [class.mensaje-comprador]="!mensaje.sucursal" *ngFor="let mensaje of reclamo.mensajes">
+              <span *ngIf="mensaje.sucursal" class="enviado-local">( {{ parseFechaHora(mensaje.fecha) }} ) Local :</span>
+              <span *ngIf="!mensaje.sucursal" class="enviado-comprador">( {{ parseFechaHora(mensaje.fecha) }} ) Tú :</span>
+              {{ mensaje.texto }}
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ng-template>
+
+    </ion-card>
+  </div>
 </ion-content>

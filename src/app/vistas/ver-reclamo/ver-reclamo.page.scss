@@ -1,0 +1,27 @@
+.mensaje-local {
+  background-color: #DCF8C6;
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.mensaje-comprador {
+  background-color: #c6e6f8;
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.enviado-local,
+.enviado-comprador {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.enviado-local {
+  color: #3DBB55;
+}
+
+.enviado-comprador {
+  color: #075ECC;
+}

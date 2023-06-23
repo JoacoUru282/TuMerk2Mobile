@@ -1,7 +1,7 @@
 export enum tipoReclamo{
-    PRODUCTO_VENCIDO = "Producto vencido",
+    PRODUCTO_VENCIDO = "Producto Vencido",
     PRODUCTO_DEFECTUOSO = "Producto Defectuoso",
-    PRODUCTO_INCORRECTO  = "Producto incorrecto"
+    PRODUCTO_INCORRECTO  = "Producto Incorrecto"
 }
 
 export enum estadoReclamo{
