@@ -72,6 +72,7 @@ export class AppComponent {
 
   menuCambiarLocal() {
     this.router.navigate(['local-list']);
+    this.dataService.removeData('productosCarrito');
   }
 
   menuCategorias() {
